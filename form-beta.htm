@@ -219,13 +219,13 @@
                                     <label for="" class="form_title" aria-required="true"><abbr class="necessary" title="為必填(選)欄位,不能為空白。">*</abbr>radio：</label>
                                     <div class="form_content" id="fake-legend">
                                         <div class="radio_grp form_inline">
-                                            <label><input type="radio" name="sampleRadio1" value="" checked="">新北市</label>
-                                            <label><input type="radio" name="sampleRadio1" value="">臺北市</label>
-                                            <label><input type="radio" name="sampleRadio1" value="">臺中市</label>
-                                            <label><input type="radio" name="sampleRadio1" value="">臺南市</label>
-                                            <label><input type="radio" name="sampleRadio1" value="">高雄市</label>
-                                            <label><input type="radio" name="sampleRadio1" value="">宜蘭縣</label>
-                                            <label><input type="radio" name="sampleRadio1" value="">新竹縣</label>
+                                            <label><input type="radio" name="sampleRadio" value="" checked="">新北市</label>
+                                            <label><input type="radio" name="sampleRadio" value="">臺北市</label>
+                                            <label><input type="radio" name="sampleRadio" value="">臺中市</label>
+                                            <label><input type="radio" name="sampleRadio" value="">臺南市</label>
+                                            <label><input type="radio" name="sampleRadio" value="">高雄市</label>
+                                            <label><input type="radio" name="sampleRadio" value="">宜蘭縣</label>
+                                            <label><input type="radio" name="sampleRadio" value="">新竹縣</label>
                                         </div>
                                     </div>
                                 </div>
@@ -306,6 +306,121 @@
                                     <label for="address" class="form_title"><abbr class="necessary" title="為必填(選)欄位,不能為空白。">*</abbr>textarea：</label>
                                     <div class="form_content">
                                         <textarea name="" id="address" cols="30" rows="10"></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- 多欄 -->
+                                <div class="form_grp">
+                                    <div class="flex-col-equal-2">
+                                        <div class="form_grp">
+                                            <label for="inputSample" class="form_title">欄位1</label>
+                                            <div class="form_content">
+                                                <input name="username" id="inputSample" type="text" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form_grp">
+                                            <label for="inputSample2" class="form_title">欄位2</label>
+                                            <div class="form_content">
+                                                <input name="username" id="inputSample2" type="text" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form_grp">
+                                    <div class="flex-col-equal-3">
+                                        <div class="form_grp">
+                                            <label for="inputSample" class="form_title">欄位1</label>
+                                            <div class="form_content">
+                                                <input name="username" id="inputSample" type="text" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form_grp">
+                                            <label for="inputSample2" class="form_title">欄位2</label>
+                                            <div class="form_content">
+                                                <input name="username" id="inputSample2" type="text" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form_grp">
+                                            <label for="inputSample2" class="form_title">欄位3</label>
+                                            <div class="form_content">
+                                                <input name="username" id="inputSample2" type="text" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--  -->
+                                <div class="form_grp">
+                                    <div class="flex-col-equal-3">
+                                        <div class="form_grp">
+                                            <label for="inputSample" class="form_title">欄位1</label>
+                                            <div class="form_content">
+                                                <input name="username" id="inputSample" type="text" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form_grp warn">
+                                            <label for="inputSample2" class="form_title">欄位2</label>
+                                            <div class="form_content">
+                                                <input name="username" id="inputSample2" type="text" placeholder="" class="error">
+                                                <div class="notice_error">其中一欄的錯誤訊息</div>
+                                            </div>
+                                        </div>
+                                        <div class="form_grp">
+                                            <label for="inputSample2" class="form_title">欄位3</label>
+                                            <div class="form_content">
+                                                <input name="username" id="inputSample2" type="text" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form_grp">
+                                    <div class="flex-col-equal-3">
+                                        <div class="form_grp">
+                                            <label for="inputSample" class="form_title">欄位1</label>
+                                            <div class="form_content">
+                                                <input name="username" id="inputSample" type="text" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form_grp warn">
+                                            <label for="inputSample2" class="form_title">欄位2</label>
+                                            <div class="form_content">
+                                                <input name="username" id="inputSample2" type="text" placeholder="" class="error">
+                                            </div>
+                                        </div>
+                                        <div class="form_grp">
+                                            <label for="inputSample2" class="form_title">欄位3</label>
+                                            <div class="form_content">
+                                                <input name="username" id="inputSample2" type="text" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="notice_error">整個欄位的錯誤訊息</div>
+                                </div>
+
+
+                                <div class="flex-col-equal-4">
+                                    <div class="form_grp">
+                                        <label for="inputSample" class="form_title">欄位1</label>
+                                        <div class="form_content">
+                                            <input name="username" id="inputSample" type="text" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="form_grp">
+                                        <label for="inputSample2" class="form_title">欄位2</label>
+                                        <div class="form_content">
+                                            <input name="username" id="inputSample2" type="text" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="form_grp">
+                                        <label for="inputSample2" class="form_title">欄位3</label>
+                                        <div class="form_content">
+                                            <input name="username" id="inputSample2" type="text" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="form_grp">
+                                        <label for="inputSample2" class="form_title">欄位4</label>
+                                        <div class="form_content">
+                                            <input name="username" id="inputSample2" type="text" placeholder="">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -415,8 +530,8 @@
                                 <div class="form_grp warn">
                                     <label for="" class="form_title"><abbr class="necessary" title="為必填(選)欄位,不能為空白。">*</abbr>input：</label>
                                     <div class="form_content">
-                                        <input type="text" id="" placeholder="請輸入文字" class="lost">
-                                        <div class="notice_error">form_grp＋warn、漏填欄＋lost</div>
+                                        <input type="text" id="" placeholder="請輸入文字" class="error">
+                                        <div class="notice_error">form_grp＋warn、漏填欄＋error</div>
                                     </div>
                                 </div>
                                 <div class="form_grp">
@@ -780,7 +895,7 @@
                                                     <input name="username" id="inputSample" type="text" placeholder="">
                                                 </div>
                                             </div>
-                                            <div class="form_grp lost">
+                                            <div class="form_grp error">
                                                 <label for="inputSample2" class="form_title">欄位2</label>
                                                 <div class="form_content">
                                                     <input name="username" id="inputSample2" type="text" placeholder="">
@@ -847,7 +962,7 @@
                                                     <input name="username" id="inputSample" type="text" placeholder="">
                                                 </div>
                                             </div>
-                                            <div class="form_grp lost">
+                                            <div class="form_grp error">
                                                 <label for="inputSample2" class="form_title label_hidden">欄位2</label>
                                                 <div class="form_content">
                                                     <input name="username" id="inputSample2" type="text" placeholder="">

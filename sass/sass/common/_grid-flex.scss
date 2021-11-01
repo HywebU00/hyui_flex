@@ -45,27 +45,27 @@ $m-gutter: 4px;
 //         }
 //     }
 // }
-// .flex-equal-3{
-//     .Flex-set{
-//         .col{
-//             @include flex-xs-equal(1, 0px);
-//             @include flex-sm-equal(2, $m-gutter);
-//             @include flex-md-equal(3, $m-gutter);
-//             @include flex-lg-equal(3, $m-gutter);
-//             @include gutter();
-//         }
-//         .thumbnail{
-//             margin-bottom: 30px;
-//             @include flex-xs-equal(1, 0px);
-//             @include flex-sm-equal(2, $m-gutter);
-//             @include flex-md-equal(3, $m-gutter);
-//             @include flex-lg-equal(3, $m-gutter);
-//             @include screen('mobile') {
-//                 justify-content: center;
-//             }
-//         }
-//     }
-// }
+.flex-equal-3{
+    .Flex-set{
+        .col{
+            @include flex-xs-equal(1, 0px);
+            @include flex-sm-equal(2, $m-gutter);
+            @include flex-md-equal(3, $m-gutter);
+            @include flex-lg-equal(3, $m-gutter);
+            @include gutter();
+        }
+        .thumbnail{
+            margin-bottom: 30px;
+            @include flex-xs-equal(1, 0px);
+            @include flex-sm-equal(2, $m-gutter);
+            @include flex-md-equal(3, $m-gutter);
+            @include flex-lg-equal(3, $m-gutter);
+            @include screen('mobile') {
+                justify-content: center;
+            }
+        }
+    }
+}
 // .flex-equal-4{
 //     .Flex-set{
 //         .col{

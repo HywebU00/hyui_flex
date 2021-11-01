@@ -221,7 +221,7 @@ select::-ms-expand {
     font-size: 100%;
     margin: .5em 0;
 
-    // 表單的線 ----------------------- sratt
+    // 表單的線 ----------------------- start
     // border-top: 1px solid #DDD;
     .form_grp {
         border-bottom: 1px dashed #DDD;
@@ -619,6 +619,9 @@ select::-ms-expand {
     .flex-col-equal-4{
         @extend %flex_set;
         width: 100%;
+        .form_grp {
+            border-bottom: 0;
+        }
     }
 
     .flex-col-equal-1{
@@ -1701,7 +1704,7 @@ input[type="file"] {
     // > label{ color: #b70000; font-weight: bold; }
 
     .radio_grp, .check_grp{
-        &.lost{
+        &.error{
             @include box-shadow(0px 0px 0px 2px #b70000);
             margin-top: 2px;
             padding: .25em;
@@ -1710,14 +1713,14 @@ input[type="file"] {
     }
     .this{ color: #b70000; }
 }
-.lost{
+.error{
     @include box-shadow(0px 0px 0px 2px #b70000);
     border: transparent;
 }
 
 // 第二層
 .form_content .form_grp{
-    &.lost{
+    &.error{
         box-shadow: none;
         // 標題
         .form_title, label{
@@ -1731,7 +1734,7 @@ input[type="file"] {
     }
 }
 
-// .lost{
+// .error{
 //     // 標題
 //     .form_title, label{
 //         color: #b70000; font-weight: bold;
