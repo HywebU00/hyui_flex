@@ -1,26 +1,26 @@
 .language {
     font-weight: bold;
-    font-size: .75em;
-    // text-shadow: 1px 1px 2px RGBA(0, 0, 0, .8);
-    flex:0 0 140px;
+    font-size: 0.75em;
+    flex: 0 0 140px;
     width: 140px;
-    padding-top: .2em;
     z-index: 9999;
-
-
+    position: relative;
     >a {
         display: block;
         background: #555;
         box-sizing: border-box;
-        color: #FFF;
-        padding: .2em 1em;
+        color: #fff;
+        padding: 0.2em 1em;
         position: relative;
-        transition: .3s ease-out;
+        transition: 0.3s ease-out;
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 100%;
         &:after {
             position: absolute;
-            right: .8em;
+            right: 0.8em;
             top: 1em;
-            content: "";
+            content: '';
             width: 0;
             height: 0;
             border-style: solid;
@@ -32,10 +32,9 @@
             width: 1px;
             height: 1.6em;
             right: 2em;
-            top: .4em;
-            content: "";
-            border-left: 1px solid #DDD;
-
+            top: 0.4em;
+            content: '';
+            border-left: 1px solid #ddd;
         }
         &:focus {
             box-shadow: none;
@@ -43,22 +42,25 @@
         }
     }
     ul {
-        background: #555;
+        background: #444;
         padding: 1em 1.5em;
-        display:flex;
-        flex-direction:column;
+        display: none;
+        position: absolute;
+        width: 100%;
+        top: 100%;
         @include li-reset;
         li {
-            flex:1;
+            flex: 1;
             box-sizing: border-box;
             margin: 0;
             a {
                 display: block;
-                color: #FFF;
-                padding: .5em .5em .5em 1em;
-                transition: .3s ease-out;
-                &:hover, &:focus {
-                    background: RGBA(0, 0, 0, .3);
+                color: #fff;
+                padding: 0.5em 0.5em 0.5em 1em;
+                transition: 0.3s ease-out;
+                &:hover,
+                &:focus {
+                    background: RGBA(0, 0, 0, 0.3);
                 }
             }
         }

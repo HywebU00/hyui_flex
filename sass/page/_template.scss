@@ -1,9 +1,11 @@
 * {
     box-sizing: border-box;
 }
+
 html {
     scroll-behavior: smooth;
 }
+
 body {
     &.noscroll {
         position: static !important;
@@ -15,6 +17,7 @@ body {
         padding: 0;
     }
 }
+
 // 最外圍預設為100%
 .wrapper {
     width: 100%;
@@ -25,21 +28,23 @@ body {
         overflow-y: auto;
     }
 }
+
 // 整體共用container樣式，請注意首頁切版頁面的整齊
 .container {
     padding: 0;
     margin: 0 auto;
     max-width: $container-max; //請看_variable.scss
 }
+
 .main {
     position: relative;
     margin: 0 auto;
-    padding: 1em 0 0 0;
     // 可先設定一個中央區塊最大寬，限制accesskey對齊
     h2 {
         line-height: 1.25em;
     }
 }
+
 ////////////////////////////////////////////////////////////
 // 為了與首頁區隔，請在內頁加上innerpage ClassName
 .innerpage {
@@ -85,6 +90,7 @@ body {
         font-size: 1.125em;
     }
 }
+
 .hidden {
     display: none;
 }
