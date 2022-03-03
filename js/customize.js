@@ -1,5 +1,15 @@
 // 自行加入的JS請寫在這裡
 $(function() {
+    //sticky sidebar
+    if ($('.stickySidebar').length > 0) {
+        var stickySidebar = new StickySidebar('.stickySidebar', {
+            containerSelector: '.main',
+            topSpacing: 93,
+            bottomSpacing: 0,
+            minWidth: 768,
+            resizeSensor: true,
+        });
+    }
     // 首頁輪播
     $('.mpSlider').slick({
         mobileFirst: true,
