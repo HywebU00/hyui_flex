@@ -22,6 +22,8 @@ $(function() {
         lazyLoaded: true,
         lazyLoad: 'ondemand',
         ease: 'ease',
+        pauseOnHover: false,
+        pauseOnFocus: false,
         customPaging: function(slider, i) {
             var title = $(slider.$slides[i]).find('img').attr('alt').trim();
             return $('<button type="button" aria-label="' + title + '"/>').text(title);
