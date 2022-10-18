@@ -444,22 +444,25 @@ $(function() {
         $('.tabs').each(function() {
             var _tab = $(this),
                 _tabItem = _tab.find('.tabItem'),
-                // _tabItemA = _tabItem.children('a'), //改button後，這行沒有
                 _tabContent = _tab.find('.tabContent'),
                 tabwidth = _tab.width(),
                 tabItemHeight = _tabItem.outerHeight(),
                 tabContentHeight = _tab.find('.active').next().innerHeight(),
-                tiGap = 0,
+                tabGutter= parseInt('4px'),         // 可設定 Gutter 寬度
                 tabItemLength = _tabItem.length,
-                tabItemWidth;
+                tabItemWidth,
+                marginLeft;
             _tab.find('.active').next('.tabContent').show();
             if (ww >= wwSmall) {
                 _tabContent.css('top', tabItemHeight);
                 _tab.height(tabContentHeight + tabItemHeight);
-                tabItemWidth = (tabwidth - (tabItemLength - 1) * tiGap) / tabItemLength;
-                _tabItem.width(tabItemWidth).css('margin-left', tiGap);
+
+                tabItemWidth = ( tabwidth / tabItemLength) - tabGutter;
+                marginLeft = ((tabwidth - (tabItemWidth * tabItemLength)) / (tabItemLength - 1));
+
+                _tabItem.outerWidth(tabItemWidth).css('margin-left', marginLeft);
                 _tabItem.first().css('margin-left', 0);
-                _tabItem.last().css({ position: 'absolute', top: 0, right: 0 }).width(tabItemWidth);
+                _tabItem.last().css({ position: 'absolute', top: 0, right: 0 }).outerWidth(tabItemWidth);
             } else {
                 _tab.css('height', 'auto');
                 _tabItem.width(tabwidth);
