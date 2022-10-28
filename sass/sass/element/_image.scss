@@ -11,7 +11,7 @@ img {
         visibility: hidden;
         opacity: 0;
     }
-    &.lazy{
+    &.lazy {
         visibility: hidden;
     }
     &.loaded {
@@ -19,6 +19,7 @@ img {
         animation: lazy_animation .5s ease-out;
     }
 }
+
 @keyframes lazy_animation {
     from {
         opacity: 0;
@@ -27,8 +28,11 @@ img {
         opacity: 1;
     }
 }
+
 // 設定img 在IE9+ SAFARI FIREFOX CHROME 可以object-fit
+
 /*for IE */
+
 .img-container {
     width: 100%;
     position: relative;
@@ -51,8 +55,8 @@ img {
             color: #FFF;
             margin: 0;
             bottom: 0;
-            left:0;
-            right:0;
+            left: 0;
+            right: 0;
             z-index: 2;
             text-align: center;
             @include text-overflow;
@@ -76,6 +80,10 @@ img {
                 left: 0;
                 bottom: 0;
                 right: 0;
+            }
+        }
+        &:focus-visible {
+            &:before {
                 box-shadow: 0 0px 0px 2px $aHover inset;
             }
         }
@@ -99,6 +107,7 @@ img {
         bottom: 0;
     }
 }
+
 %ie_setting {
     position: relative;
     background-position: center center;
@@ -109,34 +118,43 @@ img {
         height: 0px;
     }
 }
+
 .ie-object-none {
     @extend %ie_setting;
     background-size: auto;
 }
+
 .ie-object-cover {
     @extend %ie_setting;
     background-size: cover;
 }
+
 .ie-object-fill {
     @extend %ie_setting;
     background-size: 100% 100%;
 }
+
 .ie-object-contain {
     @extend %ie_setting;
     background-size: contain;
 }
+
 .fill {
     object-fit: fill;
 }
+
 .contain {
     object-fit: contain;
 }
+
 .cover {
     object-fit: cover;
 }
+
 .none {
     object-fit: none;
 }
+
 .scale-down {
     object-fit: scale-down;
 }

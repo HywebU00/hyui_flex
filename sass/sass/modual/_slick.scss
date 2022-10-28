@@ -25,7 +25,7 @@
     padding: 0;
 }
 
-.slick-list:focus {
+.slick-list:focus:not(:focus-visible) {
     outline: none;
 }
 
@@ -109,7 +109,7 @@
 // 共用slick的a focus
 .slick-slide {
     a {
-        &:focus {
+        &:focus-visible {
             &:before {
                 position: absolute;
                 top: 0;

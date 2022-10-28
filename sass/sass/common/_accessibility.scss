@@ -1,24 +1,24 @@
 // 以下皆是設定 測試無障礙關閉js 的純css排版
-
 // tab的外框線
-a:focus {
-  outline: none;
-  box-shadow: 0 0px 0px 2px $aFocus inset;
-  @include screen('mobile') {
-    box-shadow: none;
-  }
+:focus:not(:focus-visible) {
+    outline: none;
 }
+
+ :focus-visible {
+    outline: 2px dashed $aFocus;
+}
+
 // 導盲磚
 .accesskey {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  z-index: 9;
-  color: $color-word;
-  font-size: $font-size;
-  @include screen("mobile") {
-    display: none;
-  }
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 9;
+    color: $color-word;
+    font-size: $font-size;
+    @include screen("mobile") {
+        display: none;
+    }
 }
 
 a.goCenter {
@@ -40,12 +40,14 @@ a.goCenter {
     @include screen("mobile") {
         display: none;
     }
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
         outline: none;
         top: 0;
         opacity: 1;
     }
 }
+
 // no-js
 .no-js {
     noscript {
@@ -62,7 +64,8 @@ a.goCenter {
         box-sizing: border-box;
         a {
             color: $primaryColor;
-            &:hover, &:focus {
+            &:hover,
+            &:focus {
                 color: $aHover;
             }
         }

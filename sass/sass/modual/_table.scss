@@ -5,8 +5,18 @@ table {
     @include screen('xs_mobile') {
         width: 100%;
     }
-    th,
-    // td:not(.gsib_b,.gsc-search-button) {
+    caption {
+        font-weight: bold;
+        text-align: left;
+        font-size: 1.125rem;
+        margin-bottom: .5em;
+        .summary {
+            display: block;
+            font-size: 1em;
+            font-weight: normal;
+        }
+    }
+    th, // td:not(.gsib_b,.gsc-search-button) {
     //     padding: .5em;
     //     text-align: left;
     // }
@@ -21,7 +31,7 @@ table {
         padding: .5em;
         text-align: left;
     }
-    td{
+    td {
         border: #ddd 1px solid;
         word-break: break-all;
         a {
@@ -46,6 +56,7 @@ table {
         }
     }
 }
+
 .table_list {
     @include screen('xs_mobile') {
         background-color: transparent !important; //Force table to not be like tables anymore
@@ -88,6 +99,7 @@ table {
         }
     }
 }
+
 // fix_th_table
 .fix_th_table {
     margin: 1em 0;
@@ -144,6 +156,7 @@ table {
         }
     }
 }
+
 .table_wrapper {
     @include screen('mobile') {
         width: 100%;
@@ -161,18 +174,22 @@ table {
         }
     }
 }
-.scroltable{
-    min-width:600px !important;
+
+.scroltable {
+    min-width: 600px !important;
 }
+
 .scroltable-wrapper {
     position: relative;
     -webkit-overflow-scrolling: touch;
     -webkit-transform: translate3d(0, 0, 0);
     overflow-y: hidden;
 }
+
 .scroltable-container {
     overflow: auto;
 }
+
 .scroltable-nav {
     display: none;
     position: absolute;
@@ -181,9 +198,10 @@ table {
     cursor: pointer;
     z-index: 9;
 }
+
 .scroltable-nav.scroltable-nav-left {
     left: 0;
-    @include gradient(rgba(255,255,255,1),rgba(255,255,255,0),horizontal);
+    @include gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0), horizontal);
     .tablearrow_left {
         position: fixed;
         left: 0em;
@@ -206,9 +224,10 @@ table {
         }
     }
 }
+
 .scroltable-nav.scroltable-nav-right {
     right: 0;
-    @include gradient(rgba(255,255,255,0),rgba(255,255,255,1),horizontal);
+    @include gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), horizontal);
     .tablearrow_right {
         position: fixed;
         top: 0em;
@@ -230,6 +249,7 @@ table {
         }
     }
 }
+
 @keyframes arrow_left {
     from {
         left: -.2em;
@@ -238,6 +258,7 @@ table {
         left: .3em;
     }
 }
+
 @keyframes arrow_right {
     from {
         right: -.2em;
