@@ -6,7 +6,7 @@ a.more {
     width: 10em;
     text-align: center;
     height: 2.5em;
-    margin: .5em auto .5em;
+    margin: 0.5em auto 0.5em;
     line-height: 2.5;
     color: $primaryColor;
     border: 1px solid $primaryColor;
@@ -22,20 +22,20 @@ a.more {
     -webkit-transition-duration: 0.2s;
     transition-duration: 0.2s;
     &:after {
-        content: "";
+        content: '';
         width: 12px;
         height: 12px;
-        border: 2px solid #FFF;
+        border: 2px solid #fff;
         transform: rotate(45deg);
         position: absolute;
         right: -10px;
         top: 14px;
         border-left: none;
         border-bottom: none;
-        transition: .3s ease-out;
+        transition: 0.3s ease-out;
     }
     &:before {
-        content: "";
+        content: '';
         position: absolute;
         z-index: -1;
         top: 0;
@@ -68,8 +68,8 @@ a.more {
 
 // 範例：
 .demosection {
-    [class^="col"] {
-        border: 2px solid #FFF;
-        background: #DEDEDE;
+    [class^='col'] {
+        border: 2px solid #fff;
+        background: #dedede;
     }
 }

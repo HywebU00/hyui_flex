@@ -4,8 +4,7 @@
 //   max-width: 100%; // Part 1: Set a maximum relative to the parent
 //   height: auto; // Part 2: Scale the height according to the width, otherwise you get stretching
 // }
-
-img{
+img {
     max-width: 100%;
 }
 
@@ -14,8 +13,8 @@ img{
     overflow: hidden;
     &:before {
         display: inline-block;
-        content: "";
-        padding-top: ($height / $width) * 100%;
+        content: '';
+        padding-top: calc($height / $width) * 100%;
     }
     img {
         display: block;
@@ -32,8 +31,6 @@ img{
 
 // 範例
 // @include aspect-ratio(4,3);                   // 圖片比例，4:3
-
-
 // 圖片列表mixin
 // @mixin make_col($pic_length,$m_pic_length) {
 //     $outer_W: 100%;
@@ -64,4 +61,3 @@ img{
 //         left: 0;
 //     }
 // }
-
