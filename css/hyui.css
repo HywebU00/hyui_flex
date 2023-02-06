@@ -3109,6 +3109,28 @@ div.tag ul li a:hover, div.tag ul li a:focus {
   cursor: pointer;
 }
 
+.scrollToTop {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: url(../images/basic/top.png) no-repeat center top rgba(0, 0, 0, 0.6);
+  text-align: center;
+  color: #FFF;
+  line-height: 50px;
+  text-decoration: none;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  transition: 0.3s ease-out;
+  display: none;
+  z-index: 99999999;
+  text-indent: -999999px;
+}
+.scrollToTop:hover, .scrollToTop:focus {
+  background: url(../images/basic/top.png) no-repeat center top rgba(0, 0, 0, 0.8);
+  box-shadow: none;
+}
+
 .header {
   position: relative;
   width: 100%;
