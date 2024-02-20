@@ -11,20 +11,16 @@
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->
-    <!-- slick css-->
-    <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css" />
-    <link rel="stylesheet" type="text/css" href="vendor/slick/slick-theme.css" />
-    <!-- 燈箱facybox -->
-    <link rel="stylesheet" type="text/css" href="vendor/fancybox/jquery.fancybox.min.css" />
+
     <!-- hyUI css -->
-    <link rel="stylesheet" href="css/hyui.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <!-- favicon -->
     <link href="images/favicon.png" rel="icon" type="image/x-icon" />
   </head>
 
   <body>
     <!-- 直接跳主內容區 -->
-    <a class="goCenter" href="#center" tabindex="1">按Enter到主內容區</a>
+    <a class="goCenter" href="#aC" tabindex="1">按Enter到主內容區</a>
     <!-- wrapper Start -->
     <div class="wrapper">
       <!-- header Start -->
@@ -143,7 +139,23 @@
                 <ul>
                   <li><a href="#">第二層選單</a></li>
                   <li><a href="#">第二層選單</a></li>
-                  <li><a href="#">第二層選單</a></li>
+                  <li>
+                    <a href="#">第二層選單</a>
+                    <ul>
+                      <li><a href="#">第二層選單</a></li>
+                      <li><a href="#">第二層選單</a></li>
+                      <li><a href="#">第二層選單</a></li>
+                      <li>
+                        <a href="#">第二層選單</a>
+                        <ul>
+                          <li><a href="#">第二層選單</a></li>
+                          <li><a href="#">第二層選單</a></li>
+                          <li><a href="#">第二層選單</a></li>
+                          <li><a href="#">第二層選單</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
                   <li><a href="#">第二層選單</a></li>
                 </ul>
               </li>
@@ -176,7 +188,7 @@
       </header>
       <!-- header End -->
       <!-- main Start -->
-      <div id="center" class="main">
+      <div id="aC" class="main">
         <a class="accesskey" href="#ac" id="ac" accesskey="C" title="主要內容區">:::</a>
         <!-- 任何一個section下一層都要包下一層都要包div container作對齊 -->
         <!-- //// class 都可以隨意命名 !!! ///// -->
@@ -389,25 +401,20 @@
     </div>
     <a href="javascript:;" class="scrollToTop">回頁首</a>
     <!-- JQ -->
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <!-- 外掛 plugin js -->
-    <script src="vendor/jquery.easing.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
     <!-- ease -->
-    <script src="vendor/slick/slick.min.js "></script>
+    <script src="vendor/jquery.easing.min.js"></script>
     <!-- slick -->
-    <script src="vendor/lazyload/lazyload.js"></script>
+    <script src="vendor/slick/slick.min.js "></script>
     <!-- lazyload -->
-    <script src="vendor/picturefill/picturefill.min.js" async></script>
-    <!-- picturefill -->
-    <script src="vendor/scrolltable/jquery.scroltable.min.js"></script>
+    <script src="vendor/lazyload/lazyload.js"></script>
     <!-- scrolltable -->
-    <!-- sticky-sidebar -->
-    <script src="vendor/sticky-sidebar/sticky-sidebar.js"></script>
-    <script src="vendor/sticky-sidebar/ResizeSensor.js"></script>
-    <!-- fancy -->
-    <script src="vendor/fancybox/jquery.fancybox.min.js"></script>
+    <script src="vendor/scrolltable/jquery.scroltable.min.js"></script>
+    <!-- fancybox -->
+    <script src="vendor/fancybox/fancybox.umd.js"></script>
+    <script src="vendor/fancybox/l10n/zh_TW.umd.js"></script>
     <!-- hyUI -->
-    <script src="js/hyui.js"></script>
+    <script src="js/main.js"></script>
     <!-- 客製js -->
     <script src="js/customize.js"></script>
   </body>

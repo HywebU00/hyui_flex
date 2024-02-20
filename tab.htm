@@ -11,18 +11,16 @@
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
 <![endif]-->
-    <!-- slick css-->
-    <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css" />
-    <link rel="stylesheet" type="text/css" href="vendor/slick/slick-theme.css" />
+
     <!-- hyUI css -->
-    <link rel="stylesheet" href="css/hyui.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <!-- favicon -->
     <link href="images/favicon.png" rel="icon" type="image/x-icon" />
   </head>
 
   <body>
     <!-- 直接跳主內容區 -->
-    <a class="goCenter" href="#center" tabindex="1">按Enter到主內容區</a>
+    <a class="goCenter" href="#aC" tabindex="1">按Enter到主內容區</a>
     <!-- wrapper Start -->
     <div class="wrapper">
       <!-- header Start -->
@@ -123,16 +121,23 @@
                     <a href="http://www.google.com">第二層有連結</a>
                     <ul>
                       <li>
+                        <a href="http://www.google.com">第三層選單有連結</a>
+                        <ul>
+                          <li><a href="http://www.google.com">第四層選單有連結</a></li>
+                          <li><a href="#">第四層選單</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">第三層選單</a></li>
+                    </ul>
+                  </li>
+
+                  <!-- <li>
                         <a href="http://www.google.com">第三層選單有下層</a>
                         <ul>
                           <li><a href="#">第四層選單</a></li>
                           <li><a href="#">第四層選單</a></li>
                         </ul>
-                      </li>
-                      <li><a href="http://www.google.com">第三層選單有連結</a></li>
-                      <li><a href="#">第三層選單</a></li>
-                    </ul>
-                  </li>
+                      </li> -->
                   <li><a href="#">第二層選單</a></li>
                 </ul>
               </li>
@@ -161,7 +166,7 @@
       </header>
       <!-- header End -->
       <!-- main Start -->
-      <div id="center" class="main innerpage">
+      <div id="aC" class="main innerpage">
         <!-- 內頁新增一個classname-->
         <a class="accesskey" href="#ac" id="ac" accesskey="C" title="主要內容區">:::</a>
         <div class="container">
@@ -187,57 +192,123 @@
             </div>
             <section>
               <div class="tabSet">
-                <section class="tabs example-1">
-                  <button type="button" class="tabItem active">第一個頁籤</button>
-                  <!--  <h2 class="tabItem active"><a href="#">第一個頁籤</a></h2> -->
-                  <!--選到的頁籤項目-->
+                <!-- 頁籤的上一層父物件要加 role="tablist" -->
+                <div class="tabItems">
+                  <button type="button" class="tabBtn">頁籤項ㄧ</button>
+                  <button type="button" class="tabBtn">頁籤項二</button>
+                  <button type="button" class="tabBtn">頁籤項三</button>
+                  <button type="button" class="tabBtn">頁籤項四</button>
+                  <button type="button" class="tabBtn">頁籤項五</button>
+                </div>
+                <div class="tabContentGroup">
                   <div class="tabContent">
-                    <ul>
-                      <li><a href="#">1第一則消息消息消息消息消息消息</a><time>107-01-01</time></li>
-                      <li><a href="#">第二則消息</a><time>107-01-01</time></li>
-                      <li><a href="#">第三則消息</a><time>107-01-01</time></li>
-                      <li><a href="#">第四則消息</a><time>107-01-01</time></li>
-                      <li><a href="#">第五則消息</a><time>107-01-01</time></li>
-                    </ul>
-                    <div class="more"><a href="#">更多</a></div>
+                    <div class="content">
+                      <ul>
+                        <li>
+                          <a href="">使用到的ARIA:</a><br />
+                          <code>role="tablist"</code>, <code>role="tab"</code>, <code></code>, <code>aria-selected="<i>true/false</i>"</code>, <code>aria-label="<i>TEXT</i>"</code>, <code>aria-controls="<i>ID</i>"</code>
+                        </li>
+                        <li>
+                          <a href="#">處理頁籤項</a>
+                          <ol>
+                            <li>為每個作為頁籤項的<code>&lt;button&gt;</code>加上<code>role="tab"</code>，其上一層父元件加<code>role="tablist"</code></li>
+                            <li>選到的頁籤項加<code>aria-selected="true"</code>，未選到的頁籤項加<code>aria-selected="false"</code></li>
+                          </ol>
+                        </li>
+                        <li>
+                          <a href="#">處理頁籤內容區塊</a>
+                          <ol>
+                            <li>為每個作為頁籤內容的容器元件，通常是<code>&lt;div&gt;</code>，加上<code></code></li>
+                            <li>頁籤內容區塊加<code>aria-label="<i>TEXT</i>"</code>，<i>TEXT</i> 帶入對應的頁籤項的文字</li>
+                          </ol>
+                        </li>
+                        <li>
+                          <a href="#">讓頁籤項與頁籤內容產生關連</a>
+                          <ol>
+                            <li>頁籤內容區塊加<code>id="<i>ID</i>"</code>，對應的頁籤項加<code>aria-controls="<i>ID</i>"</code></li>
+                            <li>例如，第一個頁籤項<code>aria-controls="tabpanel-1"</code>，其控制的內容<code>id="tabpanel-1"</code></li>
+                          </ol>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                  <button type="button" class="tabItem">第二個頁籤</button>
-                  <!-- <h2 class="tabItem"><a href="#">第二個頁籤</a></h2> -->
                   <div class="tabContent">
-                    <ul>
-                      <li><a href="#">2第一則消息</a><time>107-01-01</time></li>
-                      <li><a href="#">第二則消息</a><time>107-01-01</time></li>
-                      <li><a href="#">第三則消息</a><time>107-01-01</time></li>
-                      <li><a href="#">第四則消息</a><time>107-01-01</time></li>
-                      <li><a href="#">第五則消息</a><time>107-01-01</time></li>
-                    </ul>
-                    <div class="more"><a href="#">更多</a></div>
+                    <div class="content">
+                      <ul>
+                        <li>
+                          <a href="#">頁籤二內容</a>
+                        </li>
+                        <li>
+                          <a href="#">人運部界政那我金後北製？差藥當兩；面下推的從不票她走子文內另來一得</a>
+                        </li>
+                        <li>
+                          <a href="#">機子年安才生家更前陽象望土福開人道高投了初幾的我辦量部念地中是基</a>
+                        </li>
+                        <li>
+                          <a href="#">只利她遊是態遠他大久呢來皮研，來三了裡後半物國檢。</a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                  <button type="button" class="tabItem">第三個頁籤</button>
-                  <!--  <h2 class="tabItem"><a href="#">第三個頁籤</a></h2> -->
                   <div class="tabContent">
-                    <ul>
-                      <li><a href="#">3第一則消息</a><time>107-01-01</time></li>
-                      <li><a href="#">第二則消息</a><time>107-01-01</time></li>
-                      <li><a href="#">第三則消息</a><time>107-01-01</time></li>
-                      <li><a href="#">第四則消息</a><time>107-01-01</time></li>
-                      <li><a href="#">第五則消息</a><time>107-01-01</time></li>
-                    </ul>
-                    <div class="more"><a href="#">更多</a></div>
+                    <div class="content">
+                      標題：探索未知的世界<br /><br />
+                      引言<br />
+                      在這個充滿奇遇和冒險的世界裡，我們常常被吸引到未知的領域中。這些未知的領域充滿了神秘和挑戰，讓我們感到興奮和好奇。本文將帶領您一同探索這些未知的領域，揭開它們的神秘面紗。<br /><br />
+
+                      第一章：神奇的自然界<br />
+                      自然界是一個充滿驚喜和美妙的地方。無論是壯麗的山脈、湛藍的海洋還是多彩的花草，都讓人讚嘆不已。而在這個世界的角落，還有許多未知的生物和現象等待我們去發現。例如，深海中的生物群落、古老的森林中的神秘生物，以及空中飄浮的奇特現象，都是我們可以探索的寶藏。<br /><br />
+
+                      第二章：科技的奇跡<br />
+                      科技的發展讓我們能夠窺探到更多未知的領域。例如，人工智能的進步讓我們能夠模擬和理解人腦中的神秘運作；太空探索的成果讓我們能夠窺探宇宙的奧秘。這些科技的奇跡不僅擴大了我們的知識範圍，也為我們帶來了更多的可能性。<br /><br />
+
+                      第三章：藝術的魅力<br />
+                      藝術是人類創造力的結晶，同樣也是一個充滿未知的領域。藝術家們通過他們的創作，探索和表達人類情感和思想。他們使用不同的媒介和技巧，創造出無盡的可能性。每一幅畫作、每一首音樂、每一部電影都是一個獨特的世界，等待我們去發現和欣賞。<br /><br />
+
+                      總結<br />
+                      在這個充滿未知的世界中，我們不斷地探索、學習和成長。無論是自然界、科技還是藝術，都是我們探索未知的途徑。讓我們保持好奇心和求知慾，勇敢地踏上未知的旅程
+                    </div>
                   </div>
-                  <button type="button" class="tabItem">第四個頁籤</button>
-                  <!-- <h2 class="tabItem"><a href="#">第四個頁籤</a></h2> -->
                   <div class="tabContent">
-                    <ul>
-                      <li><a href="#">4第一則消息</a><time>107-01-01</time></li>
-                      <li><a href="#">第二則消息</a><time>107-01-01</time></li>
-                      <li><a href="#">第三則消息</a><time>107-01-01</time></li>
-                      <li><a href="#">第四則消息</a><time>107-01-01</time></li>
-                      <li><a href="#">第五則消息</a><time>107-01-01</time></li>
-                    </ul>
-                    <div class="more"><a href="#">更多</a></div>
+                    <div class="content">
+                      <ul>
+                        <li>
+                          <a href="#">頁籤三內容</a>
+                        </li>
+                        <li>
+                          <a href="#">頁籤三內容</a>
+                        </li>
+                        <li>
+                          <a href="#">林人還是答以學領進保後錢愛而營，母石時以是養人年！</a>
+                        </li>
+                        <li>
+                          <a href="#">獲親應歌治前方相分之被參大治打地國許聲引會賣試萬只只業臺做不什北反照人機止了造人企！</a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </section>
+                  <div class="tabContent">
+                    <div class="content">
+                      <ul>
+                        <li>
+                          <a href="#">頁籤四內容</a>
+                        </li>
+                        <li>
+                          <a href="#">天一己有門起下模大且只身民家三歌先媽斯率高觀我張高看經。</a>
+                        </li>
+                        <li>
+                          <a href="#">上總簡能主意無百過可們的不來。</a>
+                        </li>
+                        <li>
+                          <a href="#">早進立研最題，滿微升我以我麗什綠是手時國聽感他球明定</a>
+                        </li>
+                        <li>
+                          <a href="#">步第完出著興就年題樣程用是著則分除到手人件些策不制爭人。 </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
             </section>
           </div>
@@ -354,20 +425,20 @@
     </div>
     <a href="javascript:;" class="scrollToTop">回頁首</a>
     <!-- JQ -->
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <!-- 外掛 plugin js -->
-    <script src="vendor/jquery.easing.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
     <!-- ease -->
-    <script src="vendor/slick/slick.min.js "></script>
+    <script src="vendor/jquery.easing.min.js"></script>
     <!-- slick -->
-    <script src="vendor/lazyload/lazyload.js"></script>
+    <script src="vendor/slick/slick.min.js "></script>
     <!-- lazyload -->
-    <script src="vendor/picturefill/picturefill.min.js" async></script>
-    <!-- picturefill -->
-    <script src="vendor/scrolltable/jquery.scroltable.min.js"></script>
+    <script src="vendor/lazyload/lazyload.js"></script>
     <!-- scrolltable -->
+    <script src="vendor/scrolltable/jquery.scroltable.min.js"></script>
+    <!-- fancybox -->
+    <script src="vendor/fancybox/fancybox.umd.js"></script>
+    <script src="vendor/fancybox/l10n/zh_TW.umd.js"></script>
     <!-- hyUI -->
-    <script src="js/hyui.js"></script>
+    <script src="js/main.js"></script>
     <!-- 客製js -->
     <script src="js/customize.js"></script>
   </body>

@@ -11,18 +11,16 @@
         <script src="js/html5shiv.js"></script>
         <script src="js/respond.min.js"></script>
     <![endif]-->
-    <!-- slick css-->
-    <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css" />
-    <link rel="stylesheet" type="text/css" href="vendor/slick/slick-theme.css" />
+
     <!-- hyUI css -->
-    <link rel="stylesheet" href="css/hyui.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <!-- favicon -->
     <link href="images/favicon.png" rel="icon" type="image/x-icon" />
   </head>
 
   <body>
     <!-- 直接跳主內容區 -->
-    <a class="goCenter" href="#center" tabindex="1">按Enter到主內容區</a>
+    <a class="goCenter" href="#aC" tabindex="1">按Enter到主內容區</a>
     <!-- wrapper Start -->
     <div class="wrapper">
       <!-- header Start -->
@@ -161,7 +159,7 @@
       </header>
       <!-- header End -->
       <!-- main Start -->
-      <div id="center" class="main innerpage">
+      <div id="aC" class="main innerpage">
         <!-- 內頁新增一個classname-->
         <a class="accesskey" href="#ac" id="ac" accesskey="C" title="主要內容區">:::</a>
         <div class="container">
@@ -218,16 +216,6 @@
             <!-- function_panel -->
             <div class="function_panel">
               <div class="publish_time"><span>發布日期：</span><time>2019-01-01</time></div>
-              <!-- 文字大小 -->
-              <div class="font_size">
-                <span>字型大小：</span>
-                <!-- 英文用<span>font-size：</span> -->
-                <ul>
-                  <li><a href="#" class="small">小</a></li>
-                  <li><a href="#" class="medium">中</a></li>
-                  <li><a href="#" class="large">大</a></li>
-                </ul>
-              </div>
               <!-- function功能區塊 -->
               <div class="function">
                 <ul>
@@ -334,25 +322,25 @@
                 <h3>相片集錦</h3>
                 <!--大圖slider-for-->
                 <div class="Slider-for">
-                  <div>
+                  <div class="item">
                     <div class="img-container">
                       <img src="https://assets.imgix.net/examples/kingfisher.jpg?w=500&h=480&fit=crop&auto=format%2Cenhance&usm=20" alt="圖片說明" />
                     </div>
                     <p>第一張圖說</p>
                   </div>
-                  <div>
+                  <div class="item">
                     <div class="img-container">
                       <img src="https://assets.imgix.net/examples/puffins.jpg?w=800&h=480&fit=crop&auto=format%2Cenhance&usm=20" alt="圖片說明" />
                     </div>
                     <p>第二張圖說</p>
                   </div>
-                  <div>
+                  <div class="item">
                     <div class="img-container">
                       <img src="https://assets.imgix.net/examples/womanlandscape.jpg?w=800&h=480&fit=crop&auto=format%2Cenhance&usm=20" alt="圖片說明" />
                     </div>
                     <p>第三張圖說</p>
                   </div>
-                  <div>
+                  <div class="item">
                     <div class="img-container">
                       <img src="https://assets.imgix.net/unsplash/paperlamp.jpg?w=800&h=480&fit=crop&auto=format%2Cenhance&usm=20" alt="圖片說明" />
                     </div>
@@ -363,25 +351,25 @@
                 <div class="controls"></div>
                 <!--小圖slider-nav-->
                 <div class="Slider-nav">
-                  <div>
+                  <div class="item">
                     <div class="img-container">
                       <img src="https://assets.imgix.net/examples/kingfisher.jpg?w=800&h=480&fit=crop&auto=format%2Cenhance&usm=20" alt="圖片說明" />
                     </div>
                     <p>第一張圖說</p>
                   </div>
-                  <div>
+                  <div class="item">
                     <div class="img-container">
                       <img src="https://assets.imgix.net/examples/puffins.jpg?w=800&h=480&fit=crop&auto=format%2Cenhance&usm=20" alt="圖片說明" />
                     </div>
                     <p>第二張圖說</p>
                   </div>
-                  <div>
+                  <div class="item">
                     <div class="img-container">
                       <img src="https://assets.imgix.net/examples/womanlandscape.jpg?w=800&h=480&fit=crop&auto=format%2Cenhance&usm=20" alt="圖片說明" />
                     </div>
                     <p>第三張圖說</p>
                   </div>
-                  <div>
+                  <div class="item">
                     <div class="img-container">
                       <img src="https://assets.imgix.net/unsplash/paperlamp.jpg?w=800&h=480&fit=crop&auto=format%2Cenhance&usm=20" alt="圖片說明" />
                     </div>
@@ -589,25 +577,20 @@
     </div>
     <a href="javascript:;" class="scrollToTop">回頁首</a>
     <!-- JQ -->
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <!-- 外掛 plugin js -->
-    <script src="vendor/jquery.easing.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
     <!-- ease -->
-    <script src="vendor/slick/slick.min.js "></script>
+    <script src="vendor/jquery.easing.min.js"></script>
     <!-- slick -->
-    <script src="vendor/lazyload/lazyload.js"></script>
+    <script src="vendor/slick/slick.min.js "></script>
     <!-- lazyload -->
-    <script src="vendor/picturefill/picturefill.min.js" async></script>
-    <!-- picturefill -->
-    <script src="vendor/scrolltable/jquery.scroltable.min.js"></script>
+    <script src="vendor/lazyload/lazyload.js"></script>
     <!-- scrolltable -->
-    <!-- sticky-sidebar -->
-    <script src="vendor/sticky-sidebar/sticky-sidebar.js"></script>
-    <script src="vendor/sticky-sidebar/ResizeSensor.js"></script>
-    <!-- fancy -->
-    <script src="vendor/fancybox/jquery.fancybox.min.js"></script>
+    <script src="vendor/scrolltable/jquery.scroltable.min.js"></script>
+    <!-- fancybox -->
+    <script src="vendor/fancybox/fancybox.umd.js"></script>
+    <script src="vendor/fancybox/l10n/zh_TW.umd.js"></script>
     <!-- hyUI -->
-    <script src="js/hyui.js"></script>
+    <script src="js/main.js"></script>
     <!-- 客製js -->
     <script src="js/customize.js"></script>
   </body>

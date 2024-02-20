@@ -11,20 +11,16 @@
         <script src="js/html5shiv.js"></script>
         <script src="js/respond.min.js"></script>
     <![endif]-->
-    <!-- slick css-->
-    <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css" />
-    <link rel="stylesheet" type="text/css" href="vendor/slick/slick-theme.css" />
-    <!-- 燈箱facybox -->
-    <link rel="stylesheet" type="text/css" href="vendor/fancybox/jquery.fancybox.min.css" />
+
     <!-- hyUI css -->
-    <link rel="stylesheet" href="css/hyui.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <!-- favicon -->
     <link href="images/favicon.png" rel="icon" type="image/x-icon" />
   </head>
 
   <body>
     <!-- 直接跳主內容區 -->
-    <a class="goCenter" href="#center" tabindex="1">按Enter到主內容區</a>
+    <a class="goCenter" href="#aC" tabindex="1">按Enter到主內容區</a>
     <!-- wrapper Start -->
     <div class="wrapper">
       <!-- header Start -->
@@ -163,7 +159,7 @@
       </header>
       <!-- header End -->
       <!-- main Start -->
-      <div id="center" class="main innerpage">
+      <div id="aC" class="main innerpage">
         <!-- 內頁新增一個classname-->
         <a class="accesskey" href="#ac" id="ac" accesskey="C" title="主要內容區">:::</a>
         <div class="container">
@@ -191,16 +187,6 @@
             <!-- function_panel -->
             <div class="function_panel">
               <div class="publish_time"><span>發布日期：</span><time>2019-01-01</time></div>
-              <!-- 文字大小 -->
-              <div class="font_size">
-                <span>字型大小：</span>
-                <!-- 英文用<span>font-size：</span> -->
-                <ul>
-                  <li><a href="#" class="small">小</a></li>
-                  <li><a href="#" class="medium">中</a></li>
-                  <li><a href="#" class="large">大</a></li>
-                </ul>
-              </div>
               <!-- function功能區塊 -->
               <div class="function">
                 <ul>
@@ -272,16 +258,9 @@
                 <div class="container">
                   <div class="Flex-set">
                     <div class="thumbnail">
-                      <a href="images/demo/01.jpg" data-fancybox="images" data-caption="第1張圖說">
+                      <a href="images/demo/01.jpg" data-fancybox="gallery" data-caption="第1張圖說">
                         <div class="img-container">
-                          <picture>
-                            <source media="(min-width: 1200px)" data-srcset="images/demo/01.jpg" />
-                            <source media="(min-width: 992px)" data-srcset="images/demo/01.jpg" />
-                            <source media="(min-width: 576px)" data-srcset="images/demo/01.jpg" />
-                            <source media="(max-width: 575px)" data-srcset="images/demo/01.jpg" />
-                            <img data-src="images/demo/01.jpg" class="lazy" alt="圖片說明" />
-                            <noscript><img src="images/demo/01.jpg" alt="圖片說明" /></noscript>
-                          </picture>
+                          <img src="images/demo/01.jpg" alt="圖片說明" />
                         </div>
                         <div class="caption">
                           <time>2018-01-01</time>
@@ -291,16 +270,9 @@
                       </a>
                     </div>
                     <div class="thumbnail">
-                      <a href="images/demo/02.jpg" data-fancybox="images" data-caption="第2張圖說">
+                      <a href="images/demo/02.jpg" data-fancybox="gallery" data-caption="第2張圖說">
                         <div class="img-container">
-                          <picture>
-                            <source media="(min-width: 1200px)" data-srcset="images/demo/02.jpg" />
-                            <source media="(min-width: 992px)" data-srcset="images/demo/02.jpg" />
-                            <source media="(min-width: 576px)" data-srcset="images/demo/02.jpg" />
-                            <source media="(max-width: 575px)" data-srcset="images/demo/02.jpg" />
-                            <img data-src="images/demo/02.jpg" class="lazy" alt="圖片說明" />
-                            <noscript><img src="images/demo/02.jpg" alt="圖片說明" /></noscript>
-                          </picture>
+                          <img src="images/demo/02.jpg" alt="圖片說明" />
                         </div>
                         <div class="caption">
                           <time>2018-01-01</time>
@@ -310,16 +282,9 @@
                       </a>
                     </div>
                     <div class="thumbnail">
-                      <a href="images/demo/03.jpg" data-fancybox="images" data-caption="第3張圖說">
+                      <a href="images/demo/03.jpg" data-fancybox="gallery" data-caption="第3張圖說">
                         <div class="img-container">
-                          <picture>
-                            <source media="(min-width: 1200px)" data-srcset="images/demo/03.jpg" />
-                            <source media="(min-width: 992px)" data-srcset="images/demo/03.jpg" />
-                            <source media="(min-width: 576px)" data-srcset="images/demo/03.jpg" />
-                            <source media="(max-width: 575px)" data-srcset="images/demo/03.jpg" />
-                            <img data-src="images/demo/03.jpg" class="lazy" alt="圖片說明" />
-                            <noscript><img src="images/demo/03.jpg" alt="圖片說明" /></noscript>
-                          </picture>
+                          <img src="images/demo/03.jpg" alt="圖片說明" />
                         </div>
                         <div class="caption">
                           <time>2018-01-01</time>
@@ -329,16 +294,9 @@
                       </a>
                     </div>
                     <div class="thumbnail">
-                      <a href="images/demo/04.jpg" data-fancybox="images" data-caption="第4張圖說">
+                      <a href="images/demo/04.jpg" data-fancybox="gallery" data-caption="第4張圖說">
                         <div class="img-container">
-                          <picture>
-                            <source media="(min-width: 1200px)" data-srcset="images/demo/04.jpg" />
-                            <source media="(min-width: 992px)" data-srcset="images/demo/04.jpg" />
-                            <source media="(min-width: 576px)" data-srcset="images/demo/04.jpg" />
-                            <source media="(max-width: 575px)" data-srcset="images/demo/04.jpg" />
-                            <img data-src="images/demo/04.jpg" class="lazy" alt="圖片說明" />
-                            <noscript><img src="images/demo/04.jpg" alt="圖片說明" /></noscript>
-                          </picture>
+                          <img src="images/demo/04.jpg" alt="圖片說明" />
                         </div>
                         <div class="caption">
                           <time>2018-01-01</time>
@@ -348,16 +306,9 @@
                       </a>
                     </div>
                     <div class="thumbnail">
-                      <a href="images/demo/05.jpg" data-fancybox="images" data-caption="第5張圖說">
+                      <a href="images/demo/05.jpg" data-fancybox="gallery" data-caption="第5張圖說">
                         <div class="img-container">
-                          <picture>
-                            <source media="(min-width: 1200px)" data-srcset="images/demo/05.jpg" />
-                            <source media="(min-width: 992px)" data-srcset="images/demo/05.jpg" />
-                            <source media="(min-width: 576px)" data-srcset="images/demo/05.jpg" />
-                            <source media="(max-width: 575px)" data-srcset="images/demo/05.jpg" />
-                            <img data-src="images/demo/05.jpg" class="lazy" alt="圖片說明" />
-                            <noscript><img src="images/demo/05.jpg" alt="圖片說明" /></noscript>
-                          </picture>
+                          <img src="images/demo/05.jpg" alt="圖片說明" />
                         </div>
                         <div class="caption">
                           <time>2018-01-01</time>
@@ -367,16 +318,9 @@
                       </a>
                     </div>
                     <div class="thumbnail">
-                      <a href="images/demo/06.jpg" data-fancybox="images" data-caption="第6張圖說">
+                      <a href="images/demo/06.jpg" data-fancybox="gallery" data-caption="第6張圖說">
                         <div class="img-container">
-                          <picture>
-                            <source media="(min-width: 1200px)" data-srcset="images/demo/06.jpg" />
-                            <source media="(min-width: 992px)" data-srcset="images/demo/06.jpg" />
-                            <source media="(min-width: 576px)" data-srcset="images/demo/06.jpg" />
-                            <source media="(max-width: 575px)" data-srcset="images/demo/06.jpg" />
-                            <img data-src="images/demo/06.jpg" class="lazy" alt="圖片說明" />
-                            <noscript><img src="images/demo/06.jpg" alt="圖片說明" /></noscript>
-                          </picture>
+                          <img src="images/demo/06.jpg" alt="圖片說明" />
                         </div>
                         <div class="caption">
                           <time>2018-01-01</time>
@@ -386,16 +330,9 @@
                       </a>
                     </div>
                     <div class="thumbnail">
-                      <a href="images/demo/07.jpg" data-fancybox="images" data-caption="第7張圖說">
+                      <a href="images/demo/07.jpg" data-fancybox="gallery" data-caption="第7張圖說">
                         <div class="img-container">
-                          <picture>
-                            <source media="(min-width: 1200px)" data-srcset="images/demo/07.jpg" />
-                            <source media="(min-width: 992px)" data-srcset="images/demo/07.jpg" />
-                            <source media="(min-width: 576px)" data-srcset="images/demo/07.jpg" />
-                            <source media="(max-width: 575px)" data-srcset="images/demo/07.jpg" />
-                            <img data-src="images/demo/07.jpg" class="lazy" alt="圖片說明" />
-                            <noscript><img src="images/demo/07.jpg" alt="圖片說明" /></noscript>
-                          </picture>
+                          <img src="images/demo/07.jpg" alt="圖片說明" />
                         </div>
                         <div class="caption">
                           <time>2018-01-01</time>
@@ -405,16 +342,9 @@
                       </a>
                     </div>
                     <div class="thumbnail">
-                      <a href="images/demo/08.jpg" data-fancybox="images" data-caption="第8張圖說">
+                      <a href="images/demo/08.jpg" data-fancybox="gallery" data-caption="第8張圖說">
                         <div class="img-container">
-                          <picture>
-                            <source media="(min-width: 1200px)" data-srcset="images/demo/08.jpg" />
-                            <source media="(min-width: 992px)" data-srcset="images/demo/08.jpg" />
-                            <source media="(min-width: 576px)" data-srcset="images/demo/08.jpg" />
-                            <source media="(max-width: 575px)" data-srcset="images/demo/08.jpg" />
-                            <img data-src="images/demo/08.jpg" class="lazy" alt="圖片說明" />
-                            <noscript><img src="images/demo/08.jpg" alt="圖片說明" /></noscript>
-                          </picture>
+                          <img src="images/demo/08.jpg" alt="圖片說明" />
                         </div>
                         <div class="caption">
                           <time>2018-01-01</time>
@@ -424,16 +354,9 @@
                       </a>
                     </div>
                     <div class="thumbnail">
-                      <a href="images/demo/09.jpg" data-fancybox="images" data-caption="第9張圖說">
+                      <a href="images/demo/09.jpg" data-fancybox="gallery" data-caption="第9張圖說">
                         <div class="img-container">
-                          <picture>
-                            <source media="(min-width: 1200px)" data-srcset="images/demo/09.jpg" />
-                            <source media="(min-width: 992px)" data-srcset="images/demo/09.jpg" />
-                            <source media="(min-width: 576px)" data-srcset="images/demo/09.jpg" />
-                            <source media="(max-width: 575px)" data-srcset="images/demo/09.jpg" />
-                            <img data-src="images/demo/09.jpg" class="lazy" alt="圖片說明" />
-                            <noscript><img src="images/demo/09.jpg" alt="圖片說明" /></noscript>
-                          </picture>
+                          <img src="images/demo/09.jpg" alt="圖片說明" />
                         </div>
                         <div class="caption">
                           <time>2018-01-01</time>
@@ -443,16 +366,9 @@
                       </a>
                     </div>
                     <div class="thumbnail">
-                      <a href="images/demo/10.jpg" data-fancybox="images" data-caption="第10張圖說">
+                      <a href="images/demo/10.jpg" data-fancybox="gallery" data-caption="第10張圖說">
                         <div class="img-container">
-                          <picture>
-                            <source media="(min-width: 1200px)" data-srcset="images/demo/10.jpg" />
-                            <source media="(min-width: 992px)" data-srcset="images/demo/10.jpg" />
-                            <source media="(min-width: 576px)" data-srcset="images/demo/10.jpg" />
-                            <source media="(max-width: 575px)" data-srcset="images/demo/10.jpg" />
-                            <img data-src="images/demo/10.jpg" class="lazy" alt="圖片說明" />
-                            <noscript><img src="images/demo/10.jpg" alt="圖片說明" /></noscript>
-                          </picture>
+                          <img src="images/demo/10.jpg" alt="圖片說明" />
                         </div>
                         <div class="caption">
                           <time>2018-01-01</time>
@@ -621,22 +537,20 @@
     </div>
     <a href="javascript:;" class="scrollToTop">回頁首</a>
     <!-- JQ -->
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <!-- 外掛 plugin js -->
-    <script src="vendor/jquery.easing.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
     <!-- ease -->
-    <script src="vendor/slick/slick.min.js "></script>
+    <script src="vendor/jquery.easing.min.js"></script>
     <!-- slick -->
-    <script src="vendor/lazyload/lazyload.js"></script>
+    <script src="vendor/slick/slick.min.js "></script>
     <!-- lazyload -->
-    <script src="vendor/picturefill/picturefill.min.js" async></script>
-    <!-- picturefill -->
-    <script src="vendor/scrolltable/jquery.scroltable.min.js"></script>
+    <script src="vendor/lazyload/lazyload.js"></script>
     <!-- scrolltable -->
-    <!-- 燈箱facybox -->
-    <script src="vendor/fancybox/jquery.fancybox.min.js"></script>
+    <script src="vendor/scrolltable/jquery.scroltable.min.js"></script>
+    <!-- fancybox -->
+    <script src="vendor/fancybox/fancybox.umd.js"></script>
+    <script src="vendor/fancybox/l10n/zh_TW.umd.js"></script>
     <!-- hyUI -->
-    <script src="js/hyui.js"></script>
+    <script src="js/main.js"></script>
     <!-- 客製js -->
     <script src="js/customize.js"></script>
   </body>

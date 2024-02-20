@@ -15,14 +15,14 @@
     <!-- <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="vendor/slick/slick-theme.css" /> -->
     <!-- hyUI css -->
-    <link rel="stylesheet" href="css/hyui.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <!-- favicon -->
     <link href="images/favicon.png" rel="icon" type="image/x-icon" />
   </head>
 
   <body>
     <!-- 直接跳主內容區 -->
-    <a class="goCenter" href="#center" tabindex="1">按Enter到主內容區</a>
+    <a class="goCenter" href="#aC" tabindex="1">按Enter到主內容區</a>
     <!-- wrapper Start -->
     <div class="wrapper">
       <!-- header Start -->
@@ -161,7 +161,7 @@
       </header>
       <!-- header End -->
       <!-- main Start -->
-      <div id="center" class="main innerpage">
+      <div id="aC" class="main innerpage">
         <!-- 內頁新增一個classname-->
         <a class="accesskey" href="#ac" id="ac" accesskey="C" title="主要內容區">:::</a>
         <div class="container">
@@ -180,41 +180,20 @@
             <!-- 圖片輪播 start -->
             <div class="mpSlider">
               <div class="img-container">
-                <a href="#">
-                  <picture>
-                    <source media="(min-width: 1200px)" data-srcset="images/demo/01.jpg" />
-                    <source media="(min-width: 992px)" data-srcset="images/demo/01.jpg" />
-                    <source media="(min-width: 576px)" data-srcset="images/demo/01.jpg" />
-                    <source media="(max-width: 575px)" data-srcset="images/demo/01.jpg" />
-                    <img data-src="images/demo/01.jpg" class="cover lazy" alt="圖說1" />
-                    <noscript><img src="images/demo/01.jpg" alt="圖說1" /></noscript>
-                  </picture>
+                <a href="#"
+                  ><img src="images/demo/01.jpg" alt="圖說1" />
                   <span class="caption">圖說1</span>
                 </a>
               </div>
               <div class="img-container">
-                <a href="#">
-                  <picture>
-                    <source media="(min-width: 1200px)" data-srcset="images/demo/02.jpg" />
-                    <source media="(min-width: 992px)" data-srcset="images/demo/02.jpg" />
-                    <source media="(min-width: 576px)" data-srcset="images/demo/02.jpg" />
-                    <source media="(max-width: 575px)" data-srcset="images/demo/02.jpg" />
-                    <img data-src="images/demo/02.jpg" class="cover lazy" alt="圖說2" />
-                    <noscript><img src="images/demo/02.jpg" alt="圖說2" /></noscript>
-                  </picture>
+                <a href="#"
+                  ><img src="images/demo/02.jpg" alt="圖說1" />
                   <span class="caption">圖說2</span>
                 </a>
               </div>
               <div class="img-container">
-                <a href="#">
-                  <picture>
-                    <source media="(min-width: 1200px)" data-srcset="images/demo/03.jpg" />
-                    <source media="(min-width: 992px)" data-srcset="images/demo/03.jpg" />
-                    <source media="(min-width: 576px)" data-srcset="images/demo/03.jpg" />
-                    <source media="(max-width: 575px)" data-srcset="images/demo/03.jpg" />
-                    <img data-src="images/demo/03.jpg" class="cover lazy" alt="圖說3" />
-                    <noscript><img src="images/demo/03.jpg" alt="圖說3" /></noscript>
-                  </picture>
+                <a href="#"
+                  ><img src="images/demo/03.jpg" alt="圖說1" />
                   <span class="caption">圖說3</span>
                 </a>
               </div>
@@ -373,20 +352,20 @@
     </div>
     <a href="javascript:;" class="scrollToTop">回頁首</a>
     <!-- JQ -->
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <!-- 外掛 plugin js -->
-    <script src="vendor/jquery.easing.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
     <!-- ease -->
-    <script src="vendor/lazyload/lazyload.js"></script>
-    <!-- lazyload -->
-    <script src="vendor/picturefill/picturefill.min.js" async></script>
-    <!-- picturefill -->
-    <script src="vendor/scrolltable/jquery.scroltable.min.js"></script>
-    <!-- scrolltable -->
-    <!-- slick js-->
+    <script src="vendor/jquery.easing.min.js"></script>
+    <!-- slick -->
     <script src="vendor/slick/slick.min.js "></script>
+    <!-- lazyload -->
+    <script src="vendor/lazyload/lazyload.js"></script>
+    <!-- scrolltable -->
+    <script src="vendor/scrolltable/jquery.scroltable.min.js"></script>
+    <!-- fancybox -->
+    <script src="vendor/fancybox/fancybox.umd.js"></script>
+    <script src="vendor/fancybox/l10n/zh_TW.umd.js"></script>
     <!-- hyUI -->
-    <script src="js/hyui.js"></script>
+    <script src="js/main.js"></script>
     <!-- 客製js -->
     <script src="js/customize.js"></script>
   </body>

@@ -1,41 +1,55 @@
 //http://w3bits.com/sass-mixins/
 @mixin screen($size) {
-    $desktop: "(min-width: #{$screen-lg})"; // max-width >= 1400px
-    $notebook: "(max-width: #{$screen-md-max})"; // max-width <= 1399px
-    $tablet: "(max-width: #{$screen-sm-max})"; // max-width <= 991px
-    $mobile: "(max-width: #{$screen-xs-max})"; // max-width <= 767px
-    $xs_mobile: "(max-width: #{$screen-xs-mobile-max})"; // max-width <= 575px
-    @if $size==desktop {
-        @media screen and #{$desktop} {
-            @content;
-        }
+  $desktop: "(min-width: #{$screen-lg})"; // max-width >= 1400px
+  $notebook: "(max-width: #{$screen-md-max})"; // max-width <= 1399px
+  $tablet: "(max-width: #{$screen-sm-max})"; // max-width <= 991px
+  $mobile: "(max-width: #{$screen-xs-max})"; // max-width <= 767px
+  $mobileMin: "(min-width: #{$screen-xs-max})"; // max-width <= 767px
+  $xs_mobile: "(max-width: #{$screen-xs-mobile-max})"; // max-width <= 575px
+
+  @if $size==desktop {
+    @media screen and #{$desktop} {
+      @content;
     }
-    @else if $size==notebook {
-        @media screen and #{$notebook} {
-            @content;
-        }
+  }
+
+  @else if $size==notebook {
+    @media screen and #{$notebook} {
+      @content;
     }
-    @else if $size==tablet {
-        @media screen and #{$tablet} {
-            @content;
-        }
+  }
+
+  @else if $size==tablet {
+    @media screen and #{$tablet} {
+      @content;
     }
-    @else if $size==mobile {
-        @media screen and #{$mobile} {
-            @content;
-        }
+  }
+
+  @else if $size==mobile {
+    @media screen and #{$mobile} {
+      @content;
     }
-    @else if $size==xs_mobile {
-        @media screen and #{$xs-mobile} {
-            @content;
-        }
+  }
+
+  @else if $size==xs_mobile {
+    @media screen and #{$xs-mobile} {
+      @content;
     }
-    @else {
-        @media screen and #{$size} {
-            @content;
-        }
+  }
+
+  @else if $size==mobileMin {
+    @media screen and #{$mobileMin} {
+      @content;
     }
+  }
+
+  @else {
+    @media screen and #{$size} {
+      @content;
+    }
+  }
 }
+
 // 範例：
 // .wrapper {
 //   margin: 0 auto;

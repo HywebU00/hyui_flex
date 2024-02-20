@@ -11,20 +11,16 @@
         <script src="js/html5shiv.js"></script>
         <script src="js/respond.min.js"></script>
     <![endif]-->
-    <!-- slick css-->
-    <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css" />
-    <link rel="stylesheet" type="text/css" href="vendor/slick/slick-theme.css" />
-    <!-- 燈箱facybox -->
-    <link rel="stylesheet" type="text/css" href="vendor/fancybox/jquery.fancybox.min.css" />
+
     <!-- hyUI css -->
-    <link rel="stylesheet" href="css/hyui.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <!-- favicon -->
     <link href="images/favicon.png" rel="icon" type="image/x-icon" />
   </head>
 
   <body>
     <!-- 直接跳主內容區 -->
-    <a class="goCenter" href="#center" tabindex="1">按Enter到主內容區</a>
+    <a class="goCenter" href="#aC" tabindex="1">按Enter到主內容區</a>
     <!-- wrapper Start -->
     <div class="wrapper">
       <!-- header Start -->
@@ -163,7 +159,7 @@
       </header>
       <!-- header End -->
       <!-- main Start -->
-      <div id="center" class="main innerpage">
+      <div id="aC" class="main innerpage">
         <!-- 內頁新增一個classname-->
         <a class="accesskey" href="#ac" id="ac" accesskey="C" title="主要內容區">:::</a>
         <div class="container">
@@ -215,16 +211,6 @@
             <!-- function_panel -->
             <div class="function_panel">
               <div class="publish_time"><span>發布日期：</span><time>2019-01-01</time></div>
-              <!-- 文字大小 -->
-              <div class="font_size">
-                <span>字型大小：</span>
-                <!-- 英文用<span>font-size：</span> -->
-                <ul>
-                  <li><a href="#" class="small">小</a></li>
-                  <li><a href="#" class="medium">中</a></li>
-                  <li><a href="#" class="large">大</a></li>
-                </ul>
-              </div>
               <!-- function功能區塊 -->
               <div class="function">
                 <ul>
@@ -328,12 +314,7 @@
               </ul>
               <figure class="pic">
                 <!-- 此範例為4:3比例 -->
-                <picture>
-                  <source media="(min-width: 768px)" srcset="images/demo/01.jpg" />
-                  <source media="(max-width: 767px)" srcset="images/demo/01.jpg" />
-                  <img data-src="images/demo/01.jpg" class="lazy" alt="圖片說明" />
-                  <noscript><img src="images/demo/01.jpg" alt="圖片說明" /></noscript>
-                </picture>
+                <img src="images/demo/01.jpg" alt="圖片說明" />
                 <figcaption>圖說</figcaption>
               </figure>
               <p>
@@ -428,81 +409,41 @@
                   <td>td 資料</td>
                 </tr>
               </table>
-              <!-- cp_slider+slick_lightbox -->
-              <!-- <div class="lightbox_slider">
-                            <h3>燈箱照片</h3>
-                            <div class="cp_slider">
-                                <div class="img-container">
-                                    <a href="images/demo/06.jpg" data-caption="第1張圖說">
-                                        <img data-lazy="images/demo/06.jpg" alt="">
-                                        <noscript><img src="images/demo/06.jpg" alt=""></noscript>
-                                        <span class="caption">第1張圖說</span>
-                                    </a>
-                                </div>
-                                <div class="img-container">
-                                    <a href="images/demo/07.jpg" data-caption="第2張圖說">
-                                        <img data-lazy="images/demo/07.jpg" alt="">
-                                        <noscript><img src="images/demo/07.jpg" alt=""></noscript>
-                                        <span class="caption">第2張圖說</span>
-                                    </a>
-                                </div>
-                                <div class="img-container">
-                                    <a href="images/demo/08.jpg" data-caption="第3張圖說">
-                                        <img data-lazy="images/demo/08.jpg" alt="">
-                                        <noscript><img src="images/demo/08.jpg" alt=""></noscript>
-                                        <span class="caption">第3張圖說</span>
-                                    </a>
-                                </div>
-                                <div class="img-container">
-                                    <a href="images/demo/10.jpg" data-caption="第4張圖說">
-                                        <img data-lazy="images/demo/10.jpg" alt="">
-                                        <noscript><img src="images/demo/10.jpg" alt=""></noscript>
-                                        <span class="caption">第4張圖說</span>
-                                    </a>
-                                </div>
-                                <div class="img-container">
-                                    <a href="images/demo/12.jpg" data-caption="第5張圖說">
-                                        <img data-lazy="images/demo/12.jpg" alt="">
-                                        <noscript><img src="images/demo/12.jpg" alt=""></noscript>
-                                        <span class="caption">第5張圖說</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div> -->
+
               <!-- fanybox cppic_slider lightbox_slider-->
               <div class="lightbox_slider_block">
                 <h3>燈箱照片</h3>
                 <div class="cppic_slider">
                   <div class="img-container">
-                    <a href="images/demo/06.jpg" data-fancybox="images" data-caption="第1張圖說">
+                    <a href="images/demo/06.jpg" data-fancybox="gallery" data-caption="第1張圖說">
                       <img src="images/demo/06.jpg" alt="" />
                       <noscript><img src="images/demo/06.jpg" alt="" /></noscript>
                       <span class="caption">第1張圖說</span>
                     </a>
                   </div>
                   <div class="img-container">
-                    <a href="images/demo/07.jpg" data-fancybox="images" data-caption="第2張圖說">
+                    <a href="images/demo/07.jpg" data-fancybox="gallery" data-caption="第2張圖說">
                       <img src="images/demo/07.jpg" alt="" />
                       <noscript><img src="images/demo/07.jpg" alt="" /></noscript>
                       <span class="caption">第2張圖說</span>
                     </a>
                   </div>
                   <div class="img-container">
-                    <a href="images/demo/08.jpg" data-fancybox="images" data-caption="第3張圖說">
+                    <a href="images/demo/08.jpg" data-fancybox="gallery" data-caption="第3張圖說">
                       <img src="images/demo/08.jpg" alt="" />
                       <noscript><img src="images/demo/08.jpg" alt="" /></noscript>
                       <span class="caption">第3張圖說</span>
                     </a>
                   </div>
                   <div class="img-container">
-                    <a href="images/demo/10.jpg" data-fancybox="images" data-caption="第4張圖說">
+                    <a href="images/demo/10.jpg" data-fancybox="gallery" data-caption="第4張圖說">
                       <img src="images/demo/10.jpg" alt="" />
                       <noscript><img src="images/demo/10.jpg" alt="" /></noscript>
                       <span class="caption">第4張圖說</span>
                     </a>
                   </div>
                   <div class="img-container">
-                    <a href="images/demo/12.jpg" data-fancybox="images" data-caption="第5張圖說">
+                    <a href="images/demo/12.jpg" data-fancybox="gallery" data-caption="第5張圖說">
                       <img src="images/demo/12.jpg" alt="" />
                       <noscript><img src="images/demo/12.jpg" alt="" /></noscript>
                       <span class="caption">第5張圖說</span>
@@ -709,25 +650,20 @@
     </div>
     <a href="javascript:;" class="scrollToTop">回頁首</a>
     <!-- JQ -->
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <!-- 外掛 plugin js -->
-    <script src="vendor/jquery.easing.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
     <!-- ease -->
-    <script src="vendor/slick/slick.min.js "></script>
+    <script src="vendor/jquery.easing.min.js"></script>
     <!-- slick -->
-    <script src="vendor/lazyload/lazyload.js"></script>
+    <script src="vendor/slick/slick.min.js "></script>
     <!-- lazyload -->
-    <script src="vendor/picturefill/picturefill.min.js" async></script>
-    <!-- picturefill -->
-    <script src="vendor/scrolltable/jquery.scroltable.min.js"></script>
+    <script src="vendor/lazyload/lazyload.js"></script>
     <!-- scrolltable -->
-    <!-- sticky-sidebar -->
-    <script src="vendor/sticky-sidebar/sticky-sidebar.js"></script>
-    <script src="vendor/sticky-sidebar/ResizeSensor.js"></script>
-    <!-- fancy -->
-    <script src="vendor/fancybox/jquery.fancybox.min.js"></script>
+    <script src="vendor/scrolltable/jquery.scroltable.min.js"></script>
+    <!-- fancybox -->
+    <script src="vendor/fancybox/fancybox.umd.js"></script>
+    <script src="vendor/fancybox/l10n/zh_TW.umd.js"></script>
     <!-- hyUI -->
-    <script src="js/hyui.js"></script>
+    <script src="js/main.js"></script>
     <!-- 客製js -->
     <script src="js/customize.js"></script>
   </body>
