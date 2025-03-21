@@ -20,15 +20,15 @@
 
   <body>
     <!-- 直接跳主內容區 -->
-    <a class="goCenter" href="#aC" tabindex="1">按Enter到主內容區</a>
+    <a class="goCenter" href="#aC">按Enter到主內容區</a>
     <!-- wrapper Start -->
     <div class="wrapper">
       <!-- header Start -->
       <header class="header">
         <div class="container">
-          <a class="accesskey" href="#aU" id="aU" accesskey="U" title="網站標題" tabindex="2">:::</a>
+          <a class="accesskeyItem" href="#aU" id="aU" accesskey="U" aria-label="網站標題">:::</a>
           <!-- navigation Start -->
-          <nav class="navigation" role="navigation" aria-label="Site">
+          <nav class="navigation" role="navigation" aria-label="頁首功能列">
             <!-- 新增div navlist -->
             <div class="navlist">
               <ul>
@@ -43,14 +43,14 @@
               <span>字型大小：</span>
               <!-- 英文用<span>font-size：</span> -->
               <ul>
-                <li><a href="#" role="button" class="small">小</a></li>
-                <li><a href="#" role="button" class="medium">中</a></li>
-                <li><a href="#" role="button" class="large">大</a></li>
+                <li><button type="button" class="smallSize">小</button></li>
+                <li><button type="button" class="mediumSize">中</button></li>
+                <li><button type="button" class="largeSize">大</button></li>
               </ul>
             </div>
             <!-- language -->
             <div class="language">
-              <a href="#">語言選擇</a>
+              <button type="button" aria-expanded="false" aria-controls="languageList">語言選擇</button>
               <ul>
                 <li><a href="#">繁體中文</a></li>
                 <li><a href="#">简体中文</a></li>
@@ -65,12 +65,9 @@
           <!-- Search Start -->
           <div class="search" role="search">
             <div class="form_grp">
-              <label for="mustSameAsId">搜尋</label>
-              <input name="username" id="mustSameAsId" type="text" placeholder="請輸入文字" accesskey="S" title="請輸入文字" aria-label="搜尋網站內容" />
-              <input name="" type="submit" value="查詢" class="btn btn-search" />
-            </div>
-            <div class="btn_grp">
-              <input name="" type="submit" value="進階搜尋" class="btn" />
+              <input name="username" type="text" placeholder="請輸入文字" accesskey="S" aria-label="搜尋網站內容" />
+              <button type="button" class="btn btn-search">查詢</button>
+              <button type="button" class="btn">進階搜尋</button>
             </div>
             <div class="keywordHot">
               <ul>
@@ -87,7 +84,7 @@
             <a href="#">網站導覽</a>
           </noscript>
           <!-- menu Start -->
-          <nav class="menu" role="navigation" aria-label="About page">
+          <nav class="menu mainMenu" role="navigation" aria-label="主選單">
             <ul>
               <li>
                 <a href="#">第一層選單</a>
@@ -159,9 +156,9 @@
       </header>
       <!-- header End -->
       <!-- main Start -->
-      <div id="aC" class="main innerpage">
+      <main class="main innerpage">
         <!-- 內頁新增一個classname-->
-        <a class="accesskey" href="#ac" id="ac" accesskey="C" title="主要內容區">:::</a>
+        <a class="accesskeyItem" href="#ac" id="ac" accesskey="C" aria-label="主要內容區">:::</a>
         <div class="container">
           <!-- 主要內容區 -->
           <div class="center_block">
@@ -180,84 +177,84 @@
                 <!-- button + 深色 icon -->
                 <div class="btn_grp">
                   <h2>button + 深色 icon</h2>
-                  <button class="btn"><i class="i_apple"></i>IOS</button>
-                  <button class="btn"><i class="i_arrow_left"></i>上一頁</button>
-                  <button class="btn">下一頁<i class="i_arrow_right"></i></button>
-                  <button class="btn"><i class="i_bookmark"></i>加入書籤</button>
-                  <button class="btn"><i class="i_chat"></i>訊息</button>
-                  <button class="btn"><i class="i_check"></i>確認</button>
-                  <button class="btn"><i class="i_clock"></i>時間</button>
-                  <button class="btn"><i class="i_close"></i>關閉</button>
-                  <button class="btn"><i class="i_edit"></i>編輯</button>
-                  <button class="btn"><i class="i_facebook"></i>facebook</button>
-                  <button class="btn"><i class="i_grid"></i>清單</button>
-                  <button class="btn"><i class="i_heart"></i>加入最愛</button>
-                  <button class="btn"><i class="i_home"></i>回首頁</button>
-                  <button class="btn"><i class="i_info"></i>說明</button>
-                  <button class="btn"><i class="i_link"></i>連結</button>
-                  <button class="btn"><i class="i_linkedin"></i>linkedin</button>
-                  <button class="btn"><i class="i_lock"></i>鎖定</button>
-                  <button class="btn"><i class="i_mail"></i>Mail</button>
-                  <button class="btn"><i class="i_rss"></i>RSS</button>
-                  <button class="btn"><i class="i_setting"></i>設定</button>
-                  <button class="btn"><i class="i_star"></i>評比</button>
-                  <button class="btn"><i class="i_twitter"></i>twitter</button>
-                  <button class="btn"><i class="i_video"></i>video</button>
-                  <button class="btn"><i class="i_vimeo"></i>vimeo</button>
-                  <button class="btn"><i class="i_youtube"></i>youtube</button>
-                  <button class="btn"><i class="i_order"></i>下單</button>
-                  <button class="btn"><i class="i_move"></i>移動</button>
-                  <button class="btn"><i class="i_reflash"></i>重新整理</button>
-                  <button class="btn"><i class="i_play"></i>語音播放</button>
-                  <button class="btn"><i class="i_view"></i>檢視</button>
-                  <button class="btn"><i class="i_add"></i>增加</button>
-                  <button class="btn"><i class="i_minus"></i>減少</button>
-                  <button class="btn"><i class="i_search"></i>查詢</button>
-                  <button class="btn"><i class="i_photo"></i>圖片</button>
-                  <button class="btn"><i class="i_man"></i>會員</button>
-                  <button class="btn"><i class="i_copy"></i>複製</button>
-                  <button class="btn"><i class="i_calendar"></i>日期</button>
+                  <button class="btn" type="button"><i class="i_apple"></i>IOS</button>
+                  <button class="btn" type="button"><i class="i_arrow_left"></i>上一頁</button>
+                  <button class="btn" type="button">下一頁<i class="i_arrow_right"></i></button>
+                  <button class="btn" type="button"><i class="i_bookmark"></i>加入書籤</button>
+                  <button class="btn" type="button"><i class="i_chat"></i>訊息</button>
+                  <button class="btn" type="button"><i class="i_check"></i>確認</button>
+                  <button class="btn" type="button"><i class="i_clock"></i>時間</button>
+                  <button class="btn" type="button"><i class="i_close"></i>關閉</button>
+                  <button class="btn" type="button"><i class="i_edit"></i>編輯</button>
+                  <button class="btn" type="button"><i class="i_facebook"></i>facebook</button>
+                  <button class="btn" type="button"><i class="i_grid"></i>清單</button>
+                  <button class="btn" type="button"><i class="i_heart"></i>加入最愛</button>
+                  <button class="btn" type="button"><i class="i_home"></i>回首頁</button>
+                  <button class="btn" type="button"><i class="i_info"></i>說明</button>
+                  <button class="btn" type="button"><i class="i_link"></i>連結</button>
+                  <button class="btn" type="button"><i class="i_linkedin"></i>linkedin</button>
+                  <button class="btn" type="button"><i class="i_lock"></i>鎖定</button>
+                  <button class="btn" type="button"><i class="i_mail"></i>Mail</button>
+                  <button class="btn" type="button"><i class="i_rss"></i>RSS</button>
+                  <button class="btn" type="button"><i class="i_setting"></i>設定</button>
+                  <button class="btn" type="button"><i class="i_star"></i>評比</button>
+                  <button class="btn" type="button"><i class="i_twitter"></i>twitter</button>
+                  <button class="btn" type="button"><i class="i_video"></i>video</button>
+                  <button class="btn" type="button"><i class="i_vimeo"></i>vimeo</button>
+                  <button class="btn" type="button"><i class="i_youtube"></i>youtube</button>
+                  <button class="btn" type="button"><i class="i_order"></i>下單</button>
+                  <button class="btn" type="button"><i class="i_move"></i>移動</button>
+                  <button class="btn" type="button"><i class="i_reflash"></i>重新整理</button>
+                  <button class="btn" type="button"><i class="i_play"></i>語音播放</button>
+                  <button class="btn" type="button"><i class="i_view"></i>檢視</button>
+                  <button class="btn" type="button"><i class="i_add"></i>增加</button>
+                  <button class="btn" type="button"><i class="i_minus"></i>減少</button>
+                  <button class="btn" type="button"><i class="i_search"></i>查詢</button>
+                  <button class="btn" type="button"><i class="i_photo"></i>圖片</button>
+                  <button class="btn" type="button"><i class="i_man"></i>會員</button>
+                  <button class="btn" type="button"><i class="i_copy"></i>複製</button>
+                  <button class="btn" type="button"><i class="i_calendar"></i>日期</button>
                 </div>
                 <!-- >button + 白色 icon -->
                 <div class="btn_grp">
                   <h2>button + 白色 icon</h2>
-                  <button class="btn btn-blue"><i class="i_apple2"></i>IOS</button>
-                  <button class="btn btn-blue"><i class="i_arrow_left2"></i>上一頁</button>
-                  <button class="btn btn-blue">下一頁<i class="i_arrow_right2"></i></button>
-                  <button class="btn btn-blue"><i class="i_bookmark2"></i>加入書籤</button>
-                  <button class="btn btn-blue"><i class="i_chat2"></i>訊息</button>
-                  <button class="btn btn-blue"><i class="i_check2"></i>確認</button>
-                  <button class="btn btn-blue"><i class="i_clock2"></i>時間</button>
-                  <button class="btn btn-blue"><i class="i_close2"></i>關閉</button>
-                  <button class="btn btn-blue"><i class="i_edit2"></i>編輯</button>
-                  <button class="btn btn-blue"><i class="i_facebook2"></i>facebook</button>
-                  <button class="btn btn-blue"><i class="i_grid2"></i>清單</button>
-                  <button class="btn btn-blue"><i class="i_heart2"></i>加入最愛</button>
-                  <button class="btn btn-blue"><i class="i_home2"></i>回首頁</button>
-                  <button class="btn btn-blue"><i class="i_info2"></i>說明</button>
-                  <button class="btn btn-blue"><i class="i_link2"></i>連結</button>
-                  <button class="btn btn-blue"><i class="i_linkedin2"></i>linkedin</button>
-                  <button class="btn btn-blue"><i class="i_lock2"></i>鎖定</button>
-                  <button class="btn btn-blue"><i class="i_mail2"></i>Mail</button>
-                  <button class="btn btn-blue"><i class="i_rss2"></i>RSS</button>
-                  <button class="btn btn-blue"><i class="i_setting2"></i>設定</button>
-                  <button class="btn btn-blue"><i class="i_star2"></i>評比</button>
-                  <button class="btn btn-blue"><i class="i_twitter2"></i>twitter</button>
-                  <button class="btn btn-blue"><i class="i_video2"></i>video</button>
-                  <button class="btn btn-blue"><i class="i_vimeo2"></i>vimeo</button>
-                  <button class="btn btn-blue"><i class="i_youtube2"></i>youtube</button>
-                  <button class="btn btn-blue"><i class="i_order2"></i>下單</button>
-                  <button class="btn btn-blue"><i class="i_move2"></i>移動</button>
-                  <button class="btn btn-blue"><i class="i_reflash2"></i>重新整理</button>
-                  <button class="btn btn-blue"><i class="i_play2"></i>語音播放</button>
-                  <button class="btn btn-blue"><i class="i_view2"></i>檢視</button>
-                  <button class="btn btn-blue"><i class="i_add2"></i>增加</button>
-                  <button class="btn btn-blue"><i class="i_minus2"></i>減少</button>
-                  <button class="btn btn-blue"><i class="i_search2"></i>查詢</button>
-                  <button class="btn btn-blue"><i class="i_photo2"></i>圖片</button>
-                  <button class="btn btn-blue"><i class="i_man2"></i>會員</button>
-                  <button class="btn btn-blue"><i class="i_copy2"></i>複製</button>
-                  <button class="btn btn-blue"><i class="i_calendar2"></i>日期</button>
+                  <button class="btn btn-blue" type="button"><i class="i_apple2"></i>IOS</button>
+                  <button class="btn btn-blue" type="button"><i class="i_arrow_left2"></i>上一頁</button>
+                  <button class="btn btn-blue" type="button">下一頁<i class="i_arrow_right2"></i></button>
+                  <button class="btn btn-blue" type="button"><i class="i_bookmark2"></i>加入書籤</button>
+                  <button class="btn btn-blue" type="button"><i class="i_chat2"></i>訊息</button>
+                  <button class="btn btn-blue" type="button"><i class="i_check2"></i>確認</button>
+                  <button class="btn btn-blue" type="button"><i class="i_clock2"></i>時間</button>
+                  <button class="btn btn-blue" type="button"><i class="i_close2"></i>關閉</button>
+                  <button class="btn btn-blue" type="button"><i class="i_edit2"></i>編輯</button>
+                  <button class="btn btn-blue" type="button"><i class="i_facebook2"></i>facebook</button>
+                  <button class="btn btn-blue" type="button"><i class="i_grid2"></i>清單</button>
+                  <button class="btn btn-blue" type="button"><i class="i_heart2"></i>加入最愛</button>
+                  <button class="btn btn-blue" type="button"><i class="i_home2"></i>回首頁</button>
+                  <button class="btn btn-blue" type="button"><i class="i_info2"></i>說明</button>
+                  <button class="btn btn-blue" type="button"><i class="i_link2"></i>連結</button>
+                  <button class="btn btn-blue" type="button"><i class="i_linkedin2"></i>linkedin</button>
+                  <button class="btn btn-blue" type="button"><i class="i_lock2"></i>鎖定</button>
+                  <button class="btn btn-blue" type="button"><i class="i_mail2"></i>Mail</button>
+                  <button class="btn btn-blue" type="button"><i class="i_rss2"></i>RSS</button>
+                  <button class="btn btn-blue" type="button"><i class="i_setting2"></i>設定</button>
+                  <button class="btn btn-blue" type="button"><i class="i_star2"></i>評比</button>
+                  <button class="btn btn-blue" type="button"><i class="i_twitter2"></i>twitter</button>
+                  <button class="btn btn-blue" type="button"><i class="i_video2"></i>video</button>
+                  <button class="btn btn-blue" type="button"><i class="i_vimeo2"></i>vimeo</button>
+                  <button class="btn btn-blue" type="button"><i class="i_youtube2"></i>youtube</button>
+                  <button class="btn btn-blue" type="button"><i class="i_order2"></i>下單</button>
+                  <button class="btn btn-blue" type="button"><i class="i_move2"></i>移動</button>
+                  <button class="btn btn-blue" type="button"><i class="i_reflash2"></i>重新整理</button>
+                  <button class="btn btn-blue" type="button"><i class="i_play2"></i>語音播放</button>
+                  <button class="btn btn-blue" type="button"><i class="i_view2"></i>檢視</button>
+                  <button class="btn btn-blue" type="button"><i class="i_add2"></i>增加</button>
+                  <button class="btn btn-blue" type="button"><i class="i_minus2"></i>減少</button>
+                  <button class="btn btn-blue" type="button"><i class="i_search2"></i>查詢</button>
+                  <button class="btn btn-blue" type="button"><i class="i_photo2"></i>圖片</button>
+                  <button class="btn btn-blue" type="button"><i class="i_man2"></i>會員</button>
+                  <button class="btn btn-blue" type="button"><i class="i_copy2"></i>複製</button>
+                  <button class="btn btn-blue" type="button"><i class="i_calendar2"></i>日期</button>
                 </div>
                 <!--  -->
                 <div class="btn_grp">
@@ -317,23 +314,23 @@
                     <button type="button" class="btn btn-red">按鈕</button>
                     <hr />
                     <h3>按鈕大小</h3>
-                    <button class="btn btn-xl">特大按鈕</button>
-                    <button class="btn btn-lg">大按鈕</button>
-                    <button class="btn">按鈕</button>
-                    <button class="btn btn-sm">小按鈕</button>
-                    <button class="btn btn-xs">小小按鈕</button>
+                    <button type="button" class="btn btn-xl">特大按鈕</button>
+                    <button type="button" class="btn btn-lg">大按鈕</button>
+                    <button type="button" class="btn">按鈕</button>
+                    <button type="button" class="btn btn-sm">小按鈕</button>
+                    <button type="button" class="btn btn-xs">小小按鈕</button>
                   </div>
                 </div>
               </form>
             </section>
           </div>
         </div>
-      </div>
+      </main>
       <!-- fatfooter Start -->
       <section class="fatfooter">
         <div class="container">
-          <button type="button" name="展開選單/OPEN" aria-label="導覽選單展開/收合" class="btn btn-fatfooter">收合</button>
-          <nav>
+          <button type="button" aria-expanded="true" class="btn btn-fatfooter" aria-label="開關頁尾網站導覽"></button>
+          <nav aria-label="頁尾網站導覽">
             <ul>
               <li>
                 <a href="#">關於本局</a>
@@ -406,9 +403,9 @@
       <!-- footer Start-->
       <footer>
         <div class="container">
-          <a class="accesskey" href="#aZ" id="aZ" accesskey="Z" title="頁尾區">:::</a>
+          <a class="accesskeyItem" href="#aZ" id="aZ" accesskey="Z" aria-label="頁尾區">:::</a>
           <div class="footer_logo">
-            <img src="images/logo.png" alt="" class="img-responsive" />
+            <img src="images/logo.png" alt="logo" class="img-responsive" />
           </div>
           <div class="footer_info">
             <ul class="footer_link">

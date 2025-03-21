@@ -20,15 +20,15 @@
 
   <body>
     <!-- 直接跳主內容區 -->
-    <a class="goCenter" href="#aC" tabindex="1">按Enter到主內容區</a>
+    <a class="goCenter" href="#aC">按Enter到主內容區</a>
     <!-- wrapper Start -->
     <div class="wrapper">
       <!-- header Start -->
       <header class="header">
         <div class="container">
-          <a class="accesskey" href="#aU" id="aU" accesskey="U" title="網站標題" tabindex="2">:::</a>
+          <a class="accesskeyItem" href="#aU" id="aU" accesskey="U" aria-label="網站標題">:::</a>
           <!-- navigation Start -->
-          <nav class="navigation" role="navigation" aria-label="Site">
+          <nav class="navigation" role="navigation" aria-label="頁首功能列">
             <!-- 新增div navlist -->
             <div class="navlist">
               <ul>
@@ -43,14 +43,14 @@
               <span>字型大小：</span>
               <!-- 英文用<span>font-size：</span> -->
               <ul>
-                <li><a href="#" role="button" class="small">小</a></li>
-                <li><a href="#" role="button" class="medium">中</a></li>
-                <li><a href="#" role="button" class="large">大</a></li>
+                <li><button type="button" class="smallSize">小</button></li>
+                <li><button type="button" class="mediumSize">中</button></li>
+                <li><button type="button" class="largeSize">大</button></li>
               </ul>
             </div>
             <!-- language -->
             <div class="language">
-              <a href="#">語言選擇</a>
+              <button type="button" aria-expanded="false" aria-controls="ts_iyn389_con" aria-haspopup="true" id="ts_iyn389" class="">語言選擇</button>
               <ul>
                 <li><a href="#">繁體中文</a></li>
                 <li><a href="#">简体中文</a></li>
@@ -65,12 +65,9 @@
           <!-- Search Start -->
           <div class="search" role="search">
             <div class="form_grp">
-              <label for="mustSameAsId">搜尋</label>
-              <input name="username" id="mustSameAsId" type="text" placeholder="請輸入文字" accesskey="S" title="請輸入文字" aria-label="搜尋網站內容" />
-              <input name="" type="submit" value="查詢" class="btn btn-search" />
-            </div>
-            <div class="btn_grp">
-              <input name="" type="submit" value="進階搜尋" class="btn" />
+              <input name="username" type="text" placeholder="請輸入文字" accesskey="S" aria-label="搜尋網站內容" />
+              <button type="button" class="btn btn-search">查詢</button>
+              <button type="button" class="btn">進階搜尋</button>
             </div>
             <div class="keywordHot">
               <ul>
@@ -87,7 +84,7 @@
             <a href="#">網站導覽</a>
           </noscript>
           <!-- menu Start -->
-          <nav class="menu" role="navigation" aria-label="About page">
+          <nav class="menu mainMenu" role="navigation" aria-label="Header的導航列">
             <ul>
               <li>
                 <a href="#">第一層選單</a>
@@ -139,7 +136,23 @@
                 <ul>
                   <li><a href="#">第二層選單</a></li>
                   <li><a href="#">第二層選單</a></li>
-                  <li><a href="#">第二層選單</a></li>
+                  <li>
+                    <a href="#">第二層選單</a>
+                    <ul>
+                      <li><a href="#">第二層選單</a></li>
+                      <li><a href="#">第二層選單</a></li>
+                      <li><a href="#">第二層選單</a></li>
+                      <li>
+                        <a href="#">第二層選單</a>
+                        <ul>
+                          <li><a href="#">第二層選單</a></li>
+                          <li><a href="#">第二層選單</a></li>
+                          <li><a href="#">第二層選單</a></li>
+                          <li><a href="#">第二層選單</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
                   <li><a href="#">第二層選單</a></li>
                 </ul>
               </li>
@@ -148,7 +161,20 @@
                 <ul>
                   <li><a href="#">第二層選單</a></li>
                   <li><a href="#">第二層選單</a></li>
-                  <li><a href="#">第二層選單</a></li>
+                  <li>
+                    <a href="http://www.google.com">第二層有連結</a>
+                    <ul>
+                      <li>
+                        <a href="http://www.google.com">第三層選單有下層</a>
+                        <ul>
+                          <li><a href="#">第四層選單</a></li>
+                          <li><a href="#">第四層選單</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="http://www.google.com">第三層選單有連結</a></li>
+                      <li><a href="#">第三層選單</a></li>
+                    </ul>
+                  </li>
                   <li><a href="#">第二層選單</a></li>
                 </ul>
               </li>
@@ -159,9 +185,9 @@
       </header>
       <!-- header End -->
       <!-- main Start -->
-      <div id="aC" class="main innerpage">
+      <main class="main innerpage">
         <!-- 內頁新增一個classname-->
-        <a class="accesskey" href="#ac" id="ac" accesskey="C" title="主要內容區">:::</a>
+        <a class="accesskeyItem" href="#ac" id="ac" accesskey="C" aria-label="主要內容區">:::</a>
         <div class="container">
           <!-- 主要內容區 -->
           <div class="center_block">
@@ -198,6 +224,7 @@
                     <div class="input-i">
                       <i class="i_lock"></i>
                       <input name="password" type="password" placeholder="請輸入密碼" />
+                      <button type="button" class="passwordEye hide" aria-label="觀看密碼"></button>
                     </div>
                   </div>
                   <div class="check_grp">
@@ -226,8 +253,8 @@
                       <div class="input-i">
                         <i class="i_lock"></i>
                         <input name="password" type="password" placeholder="請輸入密碼" />
+                        <button type="button" class="passwordEye hide">顯示密碼</button>
                       </div>
-                      <div class="notice_error">您輸入的帳號密碼有誤！</div>
                     </div>
                   </div>
                   <div class="form_grp">
@@ -237,10 +264,15 @@
                         <input name="email" type="email" id="email" />
                         <i class="i_mail"></i>
                       </div>
-                      <div class="notice">這是一般提醒訊息區塊</div>
-                      <div class="notice_warning">
+                      <div class="formNotice">這是一般提醒訊息區塊</div>
+                      <div class="formNotice_info">這是一般提醒訊息區塊</div>
+                      <div class="formNotice_error" id="formErrorClose" role="alert">
+                        您輸入的帳號密碼有誤！
+                        <button type="button" aria-label="關閉提醒" class="close" aria-controls="formErrorClose"><img src="images/basic/icon_close.svg" alt="" /></button>
+                      </div>
+                      <div class="formNotice_warning" id="formWarningClose" role="alert">
                         這似乎不是一個正常的Email格式
-                        <a href="#" class="close"><img src="images/basic/icon_close.svg" alt="關閉" /></a>
+                        <button type="button" aria-label="關閉提醒" class="close" aria-controls="formWarningClose"><img src="images/basic/icon_close.svg" alt="" /></button>
                       </div>
                     </div>
                   </div>
@@ -353,10 +385,7 @@
                     <div class="form_content">
                       <div class="upload_grp">
                         <input class="upload_file" type="text" readonly />
-                        <div class="upload_btn">
-                          <span>上傳檔案</span>
-                          <input type="file" class="check_file" />
-                        </div>
+                        <button type="button" class="btn upload_btn">請選擇檔案</button>
                       </div>
                     </div>
                   </div>
@@ -365,10 +394,7 @@
                     <div class="form_content">
                       <div class="upload_grp">
                         <input class="upload_file" type="text" readonly />
-                        <div class="upload_btn">
-                          <span>上傳多個檔案</span>
-                          <input type="file" class="check_file" multiple />
-                        </div>
+                        <button type="button" class="btn upload_btn">上傳多個檔案</button>
                       </div>
                     </div>
                   </div>
@@ -618,8 +644,8 @@
                         <label class="form_title"><abbr class="necessary" title="為必填(選)欄位,不能為空白。">必填</abbr>性別</label>
                         <div class="form_content" id="fake-legend">
                           <div class="radio_grp form_inline">
-                            <label> <input type="radio" name="sampleRadio5" value="" checked="" />男</label>
-                            <label> <input type="radio" name="sampleRadio5" value="" />女</label>
+                            <label> <input type="radio" name="sampleRadio7" value="" checked="" />男</label>
+                            <label> <input type="radio" name="sampleRadio7" value="" />女</label>
                           </div>
                         </div>
                       </div>
@@ -815,9 +841,9 @@
                         <legend class="form_title">是否售票</legend>
                         <div class="form_content" id="fake-legend">
                           <div class="radio_grp form_inline">
-                            <label> <input type="radio" name="sampleRadio6" value="" checked="" />售票</label>
-                            <label> <input type="radio" name="sampleRadio6" value="" />免費索票</label>
-                            <label> <input type="radio" name="sampleRadio6" value="" />自由入場</label>
+                            <label> <input type="radio" name="sampleRadio8" value="" checked="" />售票</label>
+                            <label> <input type="radio" name="sampleRadio8" value="" />免費索票</label>
+                            <label> <input type="radio" name="sampleRadio8" value="" />自由入場</label>
                           </div>
                         </div>
                       </div>
@@ -825,9 +851,9 @@
                         <label class="form_title">是否售票</label>
                         <div class="form_content" id="fake-legend">
                           <div class="radio_grp">
-                            <label> <input type="radio" name="sampleRadio6" value="" checked="" />售票</label>
-                            <label> <input type="radio" name="sampleRadio6" value="" />免費索票</label>
-                            <label> <input type="radio" name="sampleRadio6" value="" />自由入場</label>
+                            <label> <input type="radio" name="sampleRadio9" value="" checked="" />售票</label>
+                            <label> <input type="radio" name="sampleRadio9" value="" />免費索票</label>
+                            <label> <input type="radio" name="sampleRadio9" value="" />自由入場</label>
                           </div>
                         </div>
                       </div>
@@ -849,9 +875,9 @@
                             <div class="form_title">第三層title</div>
                             <div class="form_content" id="fake-legend">
                               <div class="radio_grp form_inline">
-                                <label> <input type="radio" name="sampleRadio6" value="" checked="" />A</label>
-                                <label> <input type="radio" name="sampleRadio6" value="" />B</label>
-                                <label> <input type="radio" name="sampleRadio6" value="" />C</label>
+                                <label> <input type="radio" name="sampleRadio10" value="" checked="" />A</label>
+                                <label> <input type="radio" name="sampleRadio10" value="" />B</label>
+                                <label> <input type="radio" name="sampleRadio10" value="" />C</label>
                               </div>
                             </div>
                           </div>
@@ -859,9 +885,9 @@
                             <div class="form_title">第三層title</div>
                             <div class="form_content" id="fake-legend">
                               <div class="radio_grp form_inline">
-                                <label> <input type="checkbox" name="sampleRadio6" value="" checked="" />A</label>
-                                <label> <input type="checkbox" name="sampleRadio6" value="" />B</label>
-                                <label> <input type="checkbox" name="sampleRadio6" value="" />C</label>
+                                <label> <input type="checkbox" name="sampleRadio11" value="" checked="" />A</label>
+                                <label> <input type="checkbox" name="sampleRadio11" value="" />B</label>
+                                <label> <input type="checkbox" name="sampleRadio11" value="" />C</label>
                               </div>
                             </div>
                           </div>
@@ -898,10 +924,10 @@
                   <div class="form_grp">
                     <div class="form_title">驗證碼</div>
                     <div class="form_content form_inline">
-                      <img src="images/basic/captcha.gif" alt="" class="captcha" />
-                      <input name="" type="text" value="" />
-                      <button class="btn"><i class="i_reflash"></i>重新整理</button>
-                      <button class="btn"><i class="i_play"></i>語音播放</button>
+                      <img src="images/basic/captcha.gif" class="captcha" alt="驗證碼圖片" />
+                      <button type="button" class="btn" aria-label="語音播放驗證碼"><i class="i_play"></i></button>
+                      <button type="button" class="btn" aria-label="重新整理驗證碼"><i class="i_reflash"></i></button>
+                      <input name="" type="text" value="" title="請輸入驗證碼" />
                     </div>
                   </div>
                   <div class="form_grp agree">
@@ -1014,7 +1040,6 @@
                               <input name="" type="text" value="" placeholder="姓名" />
                               <input name="" type="text" value="" placeholder="電話/手機號碼" />
                               <input name="" type="text" value="" placeholder="email" />
-                              <div class="notice_info">這是一般提醒訊息區塊</div>
                             </div>
                           </div>
                         </div>
@@ -1094,12 +1119,12 @@
             </section>
           </div>
         </div>
-      </div>
+      </main>
       <!-- fatfooter Start -->
       <section class="fatfooter">
         <div class="container">
-          <button type="button" name="展開選單/OPEN" aria-label="導覽選單展開/收合" class="btn btn-fatfooter">收合</button>
-          <nav>
+          <button type="button" aria-expanded="true" class="btn btn-fatfooter" aria-label="開關頁尾網站導覽"></button>
+          <nav aria-label="頁尾網站導覽">
             <ul>
               <li>
                 <a href="#">關於本局</a>
@@ -1172,9 +1197,9 @@
       <!-- footer Start-->
       <footer>
         <div class="container">
-          <a class="accesskey" href="#aZ" id="aZ" accesskey="Z" title="頁尾區">:::</a>
+          <a class="accesskeyItem" href="#aZ" id="aZ" accesskey="Z" aria-label="頁尾區">:::</a>
           <div class="footer_logo">
-            <img src="images/logo.png" alt="" class="img-responsive" />
+            <img src="images/logo.png" alt="logo" class="img-responsive" />
           </div>
           <div class="footer_info">
             <ul class="footer_link">
@@ -1210,7 +1235,7 @@
     <!-- ease -->
     <script src="vendor/jquery.easing.min.js"></script>
     <!-- slick -->
-    <script src="vendor/slick/slick.min.js "></script>
+    <!-- <script src="vendor/slick/slick.min.js "></script> -->
     <!-- lazyload -->
     <script src="vendor/lazyload/lazyload.js"></script>
     <!-- scrolltable -->

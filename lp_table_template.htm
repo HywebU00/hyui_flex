@@ -20,15 +20,15 @@
 
   <body>
     <!-- 直接跳主內容區 -->
-    <a class="goCenter" href="#aC" tabindex="1">按Enter到主內容區</a>
+    <a class="goCenter" href="#aC">按Enter到主內容區</a>
     <!-- wrapper Start -->
     <div class="wrapper">
       <!-- header Start -->
       <header class="header">
         <div class="container">
-          <a class="accesskey" href="#aU" id="aU" accesskey="U" title="網站標題" tabindex="2">:::</a>
+          <a class="accesskeyItem" href="#aU" id="aU" accesskey="U" aria-label="網站標題">:::</a>
           <!-- navigation Start -->
-          <nav class="navigation" role="navigation" aria-label="Site">
+          <nav class="navigation" role="navigation" aria-label="頁首功能列">
             <!-- 新增div navlist -->
             <div class="navlist">
               <ul>
@@ -50,7 +50,7 @@
             </div>
             <!-- language -->
             <div class="language">
-              <a href="#">語言選擇</a>
+              <button type="button" aria-expanded="false" aria-controls="languageList">語言選擇</button>
               <ul>
                 <li><a href="#">繁體中文</a></li>
                 <li><a href="#">简体中文</a></li>
@@ -65,12 +65,9 @@
           <!-- Search Start -->
           <div class="search" role="search">
             <div class="form_grp">
-              <label for="mustSameAsId">搜尋</label>
-              <input name="username" id="mustSameAsId" type="text" placeholder="請輸入文字" accesskey="S" title="請輸入文字" aria-label="搜尋網站內容" />
-              <input name="" type="submit" value="查詢" class="btn btn-search" />
-            </div>
-            <div class="btn_grp">
-              <input name="" type="submit" value="進階搜尋" class="btn" />
+              <input name="username" type="text" placeholder="請輸入文字" accesskey="S" aria-label="搜尋網站內容" />
+              <button type="button" class="btn btn-search">查詢</button>
+              <button type="button" class="btn">進階搜尋</button>
             </div>
             <div class="keywordHot">
               <ul>
@@ -87,7 +84,7 @@
             <a href="#">網站導覽</a>
           </noscript>
           <!-- menu Start -->
-          <nav class="menu" role="navigation" aria-label="About page">
+          <nav class="menu mainMenu" role="navigation" aria-label="主選單">
             <ul>
               <li>
                 <a href="#">第一層選單</a>
@@ -159,9 +156,9 @@
       </header>
       <!-- header End -->
       <!-- main Start -->
-      <div id="aC" class="main innerpage">
+      <main class="main innerpage">
         <!-- 內頁新增一個classname-->
-        <a class="accesskey" href="#ac" id="ac" accesskey="C" title="主要內容區">:::</a>
+        <a class="accesskeyItem" href="#ac" id="ac" accesskey="C" aria-label="主要內容區">:::</a>
         <div class="container">
           <!-- 左側 -->
           <div class="left_block">
@@ -216,12 +213,13 @@
               </div>
               <!-- 社群分享 -->
               <div class="share">
+                <button type="button" class="shareButton" aria-expanded="false" aria-haspopup="true">share分享按鈕</button>
                 <ul>
                   <li>
                     <a href="#"><img src="images/basic/icon_facebook.svg" alt="facebook" /></a>
                   </li>
                   <li>
-                    <a href="#"><img src="images/basic/icon_twitter.svg" alt="twitter" /></a>
+                    <a href="#"><img src="images/basic/icon_x.svg" alt="X" /></a>
                   </li>
                   <li>
                     <a href="#"><img src="images/basic/icon_line.svg" alt="line" /></a>
@@ -230,7 +228,7 @@
                     <a href="#"><img src="images/basic/icon_youtube.svg" alt="youtube" /></a>
                   </li>
                   <li>
-                    <a href="#"><img src="images/basic/icon_googleplus.svg" alt="google plus" /></a>
+                    <a href="#"><img src="images/basic/icon_threads.svg" alt="Threads" /></a>
                   </li>
                   <li>
                     <a href="#"><img src="images/basic/icon_instagram.svg" alt="instagram" /></a>
@@ -278,61 +276,61 @@
                   </caption>
                   <thead>
                     <tr>
-                      <th>編號</th>
-                      <th>標題</th>
-                      <th>日期</th>
+                      <th scope="col">編號</th>
+                      <th scope="col">標題</th>
+                      <th scope="col">日期</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td data-title="編號" class="num">01</td>
-                      <td data-title="標題"><a href="#">通勤搭車看預報 環保集點10倍送</a></td>
-                      <td data-title="日期" class="date">2018/01/01</td>
+                      <td class="num">01</td>
+                      <td><a href="#">通勤搭車看預報 環保集點10倍送</a></td>
+                      <td class="date">2018/01/01</td>
                     </tr>
                     <tr>
-                      <td data-title="編號" class="num">02</td>
-                      <td data-title="標題"><a href="#">春節不無聊上網學習環境教育</a></td>
-                      <td data-title="日期" class="date">2018/01/01</td>
+                      <td class="num">02</td>
+                      <td><a href="#">春節不無聊上網學習環境教育</a></td>
+                      <td class="date">2018/01/01</td>
                     </tr>
                     <tr>
-                      <td data-title="編號" class="num">03</td>
-                      <td data-title="標題"><a href="#">洗錢防制，國家向前</a></td>
-                      <td data-title="日期" class="date">2018/01/01</td>
+                      <td class="num">03</td>
+                      <td><a href="#">洗錢防制，國家向前</a></td>
+                      <td class="date">2018/01/01</td>
                     </tr>
                     <tr>
-                      <td data-title="編號" class="num">04</td>
-                      <td data-title="標題"><a href="#">春節送禮認標章 環保減碳又健康</a></td>
-                      <td data-title="日期" class="date">2018/01/01</td>
+                      <td class="num">04</td>
+                      <td><a href="#">春節送禮認標章 環保減碳又健康</a></td>
+                      <td class="date">2018/01/01</td>
                     </tr>
                     <tr>
-                      <td data-title="編號" class="num">05</td>
-                      <td data-title="標題"><a href="#">環保替代役歲末新春送溫暖</a></td>
-                      <td data-title="日期" class="date">2018/01/01</td>
+                      <td class="num">05</td>
+                      <td><a href="#">環保替代役歲末新春送溫暖</a></td>
+                      <td class="date">2018/01/01</td>
                     </tr>
                     <tr>
-                      <td data-title="編號" class="num">06</td>
-                      <td data-title="標題"><a href="#">向非法化學物質說不 安全蛋品 吃得健康</a></td>
-                      <td data-title="日期" class="date">2018/01/01</td>
+                      <td class="num">06</td>
+                      <td><a href="#">向非法化學物質說不 安全蛋品 吃得健康</a></td>
+                      <td class="date">2018/01/01</td>
                     </tr>
                     <tr>
-                      <td data-title="編號" class="num">07</td>
-                      <td data-title="標題"><a href="#">春節期間廚餘回收真惜福 狗年來富又來福</a></td>
-                      <td data-title="日期" class="date">2018/01/01</td>
+                      <td class="num">07</td>
+                      <td><a href="#">春節期間廚餘回收真惜福 狗年來富又來福</a></td>
+                      <td class="date">2018/01/01</td>
                     </tr>
                     <tr>
-                      <td data-title="編號" class="num">08</td>
-                      <td data-title="標題"><a href="#">春節長假看Chem Life，增長知識又可抽獎</a></td>
-                      <td data-title="日期" class="date">2018/01/01</td>
+                      <td class="num">08</td>
+                      <td><a href="#">春節長假看Chem Life，增長知識又可抽獎</a></td>
+                      <td class="date">2018/01/01</td>
                     </tr>
                     <tr>
-                      <td data-title="編號" class="num">09</td>
-                      <td data-title="標題"><a href="#">金狗年春節旅遊好去處，環保署報你知</a></td>
-                      <td data-title="日期" class="date">2018/01/01</td>
+                      <td class="num">09</td>
+                      <td><a href="#">金狗年春節旅遊好去處，環保署報你知</a></td>
+                      <td class="date">2018/01/01</td>
                     </tr>
                     <tr>
-                      <td data-title="編號" class="num">10</td>
-                      <td data-title="標題"><a href="#">清新空氣保健康 神明歡喜過好年</a></td>
-                      <td data-title="日期" class="date">2018/01/01</td>
+                      <td class="num">10</td>
+                      <td><a href="#">清新空氣保健康 神明歡喜過好年</a></td>
+                      <td class="date">2018/01/01</td>
                     </tr>
                   </tbody>
                 </table>
@@ -344,61 +342,61 @@
                 </caption>
                 <thead>
                   <tr>
-                    <th>編號</th>
-                    <th>標題</th>
-                    <th>日期</th>
+                    <th scope="col">編號</th>
+                    <th scope="col">標題</th>
+                    <th scope="col">日期</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td data-title="編號" class="num">01</td>
-                    <td data-title="標題"><a href="#">通勤搭車看預報 環保集點10倍送</a></td>
-                    <td data-title="日期" class="date">2018/01/01</td>
+                    <td class="num">01</td>
+                    <td><a href="#">通勤搭車看預報 環保集點10倍送</a></td>
+                    <td class="date">2018/01/01</td>
                   </tr>
                   <tr>
-                    <td data-title="編號" class="num">02</td>
-                    <td data-title="標題"><a href="#">春節不無聊上網學習環境教育</a></td>
-                    <td data-title="日期" class="date">2018/01/01</td>
+                    <td class="num">02</td>
+                    <td><a href="#">春節不無聊上網學習環境教育</a></td>
+                    <td class="date">2018/01/01</td>
                   </tr>
                   <tr>
-                    <td data-title="編號" class="num">03</td>
-                    <td data-title="標題"><a href="#">洗錢防制，國家向前</a></td>
-                    <td data-title="日期" class="date">2018/01/01</td>
+                    <td class="num">03</td>
+                    <td><a href="#">洗錢防制，國家向前</a></td>
+                    <td class="date">2018/01/01</td>
                   </tr>
                   <tr>
-                    <td data-title="編號" class="num">04</td>
-                    <td data-title="標題"><a href="#">春節送禮認標章 環保減碳又健康</a></td>
-                    <td data-title="日期" class="date">2018/01/01</td>
+                    <td class="num">04</td>
+                    <td><a href="#">春節送禮認標章 環保減碳又健康</a></td>
+                    <td class="date">2018/01/01</td>
                   </tr>
                   <tr>
-                    <td data-title="編號" class="num">05</td>
-                    <td data-title="標題"><a href="#">環保替代役歲末新春送溫暖</a></td>
-                    <td data-title="日期" class="date">2018/01/01</td>
+                    <td class="num">05</td>
+                    <td><a href="#">環保替代役歲末新春送溫暖</a></td>
+                    <td class="date">2018/01/01</td>
                   </tr>
                   <tr>
-                    <td data-title="編號" class="num">06</td>
-                    <td data-title="標題"><a href="#">向非法化學物質說不 安全蛋品 吃得健康</a></td>
-                    <td data-title="日期" class="date">2018/01/01</td>
+                    <td class="num">06</td>
+                    <td><a href="#">向非法化學物質說不 安全蛋品 吃得健康</a></td>
+                    <td class="date">2018/01/01</td>
                   </tr>
                   <tr>
-                    <td data-title="編號" class="num">07</td>
-                    <td data-title="標題"><a href="#">春節期間廚餘回收真惜福 狗年來富又來福</a></td>
-                    <td data-title="日期" class="date">2018/01/01</td>
+                    <td class="num">07</td>
+                    <td><a href="#">春節期間廚餘回收真惜福 狗年來富又來福</a></td>
+                    <td class="date">2018/01/01</td>
                   </tr>
                   <tr>
-                    <td data-title="編號" class="num">08</td>
-                    <td data-title="標題"><a href="#">春節長假看Chem Life，增長知識又可抽獎</a></td>
-                    <td data-title="日期" class="date">2018/01/01</td>
+                    <td class="num">08</td>
+                    <td><a href="#">春節長假看Chem Life，增長知識又可抽獎</a></td>
+                    <td class="date">2018/01/01</td>
                   </tr>
                   <tr>
-                    <td data-title="編號" class="num">09</td>
-                    <td data-title="標題"><a href="#">金狗年春節旅遊好去處，環保署報你知</a></td>
-                    <td data-title="日期" class="date">2018/01/01</td>
+                    <td class="num">09</td>
+                    <td><a href="#">金狗年春節旅遊好去處，環保署報你知</a></td>
+                    <td class="date">2018/01/01</td>
                   </tr>
                   <tr>
-                    <td data-title="編號" class="num">10</td>
-                    <td data-title="標題"><a href="#">清新空氣保健康 神明歡喜過好年</a></td>
-                    <td data-title="日期" class="date">2018/01/01</td>
+                    <td class="num">10</td>
+                    <td><a href="#">清新空氣保健康 神明歡喜過好年</a></td>
+                    <td class="date">2018/01/01</td>
                   </tr>
                 </tbody>
               </table>
@@ -447,12 +445,12 @@
             </div>
           </div>
         </div>
-      </div>
+      </main>
       <!-- fatfooter Start -->
       <section class="fatfooter">
         <div class="container">
-          <button type="button" name="展開選單/OPEN" aria-label="導覽選單展開/收合" class="btn btn-fatfooter">收合</button>
-          <nav>
+          <button type="button" aria-expanded="true" class="btn btn-fatfooter" aria-label="開關頁尾網站導覽"></button>
+          <nav aria-label="頁尾網站導覽">
             <ul>
               <li>
                 <a href="#">關於本局</a>
@@ -525,9 +523,9 @@
       <!-- footer Start-->
       <footer>
         <div class="container">
-          <a class="accesskey" href="#aZ" id="aZ" accesskey="Z" title="頁尾區">:::</a>
+          <a class="accesskeyItem" href="#aZ" id="aZ" accesskey="Z" aria-label="頁尾區">:::</a>
           <div class="footer_logo">
-            <img src="images/logo.png" alt="" class="img-responsive" />
+            <img src="images/logo.png" alt="logo" class="img-responsive" />
           </div>
           <div class="footer_info">
             <ul class="footer_link">

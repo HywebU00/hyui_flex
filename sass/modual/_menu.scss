@@ -71,6 +71,8 @@
 
       &.hasChild {
         > a {
+          white-space: nowrap;
+
           &:after {
             content: '';
             width: 4px;
@@ -134,8 +136,8 @@
             color: #fff;
             font-weight: bold;
 
-            &:hover,
-            &:focus {
+            // &:focus-visible,
+            &:hover {
               background: $aHover;
             }
           }
@@ -149,8 +151,8 @@
           > a {
             padding-right: 2em;
 
-            &:hover,
-            &:focus {
+            // &:focus-visible,
+            &:hover {
               background: $primaryColor;
             }
 

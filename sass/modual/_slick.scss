@@ -112,21 +112,21 @@
 }
 
 // 共用slick的a focus
-.slick-slide {
-  a {
-    &:focus-visible {
-      &:before {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 99;
-        @include box-shadow(0px 0px 0px 2px $aFocus inset);
-      }
-    }
-  }
-}
+// .slick-slide {
+//   a {
+//     &:focus-visible {
+//       &:before {
+//         position: absolute;
+//         top: 0;
+//         left: 0;
+//         right: 0;
+//         bottom: 0;
+//         z-index: 99;
+//         @include box-shadow(0px 0px 0px 2px $aFocus inset);
+//       }
+//     }
+//   }
+// }
 
 // slick_theme.css
 
@@ -151,12 +151,12 @@
   z-index: 2;
   cursor: pointer;
   border: none;
-  outline: none;
+  // outline: none;
   box-shadow: none;
   transition: .3s ease-out;
 
-  &:hover,
-  &:focus {
+  // &:focus-visible,
+  &:hover {
     border: none !important;
     outline: none;
     box-shadow: 0px 0px 0px 2px $aFocus inset;
@@ -172,8 +172,8 @@
   background-size: 30px 30px;
 
   /* 箭頭 hover及focus 樣式 */
-  &:hover,
-  &:focus {
+  // &:focus-visible,
+  &:hover {
     background: url('../images/slick/icon_arrow_left_inverse.png') center center no-repeat RGBA(255, 255, 255, .8);
     background-size: 30px 30px;
   }
@@ -188,8 +188,8 @@
   background-size: 30px 30px;
 
   /* 箭頭 hover及focus 樣式 */
-  &:hover,
-  &:focus {
+  // &:focus-visible,
+  &:hover {
     background: url('../images/slick/icon_arrow_right_inverse.png') center center no-repeat RGBA(255, 255, 255, .8);
     background-size: 30px 30px;
   }
@@ -230,7 +230,7 @@
       display: block;
       cursor: pointer;
       border: 0;
-      outline: none;
+      // outline: none;
     }
   }
 }
@@ -254,14 +254,15 @@
       height: 15px;
       border-radius: 50%;
 
-      &:hover,
-      &:focus {
+      // &:focus-visible,
+      &:hover {
         opacity: 1;
         /* 點hover的顏色 */
         background: #21baff;
       }
 
-      &:focus {
+      // &:focus-visible,
+      &:hover {
         opacity: 1;
         /* 點focus的顏色 */
         background: #ff3e4d;
@@ -284,7 +285,8 @@
           background: #ff3e4d;
         }
 
-        &:focus {
+        // &:focus-visible,
+        &:hover {
           /* 點 active  focus的顏色 */
           background: #ff3e4d;
         }
@@ -295,6 +297,43 @@
 
 // ---------slick._scss
 // 首頁大圖輪播 
+.mpSliderBox {
+  position: relative;
+
+  .slickControlBox {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    z-index: 9;
+    display: flex;
+    gap: 5px;
+
+    button {
+      background: #000;
+      border-radius: 50%;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      aspect-ratio: 1;
+      font-size: 14px;
+      margin: 0;
+      border: none;
+      width: 48px;
+      height: 48px;
+      white-space: nowrap;
+      border: 2px solid #fff;
+
+      &.active {
+        border: 2px solid #000;
+        background: #fff;
+        color: #000;
+      }
+    }
+  }
+}
+
 .mpSlider {
   width: 100%;
   padding-bottom: 3em;
@@ -361,20 +400,20 @@
       }
     }
 
-    &:focus {
-      &:before {
-        content: "";
-        position: absolute;
-        z-index: 9;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        box-shadow: 0 0px 0px 3px $primaryColor inset;
-      }
-    }
+    // &:focus-visible {
+    //   &:before {
+    //     content: "";
+    //     position: absolute;
+    //     z-index: 9;
+    //     width: 100%;
+    //     height: 100%;
+    //     top: 0;
+    //     left: 0;
+    //     bottom: 0;
+    //     right: 0;
+    //     box-shadow: 0 0px 0px 3px $primaryColor inset;
+    //   }
+    // }
   }
 }
 
@@ -455,8 +494,8 @@
     width: 100%;
     height: 100%;
 
-    &:hover,
-    &:focus {
+    // &:focus-visible,
+    &:hover {
       .caption {
         bottom: 0 !important;
       }
@@ -543,8 +582,8 @@
     width: 100%;
     height: 100%;
 
-    &:hover,
-    &:focus {
+    // &:focus-visible,
+    &:hover {
       .caption {
         bottom: 0 !important;
       }
@@ -677,10 +716,6 @@
   border: none;
   min-width: auto;
 
-  &:focus {
-    outline: none;
-  }
-
   &:before {
     content: "";
     height: 6px;
@@ -705,8 +740,8 @@
     transition: .3s all ease-out;
   }
 
-  &:hover,
-  &:focus {
+  // &:focus-visible,
+  &:hover {
     background: none;
     margin-top: 0;
     border: none;

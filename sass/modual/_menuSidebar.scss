@@ -19,7 +19,8 @@ $menuItems: 15;
   box-sizing: border-box;
 
   .menu,
-  .megamenu {
+  .megamenu,
+  .sideMainMenu {
     display: block;
   }
 
@@ -57,7 +58,8 @@ $menuItems: 15;
     &.open {
 
       .menu,
-      .megamenu {
+      .megamenu,
+      .sideMainMenu {
         & > ul {
           & > li {
             transform: scale(1) translateX(0px);
@@ -74,7 +76,8 @@ $menuItems: 15;
     }
 
     .menu,
-    .megamenu {
+    .megamenu,
+    .sideMainMenu {
       width: 90%;
       margin: 0 auto 1em;
 
@@ -88,6 +91,9 @@ $menuItems: 15;
       }
 
       & > ul {
+        display: flex;
+        flex-direction: column;
+
         & > li {
           transform: scale(1.15) translateX(-30px);
           opacity: 0;
@@ -102,9 +108,11 @@ $menuItems: 15;
       }
 
       ul {
+        list-style: none;
         display: flex;
         animation: showMenu 0.3s $cubic;
         left: 0;
+        padding: 0;
 
         li {
           flex: 1 1 100%;
@@ -158,9 +166,6 @@ $menuItems: 15;
                 font-weight: normal;
                 padding: 0.5em 1em 0.5em 2em;
                 border: none;
-
-                &:hover,
-                &:focus {}
               }
 
               &.hasChild {
@@ -178,7 +183,7 @@ $menuItems: 15;
                   padding: 0.5em 1em 0.5em 4em !important;
 
                   &:hover,
-                  &:focus {}
+                  &:focus-visible {}
 
                   &:after {
                     display: none;
@@ -242,7 +247,7 @@ $menuItems: 15;
           }
 
           &:hover,
-          &:focus {
+          &:focus-visible {
             &:before {
               left: 0.5em;
               opacity: 1;
@@ -257,7 +262,8 @@ $menuItems: 15;
       width: 100%;
       @include gutter;
 
-      a {
+      a,
+      button {
         padding: 0.6em 1em;
         background: rgba(0, 0, 0, 0.4);
 
@@ -311,7 +317,7 @@ $menuItems: 15;
     border: none;
 
     &:hover,
-    &:focus {
+    &:focus-visible {
       box-shadow: none;
     }
 

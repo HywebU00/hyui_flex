@@ -48,6 +48,8 @@
 
       &.hasChild {
         > a {
+          white-space: nowrap;
+
           &:after {
             content: '';
             width: 4px;
@@ -119,8 +121,8 @@
             font-weight: bold;
             box-sizing: border-box;
 
-            &:hover,
-            &:focus {
+            // &:focus-visible,
+            &:hover {
               background: $aHover;
             }
           }
@@ -139,8 +141,8 @@
                 padding: .8em 1.2em;
                 color: #000;
 
-                &:hover,
-                &:focus {
+                // &:focus-visible,
+                &:hover {
                   color: #fff;
                 }
               }
@@ -167,7 +169,8 @@
             top: 0;
             left: 0;
             animation: none;
-            display: block;
+            display: block !important;
+            opacity: 1 !important;
 
             li {
               display: block;
@@ -175,8 +178,8 @@
 
               > a {
 
-                &:hover,
-                &:focus {
+                // &:focus-visible,
+                &:hover {
                   background: $primaryColor;
                 }
               }
@@ -330,8 +333,8 @@
                 padding: .5em 1em .5em 2em !important;
                 background: #eee;
 
-                &:hover,
-                &:focus {
+                // &:focus-visible,
+                &:hover {
                   color: #000;
                   background: #ccc;
                 }
@@ -349,8 +352,8 @@
                   padding: .5em 1em .5em 4em !important;
                   border-bottom: 1px solid #BBB;
 
-                  &:hover,
-                  &:focus {
+                  // &:focus-visible,
+                  &:hover {
                     background: rgba(0, 0, 0, .25) !important;
                   }
 
@@ -409,8 +412,8 @@
             border-top: none;
           }
 
-          &:hover,
-          &:focus {
+          // &:focus-visible,
+          &:hover {
             background: darken($primaryColor, 20);
           }
         }

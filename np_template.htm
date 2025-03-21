@@ -20,15 +20,15 @@
 
   <body>
     <!-- 直接跳主內容區 -->
-    <a class="goCenter" href="#aC" tabindex="1">按Enter到主內容區</a>
+    <a class="goCenter" href="#aC">按Enter到主內容區</a>
     <!-- wrapper Start -->
     <div class="wrapper">
       <!-- header Start -->
       <header class="header">
         <div class="container">
-          <a class="accesskey" href="#aU" id="aU" accesskey="U" title="網站標題" tabindex="2">:::</a>
+          <a class="accesskeyItem" href="#aU" id="aU" accesskey="U" aria-label="網站標題">:::</a>
           <!-- navigation Start -->
-          <nav class="navigation" role="navigation" aria-label="Site">
+          <nav class="navigation" role="navigation" aria-label="頁首功能列">
             <!-- 新增div navlist -->
             <div class="navlist">
               <ul>
@@ -43,14 +43,14 @@
               <span>字型大小：</span>
               <!-- 英文用<span>font-size：</span> -->
               <ul>
-                <li><a href="#" role="button" class="small">小</a></li>
-                <li><a href="#" role="button" class="medium">中</a></li>
-                <li><a href="#" role="button" class="large">大</a></li>
+                <li><button type="button" class="smallSize">小</button></li>
+                <li><button type="button" class="mediumSize">中</button></li>
+                <li><button type="button" class="largeSize">大</button></li>
               </ul>
             </div>
             <!-- language -->
             <div class="language">
-              <a href="#">語言選擇</a>
+              <button type="button" aria-expanded="false" aria-controls="languageList">語言選擇</button>
               <ul>
                 <li><a href="#">繁體中文</a></li>
                 <li><a href="#">简体中文</a></li>
@@ -65,12 +65,9 @@
           <!-- Search Start -->
           <div class="search" role="search">
             <div class="form_grp">
-              <label for="mustSameAsId">搜尋</label>
-              <input name="username" id="mustSameAsId" type="text" placeholder="請輸入文字" accesskey="S" title="請輸入文字" aria-label="搜尋網站內容" />
-              <input name="" type="submit" value="查詢" class="btn btn-search" />
-            </div>
-            <div class="btn_grp">
-              <input name="" type="submit" value="進階搜尋" class="btn" />
+              <input name="username" type="text" placeholder="請輸入文字" accesskey="S" aria-label="搜尋網站內容" />
+              <button type="button" class="btn btn-search">查詢</button>
+              <button type="button" class="btn">進階搜尋</button>
             </div>
             <div class="keywordHot">
               <ul>
@@ -87,7 +84,7 @@
             <a href="#">網站導覽</a>
           </noscript>
           <!-- menu Start -->
-          <nav class="menu" role="navigation" aria-label="About page">
+          <nav class="menu mainMenu" role="navigation" aria-label="主選單">
             <ul>
               <li>
                 <a href="#">第一層選單</a>
@@ -159,9 +156,9 @@
       </header>
       <!-- header End -->
       <!-- main Start -->
-      <div id="aC" class="main innerpage">
+      <main class="main innerpage">
         <!-- 內頁新增一個classname-->
-        <a class="accesskey" href="#ac" id="ac" accesskey="C" title="主要內容區">:::</a>
+        <a class="accesskeyItem" href="#ac" id="ac" accesskey="C" aria-label="主要內容區">:::</a>
         <div class="container">
           <!-- 左側 -->
           <div class="left_block">
@@ -197,12 +194,13 @@
               </div>
               <!-- 社群分享 -->
               <div class="share">
+                <button type="button" class="shareButton" aria-expanded="false" aria-haspopup="true">share分享按鈕</button>
                 <ul>
                   <li>
                     <a href="#"><img src="images/basic/icon_facebook.svg" alt="facebook" /></a>
                   </li>
                   <li>
-                    <a href="#"><img src="images/basic/icon_twitter.svg" alt="twitter" /></a>
+                    <a href="#"><img src="images/basic/icon_x.svg" alt="X" /></a>
                   </li>
                   <li>
                     <a href="#"><img src="images/basic/icon_line.svg" alt="line" /></a>
@@ -211,7 +209,7 @@
                     <a href="#"><img src="images/basic/icon_youtube.svg" alt="youtube" /></a>
                   </li>
                   <li>
-                    <a href="#"><img src="images/basic/icon_googleplus.svg" alt="google plus" /></a>
+                    <a href="#"><img src="images/basic/icon_threads.svg" alt="Threads" /></a>
                   </li>
                   <li>
                     <a href="#"><img src="images/basic/icon_instagram.svg" alt="instagram" /></a>
@@ -274,12 +272,12 @@
             <!-- NP End -->
           </div>
         </div>
-      </div>
+      </main>
       <!-- fatfooter Start -->
       <section class="fatfooter">
         <div class="container">
-          <button type="button" name="展開選單/OPEN" aria-label="導覽選單展開/收合" class="btn btn-fatfooter">收合</button>
-          <nav>
+          <button type="button" aria-expanded="true" class="btn btn-fatfooter" aria-label="開關頁尾網站導覽"></button>
+          <nav aria-label="頁尾網站導覽">
             <ul>
               <li>
                 <a href="#">關於本局</a>
@@ -352,9 +350,9 @@
       <!-- footer Start-->
       <footer>
         <div class="container">
-          <a class="accesskey" href="#aZ" id="aZ" accesskey="Z" title="頁尾區">:::</a>
+          <a class="accesskeyItem" href="#aZ" id="aZ" accesskey="Z" aria-label="頁尾區">:::</a>
           <div class="footer_logo">
-            <img src="images/logo.png" alt="" class="img-responsive" />
+            <img src="images/logo.png" alt="logo" class="img-responsive" />
           </div>
           <div class="footer_info">
             <ul class="footer_link">

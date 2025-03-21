@@ -11,20 +11,36 @@ function randomLetter(max) {
   for (let i = 0; i < max; i++) text += letter.charAt(Math.floor(Math.random() * letter.length));
   return text;
 }
+
+// 改變標籤
+
+function changeTag(oldTag, newTagName) {
+  // 創建新的標籤
+  const newTag = $(`<${newTagName}>`).html(oldTag.html());
+
+  // 複製所有屬性
+  $.each(oldTag[0].attributes, function (_, attr) {
+    newTag.attr(attr.name, attr.value);
+  });
+
+  // 替換舊標籤
+  oldTag.replaceWith(newTag);
+}
+
+let _window = $(window),
+  ww = _window.outerWidth(),
+  wh = _window.height(),
+  _body = $('body'),
+  wwNormal = 1400,
+  wwMedium = 992,
+  wwSmall = 768,
+  wwxs = 576;
 //
 $(function () {
   document.createElement('picture');
   /*-----------------------------------*/
   ///////////////// 變數 ////////////////
   /*-----------------------------------*/
-  var _window = $(window),
-    ww = _window.outerWidth(),
-    wh = _window.height(),
-    _body = $('body'),
-    wwNormal = 1400,
-    wwMedium = 992,
-    wwSmall = 768,
-    wwxs = 576;
   /*-----------------------------------*/
   //////////// nojs 先移除////////////////
   /*-----------------------------------*/
@@ -32,20 +48,44 @@ $(function () {
   /*-----------------------------------*/
   /////// header選單 判斷是否有下一層////////
   /*-----------------------------------*/
-  let _menu = $('.menu');
-  let _megamenu = $('.megamenu');
+  let _menu = $('.mainMenu');
+  // let _megamenu = $('.megamenu');
 
   _menu.find('li').has('ul').addClass('hasChild');
-  _megamenu.find('li').has('ul').addClass('hasChild');
+  _menu
+    .find('li')
+    .has('ul')
+    .children('a')
+    .each(function () {
+      const id = `menu_${randomLetter(3)}${randomFloor(0, 999)}`;
+      $(this).attr({
+        id: id,
+        'aria-controls': `${id}_ul`,
+        'aria-haspopup': 'true',
+        'aria-expanded': 'false',
+      });
+      $(this)
+        .siblings('ul')
+        .attr({
+          id: `${id}_ul`,
+          'aria-labelledby': id,
+          'aria-hidden': 'true',
+        });
+      $(this).attr('href') === '#' ? $(this).attr('role', 'button') : null;
+    });
+
+  // _menu.find('li').has('ul').children('a').attr('aria-expanded', 'false');
+  // _megamenu.find('li').has('ul').addClass('hasChild');
 
   let liHasChild = _menu.find('li.hasChild');
-  let liHasChild2 = _megamenu.children('ul').children('li.hasChild');
+  // let liHasChild2 = _megamenu.children('ul').children('li.hasChild');
   /*-----------------------------------*/
   ////////////// 行動版選單切換////////////
   /*-----------------------------------*/
-  _body.prepend('<aside class="sidebar"><div class="m_area"><button type="button" class="sidebarClose">關閉</button></div><div class="menu_overlay"></div></aside>');
+  $('a.goCenter').after('<nav class="sidebar"><div class="m_area"><button type="button" class="sidebarClose">關閉</button></div><div class="menu_overlay"></div></nav>');
 
-  $('header .container').prepend('<button type="button" class="sidebarCtrl">側欄選單</button><button type="button" class="searchCtrl">查詢</button>');
+  $('header .container h1').before('<button type="button" class="sidebarCtrl">側欄選單</button>');
+  $('header .container h1').after('<button type="button" class="searchCtrl">查詢</button>');
 
   let menu_status = false;
   let _sidebar = $('.sidebar');
@@ -55,28 +95,45 @@ $(function () {
   let _sidebarCtrl = $('.sidebarCtrl');
   let _overlay = $('.menu_overlay');
   let _mArea = $('.m_area');
-
+  _sidebarCtrl.attr({
+    'aria-controls': 'mobileArea',
+    'aria-haspopup': 'true',
+    'aria-expanded': 'false',
+  });
   _sidebarCtrl.append('<span></span><span></span><span></span>');
+
+  _sidebar.attr({
+    id: 'mobileArea',
+    'aria-hidden': 'true',
+  });
   // -------------------------------------------- 打開選單 function
   function showSidebar() {
+    _sidebarCtrl.attr('aria-expanded', 'true');
     _sidebar.show();
+    _sidebar.attr('aria-hidden', 'false');
     _mArea.show().addClass('open');
     _mArea.animate({ 'margin-left': 0 }, 400, 'easeOutQuint');
     _body.addClass('noscroll');
     _overlay.fadeIn();
     $('.m_search').hide();
     search_mode = false;
+    setTimeout(() => {
+      _sidebarClose.focus();
+    });
   }
   // -------------------------------------------- 縮合選單 function
   function hideSidebar() {
+    _sidebarCtrl.attr('aria-expanded', 'false');
     _mArea.animate({ 'margin-left': _mArea.width() * -1 + 'px' }, 500, 'easeOutQuint', function () {
       _sidebar.fadeOut(200);
       _mArea.removeClass('open');
       _mArea.hide();
     });
+    _sidebar.attr('aria-hidden', 'true');
     _body.removeClass('noscroll');
     _overlay.fadeOut(200);
     liHasChild.children('ul').hide();
+    _sidebarCtrl.focus();
   }
   // -------------------------------------------- 打開選單動作
   _sidebarCtrl.off().on('click', function (e) {
@@ -90,13 +147,24 @@ $(function () {
   _sidebarClose.off().on('click', function () {
     hideSidebar();
   });
+  _sidebarClose.on('keydown', function (e) {
+    if (e.code == 'Tab' && e.shiftKey && $('.language ul').is(':hidden')) {
+      e.preventDefault();
+      $('.language > button').focus();
+    } else if (e.code == 'Tab' && e.shiftKey && !$('.language ul').is(':hidden')) {
+      e.preventDefault();
+      $('.sidebar a,.sidebar button,.sidebar input').last().focus();
+    }
+  });
 
   // -------------------------------------------- 無障礙tab設定
   // -------------------------------------------- menu
   liHasChild.children('a').keyup(function (e) {
     if (e.which === 9 && !e.shiftKey) {
-      $(this).siblings('ul').fadeIn();
+      $(this).attr('aria-expanded', 'true');
+      $(this).siblings('ul').attr('aria-hidden', 'false');
 
+      $(this).siblings('ul').fadeIn(200);
       // let hasChildLi = $(this).parents('.hasChild');
       let hasChildLi = $(this).parents('.hasChild').last();
       let allUl = $(this).parent('li').find('ul').last().parents('ul');
@@ -110,15 +178,17 @@ $(function () {
   });
 
   liHasChild.each(function (i, s) {
-    $(s)
+    $(this)
       .find('a')
       .last()
       .keydown(function (e) {
         if (e.which === 9 && !e.shiftKey) {
           $(s).children('ul').hide().removeAttr('style');
+          $(s).children('a').attr('aria-expanded', 'false');
+          $(s).children('ul').attr('aria-hidden', 'true');
         }
       });
-    $(s)
+    $(this)
       .children('ul')
       .find('a')
       .focus(function () {
@@ -133,7 +203,7 @@ $(function () {
   });
 
   liHasChild.each(function (i, s) {
-    $(s)
+    $(this)
       .children('ul')
       .find('a')
       .eq(0)
@@ -151,35 +221,42 @@ $(function () {
   // });
 
   // megamenu
-  liHasChild2.children('a').keyup(function () {
-    $(this).siblings('ul').fadeIn();
-    $(this).siblings('ul').find('ul').fadeIn();
-    $(this)
-      .parent('li')
-      .siblings()
-      .focus(function () {
-        $(this).hide();
-      });
-  });
-  _megamenu
-    .children('ul')
-    .children('li')
-    .keyup(function () {
-      $(this).siblings().children('ul').hide();
-    });
-  _megamenu.find('li:last>a').focusout(function () {
-    _menu.find('li ul').hide();
-  });
+  // liHasChild2.children('a').keyup(function () {
+  //   $(this).siblings('ul').fadeIn(200);
+  //   $(this).siblings('ul').find('ul').fadeIn(200);
+  //   $(this)
+  //     .parent('li')
+  //     .siblings()
+  //     .focus(function () {
+  //       $(this).hide();
+  //     });
+  // });
+  // _megamenu
+  //   .children('ul')
+  //   .children('li')
+  //   .keyup(function () {
+  //     $(this).siblings().children('ul').hide();
+  //   });
+  // _megamenu.find('li:last>a').focusout(function () {
+  //   _menu.find('li ul').hide();
+  // });
 
   // 先複製過去
-  _nav.clone().prependTo(_mArea);
-  _menu.clone().prependTo(_mArea);
-  _megamenu.clone().prependTo(_mArea);
-  _search.clone().prependTo(_body).removeClass('search').addClass('m_search');
+  _menu.clone().removeClass('menu megamenu mainMenu').addClass('sideMainMenu').appendTo(_mArea);
+
+  changeTag($('.sideMainMenu'), 'div');
+
+  // _megamenu.clone().appendTo(_mArea);
+  _nav.clone().appendTo(_mArea);
+  changeTag($('.sidebar .navigation'), 'div');
+
+  _search.clone().appendTo(_body).removeClass('search').addClass('m_search');
+  $('.m_search').attr('aria-hidden', 'true');
+  _sidebar.find('.font_size').remove();
 
   // 切換PC/Mobile 選單
   function checkMenuMode() {
-    if (ww < wwSmall) {
+    if ($(window).outerWidth() < wwSmall) {
       /*-----------------------------------*/
       /////////////// 手機版設定 /////////////
       /*-----------------------------------*/
@@ -193,34 +270,34 @@ $(function () {
       hideSidebar();
       _body.removeClass('noscroll');
       $('.m_search').hide();
+      $('.m_search').attr('aria-hidden', 'true');
       search_mode = false;
       $('.language').find('ul').hide();
     }
   }
   function mobileMenu() {
     //手機版第第一層點了不會進入內頁，拿掉第一層的連結無作用
-    $('.sidebar .menu li a')
+    $('.sidebar .sideMainMenu li a')
       .off()
       .on('click', function (e) {
-        if (ww < wwSmall) {
-          if ($(this).parent().hasClass('hasChild')) {
-            e.preventDefault();
-          }
-          $(this).siblings('ul').slideToggle('fast');
-          $(this).parent().siblings('li').find('ul').slideUp('fast');
-        } else {
-          $('.sidebar .menu li a').off('click');
+        if ($(this).parent().hasClass('hasChild')) {
+          e.preventDefault();
         }
+        $(this).siblings('ul').slideToggle('fast');
+        $(this).parent().siblings('li').find('ul').slideUp('fast');
       });
 
     liHasChild.off().on({
       mouseenter: function (e) {
-        if (ww > wwSmall) {
+        if ($(window).outerWidth() > wwSmall) {
           let _this = $(this);
           let ulHeight = $(this).children('ul').height();
           let ulWidth = $(this).children('ul').width();
 
-          $(this).children('ul').stop(true, false).fadeIn();
+          $(this).children('a').attr('aria-expanded', 'true');
+          $(this).children('ul').attr('aria-hidden', 'false');
+
+          $(this).children('ul').stop(true, false).fadeIn(200);
           $(this).addClass('active');
           let hasChildLi = $(this).parents('.hasChild').last();
           let allUl = $(this).find('ul').last().parents('ul');
@@ -231,111 +308,114 @@ $(function () {
             hasChildLi?.last().removeClass('leftSlider');
           }
 
-          setTimeout(function () {
-            let objectRect = _this.find('ul')[0].getBoundingClientRect();
-            if (ulHeight + objectRect.top > _window.height() && !isObjectFullyVisible(_this.children('ul'))) {
-              _this.append(`<button class="menuArrowDown" style="left:${objectRect.left + ulWidth - 50}px"></button>`);
-              _this.append(`<button class="menuArrowUp" style="left:${objectRect.left + ulWidth - 75}px;opacity:0"></button>`);
-              let sliderHeight = 40;
+          //增加上下箭頭，會影響到無障礙
+          // setTimeout(function () {
+          //   let objectRect = _this.find('ul')[0].getBoundingClientRect();
+          //   if (ulHeight + objectRect.top > _window.height() && !isObjectFullyVisible(_this.children('ul'))) {
+          //     _this.append(`<button class="menuArrowDown" style="left:${objectRect.left + ulWidth - 50}px"></button>`);
+          //     _this.append(`<button class="menuArrowUp" style="left:${objectRect.left + ulWidth - 75}px;opacity:0"></button>`);
+          //     let sliderHeight = 40;
 
-              $('.menuArrowDown')
-                .off()
-                .on('click', function () {
-                  const siblingsUl = $(this).siblings('ul');
-                  let UlRect = siblingsUl.offset();
-                  const topValue = parseInt(siblingsUl.css('top'));
-                  const number = topValue || 0;
-                  const lastItem = siblingsUl.children('li').last();
-                  $(this).siblings('.menuArrowUp').css('opacity', '1');
-                  if ($(this).parent().parent().parent().is('.menu')) {
-                    let firstHasChildHeight = $(this).parents('.hasChild').offset().top + $(this).parents('.hasChild').height();
-                    if (!isObjectVisibleT(lastItem)[0]) {
-                      siblingsUl.css('top', `${number - sliderHeight}px`);
-                    } else {
-                      siblingsUl.css('top', `${$(this).parent('li').height() - (siblingsUl.height() - (_window.height() - firstHasChildHeight))}px`);
-                    }
-                  } else {
-                    if (!isObjectVisibleT(lastItem)[0] && isObjectVisibleB(lastItem)[0]) {
-                      siblingsUl.css('top', `${number - sliderHeight}px`);
-                    } else {
-                      siblingsUl.css('top', `${parseInt(siblingsUl.css('top')) + isObjectVisibleB(lastItem)[1]}px`);
-                    }
-                  }
-                  // siblingsUl.css('top', `${Math.max(leftHeight, number - sliderHeight)}px`);
-                });
+          //     $('.menuArrowDown')
+          //       .off()
+          //       .on('click', function () {
+          //         const siblingsUl = $(this).siblings('ul');
+          //         let UlRect = siblingsUl.offset();
+          //         const topValue = parseInt(siblingsUl.css('top'));
+          //         const number = topValue || 0;
+          //         const lastItem = siblingsUl.children('li').last();
+          //         $(this).siblings('.menuArrowUp').css('opacity', '1');
+          //         if ($(this).parent().parent().parent().is('.menu')) {
+          //           let firstHasChildHeight = $(this).parents('.hasChild').offset().top + $(this).parents('.hasChild').height();
+          //           if (!isObjectVisibleT(lastItem)[0]) {
+          //             siblingsUl.css('top', `${number - sliderHeight}px`);
+          //           } else {
+          //             siblingsUl.css('top', `${$(this).parent('li').height() - (siblingsUl.height() - (_window.height() - firstHasChildHeight))}px`);
+          //           }
+          //         } else {
+          //           if (!isObjectVisibleT(lastItem)[0] && isObjectVisibleB(lastItem)[0]) {
+          //             siblingsUl.css('top', `${number - sliderHeight}px`);
+          //           } else {
+          //             siblingsUl.css('top', `${parseInt(siblingsUl.css('top')) + isObjectVisibleB(lastItem)[1]}px`);
+          //           }
+          //         }
+          //         // siblingsUl.css('top', `${Math.max(leftHeight, number - sliderHeight)}px`);
+          //       });
 
-              $('.menuArrowUp')
-                .off()
-                .on('click', function () {
-                  const siblingsUl = $(this).siblings('ul');
-                  const topValue = parseInt(siblingsUl.css('top'));
-                  const maxHeight = $('.header .menu > ul').height();
-                  if ($(this).parent().parent().parent().is('.menu')) {
-                    if (topValue <= -maxHeight) {
-                      siblingsUl.css('top', `${topValue + sliderHeight}px`);
-                    } else {
-                      siblingsUl.css('top', `${maxHeight}px`);
-                      upCheck = false;
-                    }
-                  } else {
-                    if (topValue > siblingsUl.height()) {
-                      siblingsUl.css('top', `${topValue + sliderHeight}px`);
-                    } else {
-                      siblingsUl.css('top', '0px');
-                      upCheck = false;
-                    }
-                  }
-                });
-            }
-          }, 200);
+          //     // $('.menuArrowUp')
+          //     //   .off()
+          //     //   .on('click', function () {
+          //     //     const siblingsUl = $(this).siblings('ul');
+          //     //     const topValue = parseInt(siblingsUl.css('top'));
+          //     //     const maxHeight = $('.header .menu > ul').height();
+          //     //     if ($(this).parent().parent().parent().is('.menu')) {
+          //     //       if (topValue <= -maxHeight) {
+          //     //         siblingsUl.css('top', `${topValue + sliderHeight}px`);
+          //     //       } else {
+          //     //         siblingsUl.css('top', `${maxHeight}px`);
+          //     //         upCheck = false;
+          //     //       }
+          //     //     } else {
+          //     //       if (topValue > siblingsUl.height()) {
+          //     //         siblingsUl.css('top', `${topValue + sliderHeight}px`);
+          //     //       } else {
+          //     //         siblingsUl.css('top', '0px');
+          //     //         upCheck = false;
+          //     //       }
+          //     //     }
+          //     //   });
+          //   }
+          // }, 200);
         }
       },
       mouseleave: function (e) {
-        if (ww > wwSmall) {
+        if ($(window).outerWidth() > wwSmall) {
           let _this = $(this);
+          $(this).find('a').attr('aria-expanded', 'false');
+          $(this).find('ul').attr('aria-hidden', 'true');
           setTimeout(function () {
-            _this.find('.menuArrowDown').remove();
-            _this.find('.menuArrowUp').remove();
+            // _this.find('.menuArrowDown').remove();
+            // _this.find('.menuArrowUp').remove();
             // _this.children('ul').removeAttr('style');
             _this.removeClass('active');
-
+            _this.find('li').removeClass('active');
             _this.parent().siblings('ul').hide();
-            _this.children('ul').stop(true, false).fadeOut(500);
+            _this.find('ul').stop(true, false).fadeOut(200);
             _this.children('ul').css('top', '');
           }, 200);
         }
       },
     });
-    $(window).on('scroll', function () {
-      if (ww > wwSmall) {
-        $('.header .menu .hasChild.active')
-          .find('ul')
-          .each(function (i, s) {
-            if (isObjectFullyVisible(s)) {
-              $(s).siblings('.menuArrowDown').remove();
-              $(s).siblings('.menuArrowUp').remove();
-            }
-          });
-      }
-    });
+    // $(window).on('scroll', function () {
+    //   if (ww > wwSmall) {
+    //     $('.header .menu .hasChild.active')
+    //       .find('ul')
+    //       .each(function (i, s) {
+    //         if (isObjectFullyVisible(s)) {
+    //           $(s).siblings('.menuArrowDown').remove();
+    //           $(s).siblings('.menuArrowUp').remove();
+    //         }
+    //       });
+    //   }
+    // });
 
     // megamenu
-    if (_megamenu.length > 0) {
-      $('.megamenu > ul > li > ul').hide();
-      liHasChild2.off().on({
-        mouseenter: function () {
-          if (ww > wwSmall) {
-            $(this).children('ul').stop(true, false).fadeIn();
-          }
-        },
-        mouseleave: function () {
-          if (ww > wwSmall) {
-            $(this).parent().siblings('ul').hide();
-            $(this).children('ul').stop(true, false).fadeOut();
-          }
-        },
-      });
-    }
+    // if (_megamenu.length > 0) {
+    //   $('.megamenu > ul > li > ul').hide();
+    //   liHasChild2.off().on({
+    //     mouseenter: function () {
+    //       if (ww > wwSmall) {
+    //         $(this).children('ul').stop(true, false).fadeIn(200);
+    //       }
+    //     },
+    //     mouseleave: function () {
+    //       if (ww > wwSmall) {
+    //         $(this).parent().siblings('ul').hide();
+    //         $(this).children('ul').stop(true, false).fadeOut(200);
+    //       }
+    //     },
+    //   });
+    // }
     // 如果點在外面
     // $(document).on('touchend click', function(e) {
     //     var target = e.target;
@@ -345,7 +425,7 @@ $(function () {
     // });
     // 文字大小
     $('.fontsize_btn').on('click', function () {
-      if (ww > wwSmall) {
+      if ($(window).outerWidth() > wwSmall) {
         if ($('.font_size').is(':visible')) {
           $('.font_size').stop().slideUp();
         } else {
@@ -356,7 +436,7 @@ $(function () {
 
     // 會員登入
     $('.memberblock .membername a').on('click', function () {
-      if (ww > wwSmall) {
+      if ($(window).outerWidth() > wwSmall) {
         if ($('.memberlink').is(':visible')) {
           $('.memberlink').stop().slideUp();
         } else {
@@ -366,7 +446,7 @@ $(function () {
     });
 
     $(document).on('touchend click', function (e) {
-      if (ww > wwSmall) {
+      if ($(window).outerWidth() > wwSmall) {
         var container = $('.memberblock .membername, .memberblock .memberlink'); //點這些以外的區塊
         if (!container.is(e.target) && container.has(e.target).length === 0) {
           $('.header .memberblock .memberlink').slideUp(); //要被收起來的區塊
@@ -386,7 +466,7 @@ $(function () {
 
     $('.searchblock .searchbtn').on('click', function () {
       // $('.searchblock .search').stop().slideToggle();
-      if (ww > wwSmall) {
+      if ($(window).outerWidth() > wwSmall) {
         if ($('.search').is(':visible')) {
           $('.search').stop().slideUp();
         } else {
@@ -402,6 +482,7 @@ $(function () {
     resizeTimer = setTimeout(function () {
       // search_mode = true;
       $('.m_search').hide();
+      $('.m_search').attr('aria-hidden', 'true');
       checkMenuMode();
     }, 50);
   });
@@ -440,11 +521,12 @@ $(function () {
   var search_mode = false;
   var _searchCtrl = $('.searchCtrl');
   $('.m_search').hide();
-
+  _searchCtrl.attr('aria-expanded', 'false');
   function searchToggle() {
     if (!search_mode) {
+      _searchCtrl.attr('aria-expanded', 'true');
       $('.m_search').stop(true, false).slideDown('400', 'easeOutQuint');
-      // $('.m_search').find('input[type="text"]').focus();
+      $('.m_search').attr('aria-hidden', 'false');
       search_mode = true;
       // prevent Android sofr Keyboard
       var isAndroid = /android/i.test(navigator.userAgent.toLowerCase());
@@ -452,13 +534,47 @@ $(function () {
         _window.off('resize');
       }
     } else {
+      _searchCtrl.attr('aria-expanded', 'false');
       $('.m_search').slideUp('400', 'easeOutQuint');
+      $('.m_search').attr('aria-hidden', 'true');
       search_mode = false;
     }
   }
   _searchCtrl.off().on('click', function (e) {
+    const checkHidden = _searchCtrl.attr('aria-expanded') === 'true';
     searchToggle();
+    _searchCtrl.attr('aria-expanded', !checkHidden);
   });
+  _searchCtrl.on('keydown', function (e) {
+    if (e.code == 'Enter' && $('.m_search').is(':hidden')) {
+      e.preventDefault();
+      searchToggle();
+      $('.m_search a,.m_search button,.m_search input').first().focus();
+    } else if (e.code == 'Tab' && !e.shiftKey && !$('.m_search').is(':hidden')) {
+      e.preventDefault();
+      $('.m_search a,.m_search button,.m_search input').first().focus();
+    } else if (e.code == 'Tab' && e.shiftKey && !$('.m_search').is(':hidden')) {
+      e.preventDefault();
+      $('.m_search a,.m_search button,.m_search input').last().focus();
+    }
+  });
+
+  $('.m_search a,.m_search button,.m_search input')
+    .first()
+    .on('keydown', function (e) {
+      if (e.code == 'Tab' && e.shiftKey) {
+        e.preventDefault();
+        _searchCtrl.focus();
+      }
+    });
+  $('.m_search a,.m_search button,.m_search input')
+    .last()
+    .on('keydown', function (e) {
+      if (e.code == 'Tab' && !e.shiftKey) {
+        e.preventDefault();
+        _searchCtrl.focus();
+      }
+    });
   // 如果點在外面
   $(document.body).on('click', function (e) {
     if (search_mode) {
@@ -471,18 +587,16 @@ $(function () {
   });
   // fixed navbar
   var resizeNavTimer;
-  if ($('header .menu').length > 0) {
-    var stickyMenuTop = Math.floor($('header .menu').offset().top),
+  if ($('header .mainMenu').length > 0) {
+    var stickyMenuTop = Math.floor($('header .mainMenu').offset().top),
       menuH = Math.floor(_menu.outerHeight());
 
     function stickynavBar() {
-      if (ww >= wwSmall && $(this).scrollTop() > stickyMenuTop) {
-        $('header .menu').addClass('sticky');
-        $('header .megamenu').addClass('sticky');
+      if ($(window).outerWidth() >= wwSmall && $(this).scrollTop() > stickyMenuTop) {
+        $('header .mainMenu').addClass('sticky');
         $('.main').css('padding-top', menuH);
       } else {
-        $('header .menu').removeClass('sticky');
-        $('header .megamenu').removeClass('sticky');
+        $('header .mainMenu').removeClass('sticky');
         $('.main').removeAttr('style');
       }
     }
@@ -499,39 +613,12 @@ $(function () {
     });
     stickynavBar();
   }
-  if ($('header .megamenu').length > 0) {
-    var stickyMegamenuTop = Math.floor($('header .megamenu').offset().top),
-      megamenuH = Math.floor($('header .megamenu').outerHeight());
-
-    function stickyMegaNavBar() {
-      windowW = _window.outerWidth();
-      if (windowW >= wwSmall && $(this).scrollTop() > stickyMegamenuTop) {
-        $('header .megamenu').addClass('sticky');
-        $('.main').css('padding-top', megamenuH);
-      } else {
-        $('header .megamenu').removeClass('sticky');
-        $('.main').removeAttr('style');
-      }
-    }
-    _window.on('scroll', function (event) {
-      stickyMegaNavBar();
-    });
-    _window.on('resize', function (event) {
-      clearTimeout(resizeNavTimer);
-      resizeNavTimer = setTimeout(function () {
-        stickyMenuTop = Math.floor($('header .megamenu').offset().top);
-        $('.main').removeAttr('style');
-        stickyMegaNavBar();
-      }, 200);
-    });
-    stickyMegaNavBar();
-  }
 
   /*-----------------------------------*/
   //////////// notice訊息區塊 ////////////
   /*-----------------------------------*/
-  $('[class*="notice"] a.close').on('click', function (e) {
-    $(this).parent('[class*="notice"]').hide();
+  $('[class^="formNotice"] .close').on('click', function (e) {
+    $(this).parent('[class^="formNotice"]').hide();
     e.preventDefault();
   });
   /*-----------------------------------*/
@@ -562,15 +649,28 @@ $(function () {
       .stop(true, true)
       .slideToggle(function () {
         if ($(this).is(':visible')) {
-          $('.btn-fatfooter').html('收合/CLOSE');
-          $('.btn-fatfooter').attr('name', '收合選單/CLOSE');
+          $('.btn-fatfooter').attr('aria-expanded', 'true');
+          $(this).attr('aria-hidden', 'false');
+          // $('.btn-fatfooter').html('收合/CLOSE');
+          // $('.btn-fatfooter').attr('name', '收合選單/CLOSE');
         } else {
-          $('.btn-fatfooter').html('展開/OPEN');
-          $('.btn-fatfooter').attr('name', '展開選單/OPEN');
+          $('.btn-fatfooter').attr('aria-expanded', 'false');
+          $(this).attr('aria-hidden', 'true');
+          // $('.btn-fatfooter').html('展開/OPEN');
+          // $('.btn-fatfooter').attr('name', '展開選單/OPEN');
         }
       });
     $(this).stop(true, true).toggleClass('close');
   });
+
+  let footerItem = [];
+  let checkHidden = $('.btn-fatfooter').attr('aria-expanded');
+  $('.fatfooter nav>ul>li>ul').each(function (index) {
+    footerItem.push(`fatfooter${index}`);
+    $(this).attr('id', `fatfooter${index}`);
+    $(this).attr('aria-hidden', !checkHidden);
+  });
+  $('.btn-fatfooter').attr('aria-controls', footerItem.join(' '));
   /*-----------------------------------*/
   ////////////////多組Tab////////////////
   /*-----------------------------------*/
@@ -655,13 +755,15 @@ $(function () {
     .off()
     .on('click', function (e) {
       $('html, body').stop().animate({ scrollTop: 0 }, 400, 'linear');
-      // $('a.goCenter').focus(); //加入這行
+      $('a.goCenter').focus(); //加入這行
       e.preventDefault();
     });
   $('.scrollToTop').keydown(function (e) {
-    $('html, body').stop().animate({ scrollTop: 0 }, 400, 'linear');
-    _body.find('a.goCenter').focus();
-    e.preventDefault();
+    if (e.code == 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      _body.find('a.goCenter').focus();
+      $('html, body').stop().animate({ scrollTop: 0 }, 400, 'linear');
+    }
   });
   /*--------------------------------------------------------*/
   /////設定img 在IE9+ SAFARI FIREFOX CHROME 可以object-fit/////
@@ -719,20 +821,32 @@ $(function () {
   //////////分享按鈕 share dropdwon////////
   /*------------------------------------*/
   $('.function_panel .share').children('ul').hide();
-  $('.function_panel .share').prepend('<a href="#" class="shareButton">share分享按鈕</a>');
+  $('.function_panel .share').children('ul').attr('aria-hidden', 'true');
   var _shareButton = $('.shareButton');
-  _shareButton.off().on('click', function (e) {
-    $(this).siblings('ul').stop(true, true).slideToggle();
+  _shareButton.on('click', function (e) {
     e.preventDefault();
-  });
-  _shareButton.keyup(function (event) {
-    $(this).siblings('ul').stop(true, true).slideDown();
-  });
-  $('.function_panel .share')
-    .find('li:last>a')
-    .focusout(function (event) {
-      $(this).parent().parent('ul').hide();
+    _shareButton.attr('aria-expanded', function (i, attr) {
+      return attr === 'false' ? 'true' : 'false';
     });
+    $(this).siblings('ul').stop(true, true).slideToggle();
+    $('.function_panel .share')
+      .children('ul')
+      .attr('aria-hidden', function (i, attr) {
+        return attr === 'false' ? 'true' : 'false';
+      });
+  });
+  $('.function_panel .share').on('keydown', function (e) {
+    let _this = $(this);
+    if (e.code === 'Tab' && e.shiftKey && _this.children('ul').is(':visible') && $(e.target).hasClass('shareButton')) {
+      e.preventDefault();
+      _this.find('a').last().focus();
+    }
+
+    if (e.code === 'Tab' && !e.shiftKey && _this.children('ul').is(':visible') && $(e.target).is(_this.find('a').last())) {
+      e.preventDefault();
+      _shareButton.focus();
+    }
+  });
   // 點外面關閉share
   $(document).on('touchend click', function (e) {
     var container = $('.function_panel .share');
@@ -743,79 +857,76 @@ $(function () {
   /*------------------------------------*/
   /////////////字型大小 font-size//////////
   /*------------------------------------*/
-  $('.font_size')
-    .find('.small')
-    .on('click', function (e) {
-      $(this).parent('li').siblings('li').find('a').removeClass('active');
-      $('.innerpage').removeClass('large_size').addClass('small_size');
-      $(this).blur().addClass('active');
-      e.preventDefault();
-      createCookie('FontSize', 'small', 356);
-    });
-  $('.font_size')
-    .find('.medium')
-    .on('click', function (e) {
-      $(this).parent('li').siblings('li').find('a').removeClass('active');
-      $('.innerpage').removeClass('large_size small_size');
-      $(this).blur().addClass('active');
-      e.preventDefault();
-      createCookie('FontSize', 'medium', 356);
-    });
-  $('.font_size')
-    .find('.large')
-    .on('click', function (e) {
-      $(this).parent('li').siblings('li').find('a').removeClass('active');
-      $('.innerpage').removeClass('small_size').addClass('large_size');
-      $(this).blur().addClass('active');
-      e.preventDefault();
-      createCookie('FontSize', 'large', 356);
+  function fontSize() {
+    const $el = $('.font_size'); // 控制的對象
+    const $list = $el.find('ul button');
+    const $body = $('body');
+    // 初始化 字體大小設定
+    let cookie = readCookie('FontSize');
+
+    $list.each(function () {
+      $(this).on('click', function (e) {
+        createCookie('FontSize', $(e.target).attr('class'), 356);
+        toggleBodyClass($(e.target).attr('class'));
+        $(e.target).parent().addClass('active');
+        $(e.target).attr('aria-pressed', 'true');
+      });
     });
 
-  function createCookie(name, value, days) {
-    if (days) {
-      var date = new Date();
-      date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-      var expires = '; expires=' + date.toGMTString();
-    } else expires = '';
-    document.cookie = name + '=' + value + expires + '; path=/';
-  }
+    // 移除 active 的 class 名稱
+    function toggleBodyClass(targetClassName) {
+      $list.each(function () {
+        if ($(this).attr('class') === targetClassName) {
+          $(this).attr('aria-pressed', 'true');
+          $(this).parent().addClass('active');
+        } else {
+          $(this).attr('aria-pressed', 'false');
+          $(this).parent().removeClass('active');
+        }
+      });
 
-  function readCookie(name) {
-    var nameEQ = name + '=';
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-  }
-  window.onload = function (e) {
-    var cookie = readCookie('FontSize');
-    //alert('cookie='+cookie);
-    if (cookie == 'small') {
-      //$('.font_size').find('.small').click();
-      $('.font_size').find('.small').parent('li').siblings('li').find('a').removeClass('active');
-      $('.innerpage').removeClass('large_size medium_size').addClass('small_size');
-      $('.font_size').find('.small').addClass('active');
-      e.preventDefault();
-    } else {
-      if (cookie == 'large') {
-        //$('.font_size').find('.large').click();
-        $('.font_size').find('.large').parent('li').siblings('li').find('a').removeClass('active');
-        $('.innerpage').removeClass('small_size medium_size').addClass('large_size');
-        $('.font_size').find('.large').addClass('active');
-        e.preventDefault();
-      } else {
-        //這裡是預設宣告
-        //$('.font_size').find('.medium').click();
-        $('.font_size').find('.medium').parent('li').siblings('li').find('a').removeClass('active');
-        $('.innerpage').removeClass('large_size small_size');
-        $('.font_size').find('.medium').addClass('active');
-        e.preventDefault();
+      switch (targetClassName) {
+        case 'smallSize':
+          $body.removeClass('largeSize mediumSize').addClass('smallSize');
+          break;
+        case 'mediumSize':
+          $body.removeClass('smallSize largeSize').addClass('mediumSize');
+          break;
+        case 'largeSize':
+          $body.removeClass('smallSize mediumSize').addClass('largeSize');
+          break;
       }
     }
-  };
+
+    // 創造新的 字體大小設定
+    function createCookie(name, value, days) {
+      let _expires;
+      const _date = new Date();
+      if (days) {
+        _date.setTime(_date.getTime() + days * 24 * 60 * 60 * 1000);
+        _expires = '; expires=' + _date.toGMTString();
+      } else {
+        _expires = '';
+      }
+      document.cookie = name + '=' + value + _expires + '; path=/';
+    }
+
+    // 讀取瀏覽器上 字體大小設定
+    function readCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    // 如果沒有 cookie 則預設值為 'medium'
+    if (!cookie) {
+      createCookie('FontSize', 'mediumSize', 356);
+      toggleBodyClass('mediumSize');
+    } else {
+      toggleBodyClass(cookie);
+    }
+  }
+  fontSize();
   /*-----------------------------------*/
   /////////// category active  //////////
   /*-----------------------------------*/
@@ -838,28 +949,45 @@ $(function () {
     // alt+U header
     if (e.altKey && e.keyCode == 85) {
       $('html, body').animate({ scrollTop: 0 }, 200, 'easeOutExpo');
-      $('header').find('.accesskey').focus();
+      $('header').find('.accesskeyItem').focus();
     }
     // alt+C 主要內容區
     if (e.altKey && e.keyCode == 67) {
       $('html, body')
         .stop(true, true)
-        .animate({ scrollTop: $('.main').find('.accesskey').offset().top - 70 }, 800, 'easeOutExpo');
-      $('.main').find('.accesskey').focus();
+        .animate({ scrollTop: $('.main').find('.accesskeyItem').offset().top - 70 }, 800, 'easeOutExpo');
+      $('.main').find('.accesskeyItem').focus();
     }
     // alt+Z footer
     if (e.altKey && e.keyCode == 90) {
       $('html, body')
         .stop(true, true)
-        .animate({ scrollTop: $('footer').find('.accesskey').offset().top }, 800, 'easeOutExpo');
-      $('footer').find('.accesskey').focus();
+        .animate({ scrollTop: $('footer').find('.accesskeyItem').offset().top }, 800, 'easeOutExpo');
+      $('footer').find('.accesskeyItem').focus();
     }
 
     if (e.key == 'Escape') {
-      $('.language ul').slideUp();
-      $('.language > a').blur();
-      $('.menu ul li ul').hide();
-      $('.menuArrowDown, .menuArrowUp').remove();
+      if ($('.language ul').is(':visible')) {
+        $('.language ul').slideUp();
+        $('.language ul').attr('aria-hidden', 'true');
+        $('.language button').attr('aria-expanded', 'false');
+        $('.language button').focus();
+      }
+      if ($('.m_search').is(':visible')) {
+        $('.m_search').slideUp();
+        $('.m_search').attr('aria-hidden', 'true');
+        $('.searchCtrl').attr('aria-expanded', 'false');
+        $('.searchCtrl').focus();
+      }
+      if ($('.sidebar').is(':visible')) {
+        hideSidebar();
+      }
+      if ($('.function_panel .share ul').is(':visible')) {
+        $('.function_panel .share ul').slideUp();
+        $('.function_panel .share ul').attr('aria-hidden', 'true');
+        $('.function_panel .share .shareButton').attr('aria-expanded', 'false');
+        $('.function_panel .share .shareButton').focus();
+      }
     }
   });
 
@@ -877,15 +1005,15 @@ $(function () {
   // 無障礙錨點切換語系，更改accesskey的title名稱
   var weblang = $('html').attr('lang');
   if (weblang.substring(0, 2) == 'zh') {
-    $('header').find('.accesskey').attr('title', '上方功能區塊');
-    $('.main').find('.accesskey').attr('title', '中央內容區塊');
-    $('footer').find('.accesskey').attr('title', '下方功能區塊');
-    $('.search').find('.accesskey').attr('title', '關鍵字搜尋：文章關鍵字搜尋');
+    $('header').find('.accesskeyItem').attr('title', '上方功能區塊');
+    $('.main').find('.accesskeyItem').attr('title', '中央內容區塊');
+    $('footer').find('.accesskeyItem').attr('title', '下方功能區塊');
+    $('.search').find('.accesskeyItem').attr('title', '關鍵字搜尋：文章關鍵字搜尋');
   } else if (weblang.substring(0, 2) !== 'zh') {
-    $('header').find('.accesskey').attr('title', 'header');
-    $('.main').find('.accesskey').attr('title', 'content');
-    $('footer').find('.accesskey').attr('title', 'footer');
-    $('.search').find('.accesskey').attr('title', 'search');
+    $('header').find('.accesskeyItem').attr('title', 'header');
+    $('.main').find('.accesskeyItem').attr('title', 'content');
+    $('footer').find('.accesskeyItem').attr('title', 'footer');
+    $('.search').find('.accesskeyItem').attr('title', 'search');
   }
   /*------------------------------------*/
   /////gotoCenter on focus跳到 content/////
@@ -895,29 +1023,49 @@ $(function () {
       $('#aC').focus();
       $('html, body')
         .stop(true, true)
-        .animate({ scrollTop: $('.main').find('.accesskey').offset().top }, 800, 'easeOutExpo');
+        .animate({ scrollTop: $('.main').find('.accesskeyItem').offset().top }, 800, 'easeOutExpo');
     }
   });
   /*-----------------------------------*/
   //////// 語言模組 無障礙遊走設定  ////////
   /*-----------------------------------*/
   $('.language').find('ul').hide();
-  var openLang = $('.language').children('a');
-  openLang.off().on('click', function (e) {
-    $(this).next('ul').stop(true, true).slideToggle();
-    e.preventDefault();
-  });
-  openLang.keyup(function () {
-    $(this).next('ul').stop(true, true).slideDown();
-  });
-  $('.language')
-    .find('ul li:last>a')
-    .focusout(function () {
-      $('.language').find('ul').hide();
+  $('.language').each(function () {
+    $(this).children('ul').attr({
+      'aria-hidden': 'true',
     });
+    let _this = $(this);
+    var openLang = _this.children('a,button');
+    openLang.off().on('click', function (e) {
+      e.preventDefault();
+      $($(e.target)).next('ul').stop(true, true).slideToggle();
+      $($(e.target))
+        .next('ul')
+        .attr('aria-hidden', function (i, attr) {
+          return attr === 'true' ? 'false' : 'true';
+        });
+    });
+
+    _this.on('keydown', function (e) {
+      if (e.target === openLang[0]) {
+        if (e.code == 'Tab' && e.shiftKey && !$(e.target).next('ul').is(':hidden')) {
+          e.preventDefault();
+          _this.find('ul li:last>a').focus();
+        } else if (e.code == 'Tab' && !e.shiftKey && $(e.target).next('ul').is(':hidden') && !$('.m_area').is(':hidden')) {
+          e.preventDefault();
+          _sidebarClose.focus();
+        }
+      } else if (e.target === _this.find('ul li:last>a')[0]) {
+        if (e.code == 'Tab' && !e.shiftKey) {
+          e.preventDefault();
+          openLang[0].focus();
+        }
+      }
+    });
+  });
   $(document).on('touchend click', function (e) {
     var target = e.target;
-    if (!$(target).is('.language a')) {
+    if (!$(target).is('.language a, .language button')) {
       $('.language').find('ul').hide();
     }
   });
@@ -999,288 +1147,275 @@ $(function () {
   });
 });
 
-// 亂數數字
-function randomFloor(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-// 亂數英文字
-function randomLetter(max) {
-  let text = '';
-  let letter = 'abcdefghijklmnopqrstuvwxyz';
-
-  for (let i = 0; i < max; i++) text += letter.charAt(Math.floor(Math.random() * letter.length));
-  return text;
-}
 function tabFunction(obj) {
-  'use strict';
-  // const tabSet = document.querySelector(obj.target) || null;
-  const tabSet = document.querySelectorAll(obj.target) || null;
-  const autoClose = obj.autoClose;
-  const openSwitch = obj.openSwitch;
-  const openFirst = obj.openFirst;
-  const modeSwitch = obj.modeSwitch;
-  const widthCheck = obj.width;
+  ('use strict');
+  const { target, autoClose = true, openContent = false, modeSwitch = false, windowWidth = wwSmall, openIndex = 0, openSwitch = true } = obj;
+  const tabSet = target === undefined ? $(obj) : $(target);
 
-  if (tabSet) {
-    tabSet.forEach((tab) => {
-      let id = [];
-      let mode = '';
-      let modeBBtn;
-      const modeABtn = tab.querySelectorAll('.tabItems button');
-      const modeAContent = tab.querySelectorAll('.tabContent');
-      const modeBContent = tab.querySelectorAll('.content');
-      const count = modeABtn.length;
-      let nowIndex = obj.index === null ? null : obj.index <= count ? obj.index : count;
-      const lastTab = modeABtn[modeABtn.length - 1];
+  if (tabSet === null) return;
+  const tabItem = $('.tabItems');
+  const tabBtns = tabSet.find('.tabItems .tabBtn');
+  const tabContent = tabSet.find('.tabContent');
+  const tabContentIn = tabSet.find('.tabContent .tabContentIn');
 
-      for (let i = 0; i < modeABtn.length; i++) {
-        id.push(`tab_${randomLetter(3)}${randomFloor(0, 999)}`);
-      }
+  //初始設定
+  function tabInit(targetIndex) {
+    tabItem.attr('role', 'tablist');
 
-      // 內容增加標題給模式B使用
-      modeABtn.forEach((item, index) => {
-        const btn = document.createElement('button');
-        btn.classList.add('modeBBtn');
-        btn.innerText = item.innerText;
-        modeAContent.forEach((content, i) => (i === index ? content.prepend(btn) : null));
+    tabBtns.each(function (i) {
+      const id = `tab_${randomLetter(3)}${randomFloor(0, 999)}`;
+      const controls = `${id}_con`;
+      $(this).attr({
+        id: id,
+        'aria-controls': controls,
+        'aria-selected': 'false',
+        'aria-expanded': 'false',
+        tabindex: '-1',
       });
+      setAttribute(tabContent.eq(i), 'tabpanel', controls, id);
 
-      modeBBtn = tab.querySelectorAll('.modeBBtn');
-
-      // 判斷寬度
-      const init = () => {
-        if (window.innerWidth <= widthCheck && modeSwitch) {
-          // 模式B
-          mode = 'B';
-          if (modeSwitch) {
-            modeABtn.forEach((content) => content.classList.remove('active'));
-            modeAContent.forEach((content) => content.classList.remove('active'));
-            // 移除模式A無障礙設置
-            modeABtn.forEach((item, index) => {
-              item.removeAttribute('aria-controls');
-              item.removeAttribute('role');
-              modeAContent[index].removeAttribute('aria-labelledby');
-              modeAContent[index].removeAttribute('role');
-              modeAContent[index].removeAttribute('aria-label');
-            });
-            // 增加模式B無障礙設置
-            modeBBtn.forEach((item, index) => {
-              item.setAttribute('aria-controls', id[index]);
-              modeBContent[index].setAttribute('aria-labelledby', id[index]);
-              modeBContent[index].setAttribute('id', id[index]);
-              // item.setAttribute('role', 'tab');
-              // modeBContent[index].setAttribute('role', 'tabpanel');
-              modeBContent[index].setAttribute('aria-label', item.innerText);
-            });
-
-            tab.classList.add('modeB');
-
-            if (nowIndex !== null) {
-              modeBBtn[nowIndex].classList.add('active');
-              modeBBtn[nowIndex].setAttribute('aria-selected', 'true');
-              modeBContent[nowIndex].classList.add('active');
-            }
-          }
-          // 模式B
-        } else if (window.innerWidth > widthCheck || !modeSwitch) {
-          // 模式A
-          mode = 'A';
-
-          if (modeSwitch) {
-            modeBContent.forEach((item) => item.style.removeProperty('display'));
-            modeBBtn.forEach((content) => content.classList.remove('active'));
-            modeBContent.forEach((content) => content.classList.remove('active'));
-
-            // 移除模式B無障礙設置
-            modeBBtn.forEach((item, index) => {
-              item.removeAttribute('aria-controls');
-              item.removeAttribute('role');
-              modeBContent[index].removeAttribute('aria-labelledby');
-              modeBContent[index].removeAttribute('role');
-              modeBContent[index].removeAttribute('aria-label');
-              modeBContent[index].removeAttribute('id');
-            });
-          }
-          // 增加模式A無障礙設置
-          modeABtn.forEach((item, index) => {
-            item.setAttribute('aria-controls', id[index]);
-            item.setAttribute('role', 'tab');
-            item.setAttribute('aria-selected', 'false');
-            modeAContent[index].setAttribute('aria-labelledby', id[index]);
-            modeAContent[index].setAttribute('role', 'tabpanel');
-            modeAContent[index].setAttribute('aria-label', item.innerText);
-          });
-
-          tab.classList.remove('modeB');
-
-          nowIndex === null ? (nowIndex = 0) : nowIndex;
-          modeABtn[nowIndex].classList.add('active');
-          modeAContent[nowIndex].classList.add('active');
-          modeABtn[nowIndex].setAttribute('aria-selected', 'true');
-          // 模式A
-        }
-      };
-      init();
-
-      // 預先展開模式
-      function openCheck() {
-        // 預先展開模式
-        if (!openFirst && mode === 'B' && nowIndex !== null) {
-          const siblings = Array.prototype.filter.call(modeBContent[nowIndex].parentElement.parentElement.children, (child) => {
-            return child !== modeBContent[nowIndex].parentElement;
-          });
-          siblings.forEach((item) => $(item).find('.content').slideUp('fast'));
-        } else if (mode === 'B' && nowIndex === null) {
-          modeBContent.forEach((item) => $(item).slideUp('fast'));
-        } else {
-          modeBContent.forEach((item) => $(item).slideDown('fast'));
-        }
+      //模式切換-新增按鈕
+      if (modeSwitch) {
+        const mobileTabBtn = createMobileTabBtn(id, controls, $(this).text());
+        tabContent.eq(i).prepend(mobileTabBtn);
       }
-      openCheck();
+    });
 
-      // 模式A共用
-      function modeAFn(item, index) {
-        modeABtn.forEach((content) => content.classList.remove('active'));
-        modeAContent.forEach((content) => content.classList.remove('active'));
-        modeAContent[index].classList.add('active');
-        item.classList.add('active');
-        modeABtn.forEach((content) => content.setAttribute('aria-selected', 'false'));
-        item.setAttribute('aria-selected', 'true');
-        nowIndex = index;
-      }
+    checkTarget(targetIndex);
+    tabSet.data('nowIndex', targetIndex);
+  }
 
-      modeAContent.forEach((item, index) => {
-        const itemAllTarget = modeAContent[index].querySelectorAll('a,button,input,textarea,select');
-        const firstItem = itemAllTarget[1];
-        const lastItem = itemAllTarget[itemAllTarget.length - 1];
-        const prevItemAllTarget = modeAContent[index - 1]?.querySelectorAll('a,button,input,textarea,select');
-        const siblings = Array.prototype.filter.call(modeBBtn[index].parentElement.parentElement.children, (child) => {
-          return child !== modeBBtn[index].parentElement;
-        });
+  // 創建移動版選項按鈕
+  function createMobileTabBtn(id, controls, textContent) {
+    return $('<button>', {
+      class: 'mobileTabBtn',
+      id: id,
+      'aria-controls': controls,
+      type: 'button',
+      'aria-expanded': 'false',
+    }).text(textContent);
+  }
 
-        // 模式A
-        if (modeSwitch || mode === 'A') {
-          // 模式A點擊
-          if (openSwitch) {
-            modeABtn[index].addEventListener('click', (e) => {
-              e.preventDefault();
-              modeAFn(e.target, index);
-            });
+  //執行
+  tabInit(openIndex);
 
-            // 模式A鍵盤
-            modeABtn[index].addEventListener('keydown', (e) => {
-              if (e.which === 9 && !e.shiftKey) {
-                modeAFn(e.target, index);
-                if (itemAllTarget.length > 1 && e.target !== lastTab) {
-                  e.preventDefault();
-                  firstItem.focus();
-                } else if (itemAllTarget.length === 1 && e.target !== lastTab) {
-                  e.preventDefault();
-                  modeABtn[index + 1]?.focus();
-                } else if (itemAllTarget.length > 1 && e.target === lastTab) {
-                  modeABtn[index + 1]?.focus();
-                } else if (itemAllTarget.length === 1 && e.target === lastTab) {
-                  setTimeout(() => {
-                    lastTab.focus();
-                    lastTab.blur();
-                  }, 10);
-                }
-              } else if (e.which === 9 && e.shiftKey) {
-                e.preventDefault();
-                modeAFn(modeABtn[index], index);
-                lastItem?.focus();
-                if (itemAllTarget.length === 1) {
-                  modeABtn[index - 1]?.focus();
-                }
-              }
-            });
-          }
-        }
+  //切換動作
+  function checkTarget(targetIndex) {
+    tabSet.data('nowIndex', targetIndex);
 
-        // 模式B
-        if (modeSwitch || mode === 'B') {
-          // 模式B點擊
-          if (openSwitch) {
-            modeBBtn[index].addEventListener('click', (e) => {
-              e.preventDefault();
-              siblings.forEach((content) => content.querySelector('.modeBBtn').classList.remove('active'));
-              e.target.classList.toggle('active');
-              $(modeBContent[index]).slideToggle('fast');
-              nowIndex = index;
+    //點選的按鈕增加active
+    tabBtns.eq(targetIndex).addClass('active');
+    tabBtns.eq(targetIndex).attr({
+      'aria-selected': 'true',
+      'aria-expanded': 'true',
+      tabindex: '0',
+    });
 
-              if (autoClose) {
-                siblings.forEach((con) => {
-                  $(con.querySelector('.content')).slideUp('fast');
-                  con.classList.remove('active');
-                  con.querySelector('.modeBBtn').setAttribute('aria-selected', 'false');
-                });
-              }
-            });
-
-            // 模式B鍵盤
-            modeBBtn[index].addEventListener('keydown', (e) => {
-              e.target.classList.add('active');
-              let firstTabStyle = window.getComputedStyle(modeBContent[index]);
-              nowIndex = index;
-
-              if (autoClose & !openFirst) {
-                siblings.forEach((content) => {
-                  $(content.querySelector('.content')).slideUp('fast');
-                  content.querySelector('.modeBBtn').classList.remove('active');
-                  content.querySelector('.modeBBtn').setAttribute('aria-expanded', 'false');
-                });
-              }
-
-              if (e.which === 9 && !e.shiftKey) {
-                $(modeBContent[index]).slideDown('fast');
-                if (index === 0) {
-                  e.target.classList.add('active');
-                }
-
-                if (itemAllTarget.length > 1) {
-                  e.preventDefault();
-                  firstItem?.focus();
-                } else if (itemAllTarget.length === 1) {
-                  modeBBtn[index]?.focus();
-                }
-              } else if (e.which === 9 && e.shiftKey) {
-                e.preventDefault();
-                $(modeBContent[index]).slideDown('fast');
-                if (itemAllTarget.length > 1) {
-                  lastItem?.focus();
-                } else if (itemAllTarget.length === 1) {
-                  modeBBtn[index - 1]?.focus();
-                }
-              }
-            });
-          }
-        }
-
-        // 內容鍵盤遊走
-        itemAllTarget.forEach((n, i) => {
-          if (i > 0) {
-            n.addEventListener('keydown', (e) => {
-              if (mode === 'A') {
-                if ((e.which === 9 && !e.shiftKey && e.target === lastItem && modeABtn[index] !== lastTab) || (e.which === 9 && e.shiftKey && e.target === firstItem)) {
-                  modeABtn[index]?.focus();
-                }
-              } else if (mode === 'B') {
-                if (e.which === 9 && e.shiftKey) {
-                  if (e.target === firstItem) {
-                    modeBBtn[index]?.focus();
-                  } else if (itemAllTarget.length === 1) {
-                    modeBBtn[index - 1]?.focus();
-                  }
-                }
-              }
-            });
-          }
-        });
+    //移除其他按鈕的active
+    const siblingsBtn = tabBtns.eq(targetIndex).siblings();
+    siblingsBtn.each(function (e) {
+      $(this).removeClass('active');
+      $(this).attr({
+        'aria-selected': 'false',
+        'aria-expanded': 'false',
+        tabindex: '-1',
       });
+    });
 
-      window.addEventListener('resize', init);
+    tabContent.eq(targetIndex).removeClass('hidden');
+    tabContent.eq(targetIndex).attr('aria-hidden', 'false');
+
+    //移除其他內容的active
+    const siblingsPanel = tabContent.eq(targetIndex).siblings();
+    siblingsPanel.each(function (e) {
+      $(this).addClass('hidden');
+      $(this).attr('aria-hidden', 'true');
     });
   }
+
+  // 是否可開合/切換
+  if (openSwitch) {
+    //tab動作
+    tabSet.on('click', function (e) {
+      if (!$(e.target).hasClass('tabBtn')) return;
+      let index = $(e.target).index() % tabBtns.length;
+      checkTarget(index);
+    });
+
+    tabSet.on('keydown', function (e) {
+      if (!$(e.target).hasClass('tabBtn')) return;
+      let index;
+      //左右操作tab
+      if (e.code === 'ArrowRight') {
+        index = ($(e.target).index() + 1) % tabBtns.length;
+        tabBtns.eq(index).focus();
+        checkTarget(index);
+      } else if (e.code === 'ArrowLeft') {
+        index = ($(e.target).index() - 1 + tabBtns.length) % tabBtns.length;
+        tabBtns.eq(index).focus();
+        checkTarget(index);
+      }
+    });
+
+    //模式切換-手風琴動作
+    if (modeSwitch) {
+      const mobileTabBtn = tabSet.find('.mobileTabBtn');
+
+      tabSet.on('click', function (e) {
+        console.log(e.target);
+
+        if (!$(e.target).hasClass('mobileTabBtn')) return;
+        let index = mobileTabBtn.index(e.target) % mobileTabBtn.length;
+        mobileTabFn(mobileTabBtn.eq(index), index, mobileTabBtn);
+      });
+    }
+  }
+
+  function mobileTabFn(btn, i, mobileTabBtn) {
+    tabContentIn.eq(i).slideToggle();
+    tabSet.data('nowIndex', i);
+
+    let check = btn.attr('aria-expanded') === 'true' ? false : true;
+    btn.attr('aria-expanded', check);
+    tabContentIn.eq(i).attr('aria-hidden', !check);
+    btn.toggleClass('active');
+
+    if (!autoClose) return;
+    const siblingsMobileTabBtn = mobileTabBtn.eq(i).parent().siblings().children('.mobileTabBtn');
+    siblingsMobileTabBtn.each(function (e) {
+      $(this).removeClass('active');
+      $(this).attr('aria-expanded', 'false');
+    });
+    const siblingsPanel = tabContentIn.eq(i).parent().siblings().children('.tabContentIn');
+
+    siblingsPanel.each(function (e) {
+      $(this).slideUp();
+      $(this).attr('aria-hidden', 'true');
+    });
+  }
+
+  function removeAttribute(item) {
+    item.removeAttr('aria-hidden');
+    item.removeAttr('role');
+    item.removeAttr('aria-labelledby');
+    item.removeAttr('id');
+  }
+  function setAttribute(item, role, id, labelledby) {
+    item.attr({
+      role: role,
+      id: id,
+      'aria-labelledby': labelledby,
+      'aria-hidden': 'false',
+    });
+  }
+  //模式切換-RWD
+  function checkRWD() {
+    const tabpanelBtn = tabSet.find('.tabContent .mobileTabBtn');
+    const nowOpen = tabSet.data('nowIndex');
+
+    // 電腦版
+    tabBtns.eq(nowOpen).addClass('active');
+    tabBtns.eq(nowOpen).attr({
+      'aria-selected': 'true',
+      'aria-expanded': 'true',
+      tabindex: '0',
+    });
+    const tabListSiblingsPanelBtn = tabBtns.eq(nowOpen).siblings();
+    tabListSiblingsPanelBtn.each(function (e) {
+      $(this).removeClass('active');
+      $(this).attr({
+        'aria-expanded': 'false',
+        'aria-selected': 'false',
+        tabindex: '-1',
+      });
+    });
+
+    // 手機版
+    tabpanelBtn.eq(nowOpen)?.addClass('active');
+    tabpanelBtn.eq(nowOpen)?.attr('aria-expanded', 'true');
+    const tabSiblingsPanelBtn = tabpanelBtn.eq(nowOpen).siblings();
+    tabSiblingsPanelBtn.each(function (e) {
+      $(this).removeClass('active');
+      $(this).attr('aria-expanded', 'false');
+    });
+
+    if (window.innerWidth < windowWidth && modeSwitch) {
+      //隱藏上方選單
+      tabItem.addClass('hidden');
+      tabItem.attr('aria-hidden', 'true');
+
+      tabBtns.each(function (i) {
+        const id = tabpanelBtn.eq(i).attr('id');
+        const controls = tabpanelBtn.eq(i).attr('aria-controls');
+
+        //顯示所有tab內容標籤
+        tabContent.eq(i).removeClass('hidden');
+        //移除tab內容標籤
+        removeAttribute(tabContent.eq(i));
+
+        //顯示手風琴標籤按鈕
+        tabpanelBtn.eq(i).removeClass('hidden');
+        tabpanelBtn.eq(i).attr('aria-hidden', 'false');
+        //新增手風琴內容標籤
+        setAttribute(tabContentIn.eq(i), 'region', controls, id);
+        tabContentIn.eq(i).slideDown();
+      });
+
+      if (openContent) {
+        tabContentIn.each(function (i) {
+          $(this).css('display', 'block');
+          $(this).attr('aria-hidden', 'false');
+          tabpanelBtn.eq(i).addClass('active');
+        });
+      } else {
+        //隱藏其他手風琴內容
+        const siblingsPanel = tabContentIn.eq(nowOpen).parent().siblings().children('.tabContentIn');
+
+        siblingsPanel.each(function (i) {
+          $(this).css('display', 'none');
+          $(this).attr('aria-hidden', 'true');
+        });
+      }
+      //展開目前手風琴內容
+      tabpanelBtn.eq(nowOpen).attr('aria-expanded', 'true');
+      tabpanelBtn.eq(nowOpen).focus();
+    } else if (window.innerWidth >= windowWidth && modeSwitch) {
+      //增加上方選單
+      tabItem.removeClass('hidden');
+      tabItem.removeAttr('aria-hidden');
+      tabItem.attr('role', 'tablist');
+
+      tabBtns.each(function (i) {
+        const id = tabpanelBtn.eq(i).attr('id');
+        const controls = tabpanelBtn.eq(i).attr('aria-controls');
+
+        //顯示所有Tab內容
+        tabContentIn.eq(i).removeClass('hidden');
+        //移除Tab內容標籤
+        removeAttribute(tabContentIn.eq(i));
+        tabContentIn.eq(i).removeAttr('style');
+
+        //隱藏Tab標籤按鈕
+        tabpanelBtn.eq(i).addClass('hidden');
+        tabpanelBtn.eq(i).attr('aria-hidden', 'true');
+        //新增Tab內容標籤
+        setAttribute(tabContent.eq(i), 'tabpanel', controls, id);
+      });
+
+      //展開目前Tab內容
+      tabContent.eq(nowOpen).removeClass('hidden');
+      tabBtns.eq(nowOpen).focus();
+
+      //隱藏其他Tab內容
+      const siblingsPanel = tabContent.eq(nowOpen).siblings();
+      siblingsPanel.each(function () {
+        $(this).addClass('hidden');
+        $(this).attr('aria-hidden', 'true');
+      });
+    }
+  }
+  checkRWD();
+  $(window).on('resize', checkRWD);
 }
 
 // tabFunction({
@@ -1299,3 +1434,55 @@ if ($('[data-fancybox="gallery"]').length > 0) {
     l10n: Fancybox.l10n.zh_TW,
   });
 }
+function formEye(obj) {
+  const webLang = $('html').attr('lang');
+  // form password eyes
+  $('.passwordEye').each(function () {
+    const item = $(this);
+    const passwordInput = item.parent().find('[type="password"]');
+    item.on('click', function (e) {
+      const target = $(e.target);
+      if (target.hasClass('hide')) {
+        //換class / type
+        target.removeClass('hide').addClass('show');
+        if (webLang) {
+          obj.password.data.forEach(function (s) {
+            if (webLang.slice(0, 2) == s.lang) {
+              target.text(s.hide);
+            }
+          });
+        }
+        passwordInput.attr('type', 'text');
+      } else {
+        passwordInput.attr('type', 'password');
+        target.removeClass('show').addClass('hide');
+        target.text(obj.password.default.show);
+        if (webLang) {
+          obj.password.data.forEach(function (s) {
+            if (webLang.slice(0, 2) == s.lang) {
+              target.text(s.show);
+            }
+          });
+        }
+      }
+    });
+  });
+}
+
+formEye({
+  password: {
+    data: [
+      {
+        lang: 'zh',
+        show: '顯示密碼',
+        hide: '隱藏密碼',
+      },
+      //...由此新增其他語系
+    ],
+    //預設語系
+    default: {
+      show: 'show',
+      hide: 'hide',
+    },
+  },
+});

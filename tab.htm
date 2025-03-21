@@ -20,15 +20,15 @@
 
   <body>
     <!-- 直接跳主內容區 -->
-    <a class="goCenter" href="#aC" tabindex="1">按Enter到主內容區</a>
+    <a class="goCenter" href="#aC">按Enter到主內容區</a>
     <!-- wrapper Start -->
     <div class="wrapper">
       <!-- header Start -->
       <header class="header">
         <div class="container">
-          <a class="accesskey" href="#aU" id="aU" accesskey="U" title="網站標題" tabindex="2">:::</a>
+          <a class="accesskeyItem" href="#aU" id="aU" accesskey="U" aria-label="網站標題">:::</a>
           <!-- navigation Start -->
-          <nav class="navigation" role="navigation" aria-label="Site">
+          <nav class="navigation" role="navigation" aria-label="頁首功能列">
             <!-- 新增div navlist -->
             <div class="navlist">
               <ul>
@@ -43,14 +43,14 @@
               <span>字型大小：</span>
               <!-- 英文用<span>font-size：</span> -->
               <ul>
-                <li><a href="#" role="button" class="small">小</a></li>
-                <li><a href="#" role="button" class="medium">中</a></li>
-                <li><a href="#" role="button" class="large">大</a></li>
+                <li><button type="button" class="smallSize">小</button></li>
+                <li><button type="button" class="mediumSize">中</button></li>
+                <li><button type="button" class="largeSize">大</button></li>
               </ul>
             </div>
             <!-- language -->
             <div class="language">
-              <a href="#">語言選擇</a>
+              <button type="button" aria-expanded="false" aria-controls="languageList">語言選擇</button>
               <ul>
                 <li><a href="#">繁體中文</a></li>
                 <li><a href="#">简体中文</a></li>
@@ -65,12 +65,9 @@
           <!-- Search Start -->
           <div class="search" role="search">
             <div class="form_grp">
-              <label for="mustSameAsId">搜尋</label>
-              <input name="username" id="mustSameAsId" type="text" placeholder="請輸入文字" accesskey="S" title="請輸入文字" aria-label="搜尋網站內容" />
-              <input name="" type="submit" value="查詢" class="btn btn-search" />
-            </div>
-            <div class="btn_grp">
-              <input name="" type="submit" value="進階搜尋" class="btn" />
+              <input name="username" type="text" placeholder="請輸入文字" accesskey="S" aria-label="搜尋網站內容" />
+              <button type="button" class="btn btn-search">查詢</button>
+              <button type="button" class="btn">進階搜尋</button>
             </div>
             <div class="keywordHot">
               <ul>
@@ -87,7 +84,7 @@
             <a href="#">網站導覽</a>
           </noscript>
           <!-- menu Start -->
-          <nav class="menu" role="navigation" aria-label="About page">
+          <nav class="menu mainMenu" role="navigation" aria-label="主選單">
             <ul>
               <li>
                 <a href="#">第一層選單</a>
@@ -166,9 +163,9 @@
       </header>
       <!-- header End -->
       <!-- main Start -->
-      <div id="aC" class="main innerpage">
+      <main class="main innerpage">
         <!-- 內頁新增一個classname-->
-        <a class="accesskey" href="#ac" id="ac" accesskey="C" title="主要內容區">:::</a>
+        <a class="accesskeyItem" href="#ac" id="ac" accesskey="C" aria-label="主要內容區">:::</a>
         <div class="container">
           <!-- 主要內容區 -->
           <div class="center_block">
@@ -191,10 +188,9 @@
               </ul>
             </div>
             <section>
-              <div class="tabSet">
-                <!-- 頁籤的上一層父物件要加 role="tablist" -->
+              <div class="tabSet target1">
                 <div class="tabItems">
-                  <button type="button" class="tabBtn">頁籤項ㄧ</button>
+                  <button type="button" class="tabBtn"><span>頁籤項ㄧ</span></button>
                   <button type="button" class="tabBtn">頁籤項二</button>
                   <button type="button" class="tabBtn">頁籤項三</button>
                   <button type="button" class="tabBtn">頁籤項四</button>
@@ -202,38 +198,51 @@
                 </div>
                 <div class="tabContentGroup">
                   <div class="tabContent">
-                    <div class="content">
+                    <div class="tabContentIn">
+                      <code>
+                        tabFunction({<br />
+                        target: '.target1', // 執行目標，多組需要另外設定<br />
+                        modeSwitch: false, // 自動切換，尺寸以上tab功能，尺寸以下手風琴功能<br />
+                        openContent: false, // 展開所有內容，僅開啟模式切換時才可使用<br />
+                        openIndex: 0, // 開啟第幾個<br />
+                        width: 767, // 尺寸以上tab功能，尺寸以下手風琴功能<br />
+                        autoClose: true, // 自動關閉其他開啟內容<br />
+                        openSwitch: true, // 是否可開合/切換<br />
+                        });<br />
+                        上面的option是基礎預設，如不需要更改可以直接使用tabFunction('.target1')，如有多組tab<br />
+                        請另外設定target <br /><br />
+                      </code>
+                      無障礙相關(皆已由js設定)
+
                       <ul>
                         <li>
-                          <a href="">使用到的ARIA:</a><br />
-                          <code>role="tablist"</code>, <code>role="tab"</code>, <code></code>, <code>aria-selected="<i>true/false</i>"</code>, <code>aria-label="<i>TEXT</i>"</code>, <code>aria-controls="<i>ID</i>"</code>
-                        </li>
-                        <li>
-                          <a href="#">處理頁籤項</a>
+                          <a href="#">頁籤</a>
                           <ol>
-                            <li>為每個作為頁籤項的<code>&lt;button&gt;</code>加上<code>role="tab"</code>，其上一層父元件加<code>role="tablist"</code></li>
+                            <li>父層增加<code>role="tablist"</code></li>
+                            <li><code>&lt;button&gt;</code>加上<code>role="tab"</code></li>
                             <li>選到的頁籤項加<code>aria-selected="true"</code>，未選到的頁籤項加<code>aria-selected="false"</code></li>
                           </ol>
                         </li>
                         <li>
-                          <a href="#">處理頁籤內容區塊</a>
+                          <a href="#">內容</a>
                           <ol>
-                            <li>為每個作為頁籤內容的容器元件，通常是<code>&lt;div&gt;</code>，加上<code></code></li>
-                            <li>頁籤內容區塊加<code>aria-label="<i>TEXT</i>"</code>，<i>TEXT</i> 帶入對應的頁籤項的文字</li>
+                            <li><code>&lt;button&gt;</code>加上<code>role="tabpanel"</code></li>
+                            <li>選到的加上<code>aria-hidden="false"</code>，未選到的加上<code>aria-hidden="true"</code></li>
                           </ol>
                         </li>
                         <li>
                           <a href="#">讓頁籤項與頁籤內容產生關連</a>
                           <ol>
-                            <li>頁籤內容區塊加<code>id="<i>ID</i>"</code>，對應的頁籤項加<code>aria-controls="<i>ID</i>"</code></li>
-                            <li>例如，第一個頁籤項<code>aria-controls="tabpanel-1"</code>，其控制的內容<code>id="tabpanel-1"</code></li>
+                            <li>頁籤加<code>id="<i>ID</i>"</code>，對應的內容加<code>aria-labelledby="<i>ID</i>"</code><br />例如，第一個頁籤項<code>id="tabpanel_1"</code>，其控制的內容<code>aria-labelledby="tabpanel_1"</code></li>
+                            <li>內容區加<code>id="<i>ID</i>"</code>，對應的頁籤項加<code>aria-controls="<i>ID</i>"</code><br />例如，第一個頁籤項<code>aria-controls="tabpanel_1_con"</code>，其控制的內容<code>id="tabpanel_1_con"</code></li>
                           </ol>
                         </li>
                       </ul>
                     </div>
                   </div>
-                  <div class="tabContent">
-                    <div class="content">
+                  <div class="tabContent" role="tabpanel">
+                    <div class="tabContentIn">
+                      2
                       <ul>
                         <li>
                           <a href="#">頁籤二內容</a>
@@ -250,9 +259,9 @@
                       </ul>
                     </div>
                   </div>
-                  <div class="tabContent">
-                    <div class="content">
-                      標題：探索未知的世界<br /><br />
+                  <div class="tabContent" role="tabpanel">
+                    <div class="tabContentIn">
+                      3 標題：探索未知的世界<br /><br />
                       引言<br />
                       在這個充滿奇遇和冒險的世界裡，我們常常被吸引到未知的領域中。這些未知的領域充滿了神秘和挑戰，讓我們感到興奮和好奇。本文將帶領您一同探索這些未知的領域，揭開它們的神秘面紗。<br /><br />
 
@@ -269,8 +278,9 @@
                       在這個充滿未知的世界中，我們不斷地探索、學習和成長。無論是自然界、科技還是藝術，都是我們探索未知的途徑。讓我們保持好奇心和求知慾，勇敢地踏上未知的旅程
                     </div>
                   </div>
-                  <div class="tabContent">
-                    <div class="content">
+                  <div class="tabContent" role="tabpanel">
+                    <div class="tabContentIn">
+                      4
                       <ul>
                         <li>
                           <a href="#">頁籤三內容</a>
@@ -287,8 +297,9 @@
                       </ul>
                     </div>
                   </div>
-                  <div class="tabContent">
-                    <div class="content">
+                  <div class="tabContent" role="tabpanel">
+                    <div class="tabContentIn">
+                      5
                       <ul>
                         <li>
                           <a href="#">頁籤四內容</a>
@@ -313,12 +324,12 @@
             </section>
           </div>
         </div>
-      </div>
+      </main>
       <!-- fatfooter Start -->
       <section class="fatfooter">
         <div class="container">
-          <button type="button" name="展開選單/OPEN" aria-label="導覽選單展開/收合" class="btn btn-fatfooter">收合</button>
-          <nav>
+          <button type="button" aria-expanded="true" class="btn btn-fatfooter" aria-label="開關頁尾網站導覽"></button>
+          <nav aria-label="頁尾網站導覽">
             <ul>
               <li>
                 <a href="#">關於本局</a>
@@ -391,9 +402,9 @@
       <!-- footer Start-->
       <footer>
         <div class="container">
-          <a class="accesskey" href="#aZ" id="aZ" accesskey="Z" title="頁尾區">:::</a>
+          <a class="accesskeyItem" href="#aZ" id="aZ" accesskey="Z" aria-label="頁尾區">:::</a>
           <div class="footer_logo">
-            <img src="images/logo.png" alt="" class="img-responsive" />
+            <img src="images/logo.png" alt="logo" class="img-responsive" />
           </div>
           <div class="footer_info">
             <ul class="footer_link">
