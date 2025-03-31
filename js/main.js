@@ -69,9 +69,9 @@ $(function () {
         .attr({
           id: `${id}_ul`,
           'aria-labelledby': id,
-          'aria-hidden': 'true',
+          // 'aria-hidden': 'true',
         });
-      $(this).attr('href') === '#' ? $(this).attr('role', 'button') : null;
+      $(this).attr('role', 'button');
     });
 
   // _menu.find('li').has('ul').children('a').attr('aria-expanded', 'false');
@@ -104,13 +104,13 @@ $(function () {
 
   _sidebar.attr({
     id: 'mobileArea',
-    'aria-hidden': 'true',
+    // 'aria-hidden': 'true',
   });
   // -------------------------------------------- 打開選單 function
   function showSidebar() {
     _sidebarCtrl.attr('aria-expanded', 'true');
     _sidebar.show();
-    _sidebar.attr('aria-hidden', 'false');
+    // _sidebar.removeAttr('aria-hidden');
     _mArea.show().addClass('open');
     _mArea.animate({ 'margin-left': 0 }, 400, 'easeOutQuint');
     _body.addClass('noscroll');
@@ -129,7 +129,7 @@ $(function () {
       _mArea.removeClass('open');
       _mArea.hide();
     });
-    _sidebar.attr('aria-hidden', 'true');
+    // _sidebar.attr('aria-hidden', 'true');
     _body.removeClass('noscroll');
     _overlay.fadeOut(200);
     liHasChild.children('ul').hide();
@@ -162,7 +162,7 @@ $(function () {
   liHasChild.children('a').keyup(function (e) {
     if (e.which === 9 && !e.shiftKey) {
       $(this).attr('aria-expanded', 'true');
-      $(this).siblings('ul').attr('aria-hidden', 'false');
+      // $(this).siblings('ul').removeAttr('aria-hidden');
 
       $(this).siblings('ul').fadeIn(200);
       // let hasChildLi = $(this).parents('.hasChild');
@@ -185,7 +185,7 @@ $(function () {
         if (e.which === 9 && !e.shiftKey) {
           $(s).children('ul').hide().removeAttr('style');
           $(s).children('a').attr('aria-expanded', 'false');
-          $(s).children('ul').attr('aria-hidden', 'true');
+          // $(s).children('ul').attr('aria-hidden', 'true');
         }
       });
     $(this)
@@ -251,7 +251,7 @@ $(function () {
   changeTag($('.sidebar .navigation'), 'div');
 
   _search.clone().appendTo(_body).removeClass('search').addClass('m_search');
-  $('.m_search').attr('aria-hidden', 'true');
+  // $('.m_search').attr('aria-hidden', 'true');
   _sidebar.find('.font_size').remove();
 
   // 切換PC/Mobile 選單
@@ -270,7 +270,7 @@ $(function () {
       hideSidebar();
       _body.removeClass('noscroll');
       $('.m_search').hide();
-      $('.m_search').attr('aria-hidden', 'true');
+      // $('.m_search').attr('aria-hidden', 'true');
       search_mode = false;
       $('.language').find('ul').hide();
     }
@@ -295,7 +295,7 @@ $(function () {
           let ulWidth = $(this).children('ul').width();
 
           $(this).children('a').attr('aria-expanded', 'true');
-          $(this).children('ul').attr('aria-hidden', 'false');
+          // $(this).children('ul').removeAttr('aria-hidden');
 
           $(this).children('ul').stop(true, false).fadeIn(200);
           $(this).addClass('active');
@@ -371,8 +371,8 @@ $(function () {
       mouseleave: function (e) {
         if ($(window).outerWidth() > wwSmall) {
           let _this = $(this);
-          $(this).find('a').attr('aria-expanded', 'false');
-          $(this).find('ul').attr('aria-hidden', 'true');
+          $(this).children('a').attr('aria-expanded', 'false');
+          // $(this).find('ul').attr('aria-hidden', 'true');
           setTimeout(function () {
             // _this.find('.menuArrowDown').remove();
             // _this.find('.menuArrowUp').remove();
@@ -482,7 +482,7 @@ $(function () {
     resizeTimer = setTimeout(function () {
       // search_mode = true;
       $('.m_search').hide();
-      $('.m_search').attr('aria-hidden', 'true');
+      // $('.m_search').attr('aria-hidden', 'true');
       checkMenuMode();
     }, 50);
   });
@@ -526,7 +526,7 @@ $(function () {
     if (!search_mode) {
       _searchCtrl.attr('aria-expanded', 'true');
       $('.m_search').stop(true, false).slideDown('400', 'easeOutQuint');
-      $('.m_search').attr('aria-hidden', 'false');
+      // $('.m_search').removeAttr('aria-hidden');
       search_mode = true;
       // prevent Android sofr Keyboard
       var isAndroid = /android/i.test(navigator.userAgent.toLowerCase());
@@ -536,7 +536,7 @@ $(function () {
     } else {
       _searchCtrl.attr('aria-expanded', 'false');
       $('.m_search').slideUp('400', 'easeOutQuint');
-      $('.m_search').attr('aria-hidden', 'true');
+      // $('.m_search').attr('aria-hidden', 'true');
       search_mode = false;
     }
   }
@@ -650,12 +650,12 @@ $(function () {
       .slideToggle(function () {
         if ($(this).is(':visible')) {
           $('.btn-fatfooter').attr('aria-expanded', 'true');
-          $(this).attr('aria-hidden', 'false');
+          // $(this).removeAttr('aria-hidden');
           // $('.btn-fatfooter').html('收合/CLOSE');
           // $('.btn-fatfooter').attr('name', '收合選單/CLOSE');
         } else {
           $('.btn-fatfooter').attr('aria-expanded', 'false');
-          $(this).attr('aria-hidden', 'true');
+          // $(this).attr('aria-hidden', 'true');
           // $('.btn-fatfooter').html('展開/OPEN');
           // $('.btn-fatfooter').attr('name', '展開選單/OPEN');
         }
@@ -668,7 +668,7 @@ $(function () {
   $('.fatfooter nav>ul>li>ul').each(function (index) {
     footerItem.push(`fatfooter${index}`);
     $(this).attr('id', `fatfooter${index}`);
-    $(this).attr('aria-hidden', !checkHidden);
+    // !checkHidden ? $(this).attr('aria-hidden', 'true') : $(this).removeAttr('aria-hidden');
   });
   $('.btn-fatfooter').attr('aria-controls', footerItem.join(' '));
   /*-----------------------------------*/
@@ -821,7 +821,7 @@ $(function () {
   //////////分享按鈕 share dropdwon////////
   /*------------------------------------*/
   $('.function_panel .share').children('ul').hide();
-  $('.function_panel .share').children('ul').attr('aria-hidden', 'true');
+  // $('.function_panel .share').children('ul').attr('aria-hidden', 'true');
   var _shareButton = $('.shareButton');
   _shareButton.on('click', function (e) {
     e.preventDefault();
@@ -829,11 +829,7 @@ $(function () {
       return attr === 'false' ? 'true' : 'false';
     });
     $(this).siblings('ul').stop(true, true).slideToggle();
-    $('.function_panel .share')
-      .children('ul')
-      .attr('aria-hidden', function (i, attr) {
-        return attr === 'false' ? 'true' : 'false';
-      });
+    // _shareButton.attr('aria-expanded') === 'false' ? $('.function_panel .share').children('ul').attr('aria-hidden', 'true') : $('.function_panel .share').children('ul').removeAttr('aria-hidden');
   });
   $('.function_panel .share').on('keydown', function (e) {
     let _this = $(this);
@@ -969,13 +965,13 @@ $(function () {
     if (e.key == 'Escape') {
       if ($('.language ul').is(':visible')) {
         $('.language ul').slideUp();
-        $('.language ul').attr('aria-hidden', 'true');
+        // $('.language ul').attr('aria-hidden', 'true');
         $('.language button').attr('aria-expanded', 'false');
         $('.language button').focus();
       }
       if ($('.m_search').is(':visible')) {
         $('.m_search').slideUp();
-        $('.m_search').attr('aria-hidden', 'true');
+        // $('.m_search').attr('aria-hidden', 'true');
         $('.searchCtrl').attr('aria-expanded', 'false');
         $('.searchCtrl').focus();
       }
@@ -984,7 +980,7 @@ $(function () {
       }
       if ($('.function_panel .share ul').is(':visible')) {
         $('.function_panel .share ul').slideUp();
-        $('.function_panel .share ul').attr('aria-hidden', 'true');
+        // $('.function_panel .share ul').attr('aria-hidden', 'true');
         $('.function_panel .share .shareButton').attr('aria-expanded', 'false');
         $('.function_panel .share .shareButton').focus();
       }
@@ -1032,18 +1028,14 @@ $(function () {
   $('.language').find('ul').hide();
   $('.language').each(function () {
     $(this).children('ul').attr({
-      'aria-hidden': 'true',
+      // 'aria-hidden': 'true',
     });
     let _this = $(this);
     var openLang = _this.children('a,button');
     openLang.off().on('click', function (e) {
       e.preventDefault();
       $($(e.target)).next('ul').stop(true, true).slideToggle();
-      $($(e.target))
-        .next('ul')
-        .attr('aria-hidden', function (i, attr) {
-          return attr === 'true' ? 'false' : 'true';
-        });
+      // $($(e.target)).attr('aria-expanded') === 'false' ? $($(e.target)).next('ul').attr('aria-hidden', 'true') : $($(e.target)).next('ul').removeAttr('aria-hidden');
     });
 
     _this.on('keydown', function (e) {
@@ -1223,13 +1215,13 @@ function tabFunction(obj) {
     });
 
     tabContent.eq(targetIndex).removeClass('hidden');
-    tabContent.eq(targetIndex).attr('aria-hidden', 'false');
+    // tabContent.eq(targetIndex).removeAttr('aria-hidden');
 
     //移除其他內容的active
     const siblingsPanel = tabContent.eq(targetIndex).siblings();
     siblingsPanel.each(function (e) {
       $(this).addClass('hidden');
-      $(this).attr('aria-hidden', 'true');
+      // $(this).attr('aria-hidden', 'true');
     });
   }
 
@@ -1262,8 +1254,6 @@ function tabFunction(obj) {
       const mobileTabBtn = tabSet.find('.mobileTabBtn');
 
       tabSet.on('click', function (e) {
-        console.log(e.target);
-
         if (!$(e.target).hasClass('mobileTabBtn')) return;
         let index = mobileTabBtn.index(e.target) % mobileTabBtn.length;
         mobileTabFn(mobileTabBtn.eq(index), index, mobileTabBtn);
@@ -1277,7 +1267,10 @@ function tabFunction(obj) {
 
     let check = btn.attr('aria-expanded') === 'true' ? false : true;
     btn.attr('aria-expanded', check);
-    tabContentIn.eq(i).attr('aria-hidden', !check);
+    // tabContentIn.eq(i).attr('aria-hidden', !check);
+
+    // !check ? tabContentIn.eq(i).attr('aria-hidden', 'true') : tabContentIn.eq(i).removeAttr('aria-hidden');
+
     btn.toggleClass('active');
 
     if (!autoClose) return;
@@ -1290,12 +1283,12 @@ function tabFunction(obj) {
 
     siblingsPanel.each(function (e) {
       $(this).slideUp();
-      $(this).attr('aria-hidden', 'true');
+      // $(this).attr('aria-hidden', 'true');
     });
   }
 
   function removeAttribute(item) {
-    item.removeAttr('aria-hidden');
+    // item.removeAttr('aria-hidden');
     item.removeAttr('role');
     item.removeAttr('aria-labelledby');
     item.removeAttr('id');
@@ -1305,8 +1298,8 @@ function tabFunction(obj) {
       role: role,
       id: id,
       'aria-labelledby': labelledby,
-      'aria-hidden': 'false',
     });
+    // .removeAttr('aria-hidden');
   }
   //模式切換-RWD
   function checkRWD() {
@@ -1342,7 +1335,7 @@ function tabFunction(obj) {
     if (window.innerWidth < windowWidth && modeSwitch) {
       //隱藏上方選單
       tabItem.addClass('hidden');
-      tabItem.attr('aria-hidden', 'true');
+      // tabItem.attr('aria-hidden', 'true');
 
       tabBtns.each(function (i) {
         const id = tabpanelBtn.eq(i).attr('id');
@@ -1355,34 +1348,35 @@ function tabFunction(obj) {
 
         //顯示手風琴標籤按鈕
         tabpanelBtn.eq(i).removeClass('hidden');
-        tabpanelBtn.eq(i).attr('aria-hidden', 'false');
+        // tabpanelBtn.eq(i).removeAttr('aria-hidden');
         //新增手風琴內容標籤
         setAttribute(tabContentIn.eq(i), 'region', controls, id);
-        tabContentIn.eq(i).slideDown();
       });
 
       if (openContent) {
         tabContentIn.each(function (i) {
           $(this).css('display', 'block');
-          $(this).attr('aria-hidden', 'false');
+          // $(this).removeAttr('aria-hidden');
           tabpanelBtn.eq(i).addClass('active');
         });
       } else {
         //隱藏其他手風琴內容
         const siblingsPanel = tabContentIn.eq(nowOpen).parent().siblings().children('.tabContentIn');
+        console.log(siblingsPanel);
 
         siblingsPanel.each(function (i) {
           $(this).css('display', 'none');
-          $(this).attr('aria-hidden', 'true');
+          // $(this).attr('aria-hidden', 'true');
         });
       }
+
       //展開目前手風琴內容
       tabpanelBtn.eq(nowOpen).attr('aria-expanded', 'true');
       tabpanelBtn.eq(nowOpen).focus();
     } else if (window.innerWidth >= windowWidth && modeSwitch) {
       //增加上方選單
       tabItem.removeClass('hidden');
-      tabItem.removeAttr('aria-hidden');
+      // tabItem.removeAttr('aria-hidden');
       tabItem.attr('role', 'tablist');
 
       tabBtns.each(function (i) {
@@ -1397,7 +1391,7 @@ function tabFunction(obj) {
 
         //隱藏Tab標籤按鈕
         tabpanelBtn.eq(i).addClass('hidden');
-        tabpanelBtn.eq(i).attr('aria-hidden', 'true');
+        // tabpanelBtn.eq(i).attr('aria-hidden', 'true');
         //新增Tab內容標籤
         setAttribute(tabContent.eq(i), 'tabpanel', controls, id);
       });
@@ -1410,7 +1404,7 @@ function tabFunction(obj) {
       const siblingsPanel = tabContent.eq(nowOpen).siblings();
       siblingsPanel.each(function () {
         $(this).addClass('hidden');
-        $(this).attr('aria-hidden', 'true');
+        // $(this).attr('aria-hidden', 'true');
       });
     }
   }
