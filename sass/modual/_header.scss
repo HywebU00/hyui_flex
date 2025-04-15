@@ -209,8 +209,11 @@
     display: none;
   }
 
-  label {
-    font-size: 0em;
+  [for="topSearch"] {
+    width: 0px;
+    position: absolute;
+    overflow: hidden;
+    padding: 0;
   }
 
   .form_grp {

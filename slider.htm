@@ -67,7 +67,8 @@
           <!-- Search Start -->
           <div class="search" role="search">
             <div class="form_grp">
-              <input name="username" type="text" placeholder="請輸入文字" accesskey="S" aria-label="搜尋網站內容" />
+              <label for="topSearch">搜尋</label>
+              <input name="topSearch" type="text" id="topSearch" placeholder="請輸入文字" accesskey="S" aria-label="搜尋網站內容" />
               <button type="button" class="btn btn-search">查詢</button>
               <button type="button" class="btn">進階搜尋</button>
             </div>
@@ -177,8 +178,7 @@
             <!-- 圖片輪播 start -->
             <div class="mpSliderBox">
               <div class="slickControlBox">
-                <button class="stop" type="button">暫停</button>
-                <button class="play active" type="button">播放</button>
+                <button type="button"><span>播放中，點我暫停</span><span>暫停中，點我播放</span></button>
               </div>
               <div class="mpSlider">
                 <div class="img-container">

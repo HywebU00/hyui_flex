@@ -20,15 +20,17 @@ $(function () {
         return $('<button type="button" aria-label="' + title + '"/>').text(title);
       },
     });
-    $('.mpSliderBox .slickControlBox .stop').on('click', function () {
-      $(this).addClass('active');
-      $('.mpSliderBox .slickControlBox .play').removeClass('active');
-      $('.mpSlider').slick('slickPause');
-    });
-    $('.mpSliderBox .slickControlBox .play').on('click', function () {
-      $(this).addClass('active');
-      $('.mpSliderBox .slickControlBox .stop').removeClass('active');
-      $('.mpSlider').slick('slickPlay');
+    let checkState = true;
+    $('.mpSliderBox .slickControlBox button').on('click', function () {
+      if (checkState) {
+        checkState = false;
+        $(this).addClass('stop');
+        $('.mpSlider').slick('slickPause');
+      } else {
+        checkState = true;
+        $(this).removeClass('stop');
+        $('.mpSlider').slick('slickPlay');
+      }
     });
   }
   // 廣告輪播

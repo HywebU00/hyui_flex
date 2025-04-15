@@ -3223,8 +3223,11 @@ div.tag ul li a:hover {
     display: none;
   }
 }
-.search label {
-  font-size: 0em;
+.search [for=topSearch] {
+  width: 0px;
+  position: absolute;
+  overflow: hidden;
+  padding: 0;
 }
 .search .form_grp {
   display: flex;
@@ -7529,25 +7532,31 @@ table.table_sprite tr:nth-child(even) {
 }
 .mpSliderBox .slickControlBox button {
   background: #000;
-  border-radius: 50%;
+  border-radius: 50px;
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
+  padding: 10px 15px;
   aspect-ratio: 1;
   font-size: 14px;
   margin: 0;
   border: none;
-  width: 48px;
-  height: 48px;
+  height: 40px;
   white-space: nowrap;
-  border: 2px solid #fff;
 }
-.mpSliderBox .slickControlBox button.active {
-  border: 2px solid #000;
+.mpSliderBox .slickControlBox button span:last-child {
+  display: none;
+}
+.mpSliderBox .slickControlBox button.stop {
   background: #fff;
   color: #000;
+}
+.mpSliderBox .slickControlBox button.stop span:first-child {
+  display: none;
+}
+.mpSliderBox .slickControlBox button.stop span:last-child {
+  display: block;
 }
 
 .mpSlider {
